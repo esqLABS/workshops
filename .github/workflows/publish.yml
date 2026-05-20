@@ -36,9 +36,36 @@ jobs:
       - name: Install R dependencies (renv)
         uses: r-lib/actions/setup-renv@v2
 
-      - name: Publish to GitHub Pages
-        uses: quarto-dev/quarto-actions/publish@v2
+      - name: Render Quarto site
+        uses: quarto-dev/quarto-actions/render@v2
+
+      - name: Set up Node (for staticrypt)
+        uses: actions/setup-node@v4
         with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          node-version: "20"
+
+      # Password is read from the committed .workshop-password file. The repo
+      # is private; rotate the password (and rewrite history if needed) before
+      # any visibility change.
+      - name: Encrypt site with staticrypt
+        run: |
+          PASSWORD="$(tr -d '\n' < .workshop-password)"
+          npx --yes staticrypt _site \
+            --recursive \
+            --short \
+            --remember 7 \
+            --directory _site \
+            --template .staticrypt/template.html \
+            --template-title "PAGE 2026 R Workshop" \
+            --template-instructions "This site hosts the materials for the PAGE 2026 pre-conference workshop. Enter the password shared with registered participants to continue." \
+            --template-button "Unlock workshop" \
+            --template-placeholder "Workshop password" \
+            --template-remember "Remember me on this device for 7 days" \
+            --template-error "Incorrect password, please try again." \
+            -p "$PASSWORD"
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: _site
+          branch: gh-pages
