@@ -5,6 +5,10 @@ project:
     - robots.txt
   render:
     - "*.qmd"
+    # Exclude project-internal reports that are hands-on exercises and rely on
+    # configuration files participants fill in during the workshop. They are
+    # rendered locally by participants, not as part of the published website.
+    - "!workshops/resources/projects/**/Reports/*.qmd"
   pre-render: scripts/clean-quarto-temp.R
 
 website:
