@@ -84,10 +84,10 @@
 
             .esq-logo {
                 display: block;
-                width: 200px;
-                max-width: 70%;
+                width: 320px;
+                max-width: 90%;
                 height: auto;
-                margin: 0 auto 28px;
+                margin: 0 auto 32px;
             }
 
             .staticrypt-title {
@@ -113,7 +113,7 @@
                 margin: 24px 0 20px;
             }
 
-            .staticrypt-form {
+            #staticrypt-form {
                 text-align: left;
             }
 
@@ -122,22 +122,22 @@
                 margin-bottom: 16px;
             }
 
-            .staticrypt-form input[type="password"],
-            .staticrypt-form input[type="text"] {
+            #staticrypt-form input[type="password"],
+            #staticrypt-form input[type="text"] {
                 width: 100%;
                 font-family: inherit;
-                font-size: 0.95rem;
+                font-size: 1rem;
                 color: var(--esq-ink);
                 background: #ffffff;
                 border: 1px solid var(--esq-border);
                 border-radius: 10px;
-                padding: 13px 44px 13px 14px;
+                padding: 14px 44px 14px 16px;
                 outline: none;
                 transition: border-color 120ms ease, box-shadow 120ms ease;
             }
 
-            .staticrypt-form input[type="password"]:focus,
-            .staticrypt-form input[type="text"]:focus {
+            #staticrypt-form input[type="password"]:focus,
+            #staticrypt-form input[type="text"]:focus {
                 border-color: var(--esq-teal);
                 box-shadow: 0 0 0 3px rgba(74, 189, 203, 0.18);
             }
@@ -156,6 +156,7 @@
             label.staticrypt-remember {
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 font-size: 0.9rem;
                 color: var(--esq-muted);
                 margin: 0 0 18px;
@@ -169,31 +170,39 @@
                 accent-color: var(--esq-teal);
             }
 
-            .staticrypt-form .staticrypt-decrypt-button {
+            #staticrypt-form .staticrypt-decrypt-button,
+            input.staticrypt-decrypt-button {
+                display: block;
                 width: 100%;
                 background: var(--esq-teal);
                 color: #ffffff;
                 font-family: inherit;
                 font-size: 0.95rem;
                 font-weight: 600;
-                letter-spacing: 0.02em;
+                letter-spacing: 0.04em;
                 text-transform: uppercase;
                 border: 0;
                 border-radius: 10px;
-                padding: 13px 16px;
+                padding: 14px 16px;
+                margin: 0;
                 cursor: pointer;
                 transition: background-color 120ms ease, transform 80ms ease;
+                -webkit-appearance: none;
+                appearance: none;
             }
 
-            .staticrypt-form .staticrypt-decrypt-button:hover {
+            #staticrypt-form .staticrypt-decrypt-button:hover,
+            input.staticrypt-decrypt-button:hover {
                 background: #3da8b6;
             }
 
-            .staticrypt-form .staticrypt-decrypt-button:active {
+            #staticrypt-form .staticrypt-decrypt-button:active,
+            input.staticrypt-decrypt-button:active {
                 transform: translateY(1px);
             }
 
-            .staticrypt-form .staticrypt-decrypt-button:focus {
+            #staticrypt-form .staticrypt-decrypt-button:focus,
+            input.staticrypt-decrypt-button:focus {
                 outline: 0;
                 box-shadow: 0 0 0 3px rgba(74, 189, 203, 0.30);
             }
@@ -239,8 +248,8 @@
 
             /* iOS Safari: stop auto-zoom on focus */
             @media screen and (-webkit-min-device-pixel-ratio: 0) {
-                .staticrypt-form input[type="password"],
-                .staticrypt-form input[type="text"] {
+                #staticrypt-form input[type="password"],
+                #staticrypt-form input[type="text"] {
                     font-size: 16px;
                 }
             }
