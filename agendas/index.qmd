@@ -6,12 +6,12 @@ title-block-banner-color: "#ffffff"
 listing:
   - id: agendas-listing
     type: table
-    fields: [ID, Module, title, file-modified, author]
+    fields: [ID, module, title, file-modified]
     sort:
       - ID
     date-format: "YYYY-MM-DD"
     sort-ui: false
-    filter-ui: [Module, Number, title, author]
+    filter-ui: [Module, Number, title]
 ---
 
 ## 🇭🇷 Featured: PAGE 2026 Workshop

@@ -1,17 +1,13 @@
 ---
 title: "R Workflows for advanced PB-QSP Modeling"
 subtitle: "with `{ospsuite}` and `{esqlabsR}` — PAGE 2026 Workshop"
-Module: "PAGE 2026 Agenda + Day-of Deck"
+module: "PAGE 2026 Agenda + Day-of Deck"
 ID: 02
 date: last-modified
 author:
   - Pavel Balazki
   - Wilbert de Witte
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
-    slide-number: true
+format: esqlabs-revealjs
 ---
 
 ```{r setup, include=FALSE}

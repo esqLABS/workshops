@@ -6,10 +6,7 @@ ID: D1
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
+format: esqlabs-revealjs
 ---
 
 ::: {.r-fit-text}
