@@ -6,10 +6,7 @@ ID: A10
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
+format: esqlabs-revealjs
 ---
 
 ::: {.r-fit-text}
@@ -18,7 +15,6 @@ format:
 
 
 ```{r setup, echo = FALSE}
-#| output-location: default
 knitr::opts_chunk$set(fig.showtext = TRUE, fig.align = "center")
 ```
 
@@ -45,14 +41,12 @@ Also available using `{ospsuite}` !
 ## Load `{ospsuite}`
 
 ```{r}
-#| output-location: default
 library(ospsuite)
 ```
 
 ## Load Sample Simulation
 
 ```{r}
-#| output-location: default
 sim <- loadSimulation(system.file(
   "extdata",
   "Aciclovir.pkml",
@@ -132,7 +126,6 @@ Supplementary parameters can be added to an existing `SensitivityAnalysis`.
 :::
 
 ```{r}
-#| output-location: default
 sa$addParameterPaths("Organism|Liver|Volume")
 
 sa
@@ -196,7 +189,6 @@ saResult
 - `showProgress`
 
 ```{r, eval = TRUE}
-#| output-location: default
 runSensitivityAnalysis(
   sa,
   sensitivityAnalysisRunOptions = SensitivityAnalysisRunOptions$new(
@@ -293,7 +285,6 @@ saResult$pkParameterSensitivityValueFor(
 ```
 
 ```{r, echo = FALSE}
-#| output-location: default
 # Retrieve the value for one PKparameter/parameter combination
 c_max_fraction_unbound <- saResult$pkParameterSensitivityValueFor(
   pkParameterName = "C_max",
@@ -336,7 +327,6 @@ Original Simulation is required to import sensitivity analysis results.
 :::
 
 ```{r, echo = FALSE}
-#| output-location: default
 invisible(file.remove("mySAResults.csv"))
 ```
 
@@ -354,7 +344,6 @@ invisible(file.remove("mySAResults.csv"))
 Create a new sensitivity analysis from scratch. Select 5 parameters of your choice. Include the Dose and the fraction unbound.
 
 ```{r, eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 sim <- loadSimulation(system.file(
@@ -381,7 +370,6 @@ sa <- SensitivityAnalysis$new(
 Compare two sensitivity analyses. Keep steps and variation range as default for the first, set `variationRange` to 0.2 for the second, same parameters. Run both.
 
 ```{r, eval = TRUE, results = FALSE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 sa20 <- SensitivityAnalysis$new(
@@ -406,7 +394,6 @@ saResult20 <- runSensitivityAnalysis(sa20)
 Compare both results for `C_max`. Display all parameters (`totalSensitivityThreshold = 1`).
 
 ```{r, eval = TRUE, results = FALSE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 outputPath <- saResult$allQuantityPaths[[1]]
@@ -428,7 +415,6 @@ saResult20$allPKParameterSensitivitiesFor(
 ## Compare `CL`
 
 ```{r, eval = TRUE, results = FALSE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 # Clearance results

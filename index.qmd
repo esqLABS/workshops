@@ -6,12 +6,12 @@ listing:
   - id: workshops-listing
     type: table
     contents: workshops
-    fields: [ID, Module, title , file-modified, author]
+    fields: [ID, module, title , file-modified]
     sort:
       - ID
     date-format: "YYYY-MM-DD"
     sort-ui: false
-    filter-ui: [Module, Number, title, author]
+    filter-ui: [Module, Number, title]
 
 ---
 
@@ -37,3 +37,27 @@ Full-day instructor-led workshop. See the [agenda + day-of deck](agendas/PAGE_20
 
 ::: {#workshops-listing}
 :::
+
+# 📦 Environment
+
+Slides on this site were rendered with the following versions:
+
+```{r versions, echo=FALSE}
+pkgs <- c("ospsuite", "ospsuite.parameteridentification", "esqlabsR")
+knitr::kable(
+  data.frame(
+    Component = c(
+      paste0("R (", R.version$nickname, ")"),
+      paste0("`{", pkgs, "}`")
+    ),
+    Version = c(
+      as.character(getRversion()),
+      vapply(
+        pkgs,
+        function(p) as.character(utils::packageVersion(p)),
+        character(1)
+      )
+    )
+  )
+)
+```

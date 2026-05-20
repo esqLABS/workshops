@@ -6,10 +6,7 @@ ID: A09
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
+format: esqlabs-revealjs
 ---
 
 ::: {.r-fit-text}
@@ -18,7 +15,6 @@ format:
 
 
 ```{r setup, echo = FALSE}
-#| output-location: default
 knitr::opts_chunk$set(fig.showtext = TRUE, fig.align = "center")
 ```
 
@@ -79,7 +75,6 @@ pkAnalysis <- calculatePKAnalyses(results = simulationResults)
 ## Get simulation results
 
 ```{r}
-#| output-location: default
 # Load the package
 library(ospsuite)
 
@@ -175,7 +170,6 @@ Columns: `IndividualId`, `QuantityPath`, `Parameter`, `Value`, `Unit`.
 ## Import
 
 ```{r}
-#| output-location: default
 # example file
 PKAnalysisFilePath <- system.file(
   "extdata",
@@ -197,12 +191,10 @@ The related simulation must be loaded to import the PK parameters.
 ## Export
 
 ```{r}
-#| output-location: default
 exportPKAnalysesToCSV(pkAnalyses = pkAnalysis, filePath = "PKAnalysis.csv")
 ```
 
 ```{r, echo = FALSE}
-#| output-location: default
 read.csv("PKAnalysis.csv")
 
 invisible(file.remove("PKAnalysis.csv"))
@@ -226,7 +218,6 @@ addUserDefinedPKParameter(name, standardPKParameter)
 `ospsuite::StandardPKParameter` exposes the available base parameters:
 
 ```{r}
-#| output-location: default
 names(ospsuite::StandardPKParameter)
 ```
 
@@ -297,7 +288,6 @@ Practice PK parameter analysis on the Aciclovir simulation:
 Let's practice! Start by accessing and saving into an object the value of `C_max` and `C_tEnd` for the Plasma (Peripheral Venous Blood).
 
 ```{r,  eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 library(ospsuite)
@@ -329,7 +319,6 @@ C_tEndExercise <- pkAnalysisExercise$pKParameterFor(
 Repeat the process but with the following output: `"Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous Blood)"`
 
 ```{r,  eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 # We do the same for another output of our choice, here the whole blood
@@ -359,7 +348,6 @@ C_tendExercise_wholeBlood <- pkAnalysisExercise$pKParameterFor(
 Create a new simulation with a dose of 100 mg, run it, then create a data frame called `pkAnalysisDF_100mg` containing all PK parameters of the Plasma (Peripheral Venous Blood). Export the PK analysis to a csv file.
 
 ```{r,  eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Reminder"
 # Simulation Setup
@@ -380,7 +368,6 @@ simDose100_res <- runSimulations(simDose100)[[1]]
 ## 100 mg PK Data Frame + Export
 
 ```{r,  eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 pkAnalysis_100mg <- calculatePKAnalyses(results = simDose100_res)
@@ -398,7 +385,6 @@ exportPKAnalysesToCSV(
 ```
 
 ```{r, echo = FALSE}
-#| output-location: default
 invisible(file.remove("pkAnalysis_100mg.csv"))
 ```
 
@@ -407,7 +393,6 @@ invisible(file.remove("pkAnalysis_100mg.csv"))
 Now, add two PK parameters, `C_max` and `C_min`, between 10 and 90 minutes, for the plasma (Peripheral Venous Blood). Then, compute the ratio `C_max/C_min` for the original simulation and for the new one with a dose of 100 mg.
 
 ```{r,  eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 myC_max <- addUserDefinedPKParameter(
@@ -433,7 +418,6 @@ pkAnalysis_100mg <- calculatePKAnalyses(results = simDose100_res)
 ## Ratio — Original Simulation
 
 ```{r,  eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 # We compute the PK parameters for the original simulation
@@ -455,7 +439,6 @@ ratioExercise
 ## Ratio — 100 mg Simulation
 
 ```{r,  eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 # And for the new one

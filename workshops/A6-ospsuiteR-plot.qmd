@@ -6,9 +6,7 @@ ID: A06
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
+format: esqlabs-revealjs
 ---
 
 
@@ -20,7 +18,6 @@ format:
 
 
 ```{r setup, echo = FALSE}
-#| output-location: default
 knitr::opts_chunk$set(
   fig.showtext = TRUE,
   fig.align = "center",
@@ -211,7 +208,6 @@ plotTimeProfile(myDataCombined)
 ## Rename and Group Simulated and Observed Data
 
 ```{r}
-#| output-location: default
 myDataCombined <- DataCombined$new()
 
 myDataCombined$addSimulationResults(
@@ -244,14 +240,12 @@ unique(myDC_df$group)
 . . .
 
 ```{r, echo = TRUE}
-#| output-location: default
 plotTimeProfile(myDataCombined)
 ```
 
 ## Add several Observed Data
 
 ```{r, warning= FALSE}
-#| output-location: default
 myDataCombined2 <- DataCombined$new()
 
 
@@ -297,7 +291,6 @@ unique(myDC_df$group)
 ## Several Observed — Plot
 
 ```{r}
-#| output-location: default
 plotTimeProfile(myDataCombined2)
 ```
 
@@ -318,7 +311,6 @@ plotTimeProfile(myDataCombined2)
 ## Time Profile
 
 ```{r}
-#| output-location: default
 plotTimeProfile(myDataCombined)
 ```
 
@@ -327,42 +319,36 @@ plotTimeProfile(myDataCombined)
 Plasma profiles are typically read on a log scale. Pass `yScale = "log"`.
 
 ```{r}
-#| output-location: default
 plotTimeProfile(myDataCombined, yScale = "log")
 ```
 
 ## Predicted vs Observed
 
 ```{r}
-#| output-location: default
 plotPredictedVsObserved(myDataCombined)
 ```
 
 ## Residuals vs Predicted
 
 ```{r}
-#| output-location: default
 plotResidualsVsCovariate(myDataCombined, xAxis = "predicted")
 ```
 
 ## Residuals vs Time
 
 ```{r}
-#| output-location: default
 plotResidualsVsCovariate(myDataCombined, xAxis = "time")
 ```
 
 ## Residuals Histogram
 
 ```{r}
-#| output-location: default
 plotResidualsAsHistogram(myDataCombined)
 ```
 
 ## Residuals Q-Q Plot
 
 ```{r}
-#| output-location: default
 plotQuantileQuantilePlot(myDataCombined)
 ```
 
@@ -372,7 +358,6 @@ All plotting functions return `ggplot2` objects, so customization uses the stand
 `ggplot2` builds plots in layers: each `+` adds something new (a title, a theme, axis limits, etc.). A quick reference: [ggplot2.tidyverse.org](https://ggplot2.tidyverse.org/reference/index.html)
 
 ```{r}
-#| output-location: default
 library(ggplot2)
 
 plotTimeProfile(myDataCombined) +
@@ -390,7 +375,6 @@ plotTimeProfile(myDataCombined) +
 `|` places plots side by side, `/` stacks them vertically.
 
 ```{r}
-#| output-location: default
 library(patchwork)
 
 timeProfile <- plotTimeProfile(myDataCombined)
@@ -406,7 +390,6 @@ resVsTime <- plotResidualsVsCovariate(myDataCombined, xAxis = "time")
 Use `ospsuite.plots::exportPlot()` to write a plot to disk.
 
 ```{r, eval = FALSE}
-#| output-location: default
 p <- plotTimeProfile(myDataCombined)
 
 ospsuite.plots::exportPlot(
@@ -428,7 +411,6 @@ ospsuite.plots::exportPlot(
 3. Run the simulations and assign the output to `results`
 
 ```{r, eval=TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer"
 library(ospsuite)
@@ -456,7 +438,6 @@ results <- runSimulations(simulations = list(sim = sim, sim_100mg = sim_100mg))
 
 
 ```{r, eval=TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer"
 # 1)
@@ -490,7 +471,6 @@ The default pkml exposes more than one output path. When passing a single `name`
 :::
 
 ```{r, eval=TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer"
 plasmaPath <- "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
@@ -510,7 +490,6 @@ plotTimeProfile(myDataCombined)
 2. Plot the time profile and the predicted vs observed plot from `myDataCombined`
 
 ```{r, eval=TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer"
 myDataCombined$addSimulationResults(
@@ -538,7 +517,6 @@ plotPredictedVsObserved(myDataCombined)
 ## Plot several outputs — Answer
 
 ```{r, eval=TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer"
 # 1) clear default outputs first, then add the three we want
@@ -572,7 +550,6 @@ myDataCombined2 <- DataCombined$new()
 ## Add Simulation Results and Customize plot — Answer
 
 ```{r, eval=TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer"
 library(ggplot2)

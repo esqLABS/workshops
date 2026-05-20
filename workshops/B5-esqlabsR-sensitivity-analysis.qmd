@@ -6,10 +6,7 @@ ID: B5
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
+format: esqlabs-revealjs
 ---
 
 ::: r-fit-text
@@ -179,7 +176,6 @@ analysis <- sensitivityCalculation(
 ## Inspect `analysis$pkData`
 
 ```{r inspect}
-#| output-location: default
 head(analysis$pkData)
 ```
 
@@ -192,7 +188,6 @@ Columns: `ParameterPath`, `ParameterFactor`, `ParameterValue`, `PKParameter`, `P
 PK metric on y, scaling factor on x — one panel per metric, one line per parameter.
 
 ```{r spider}
-#| output-location: default
 sensitivitySpiderPlot(analysis)
 ```
 
@@ -201,7 +196,6 @@ sensitivitySpiderPlot(analysis)
 Rank parameters by influence at a fixed scaling — bars compare `0.1×` vs `10×` by default.
 
 ```{r tornado}
-#| output-location: default
 sensitivityTornadoPlot(analysis)
 ```
 
@@ -210,7 +204,6 @@ sensitivityTornadoPlot(analysis)
 Full concentration–time curve per scaling factor (blue → black → red as factor increases).
 
 ```{r time-profiles}
-#| output-location: default
 sensitivityTimeProfiles(analysis)
 ```
 
@@ -253,7 +246,6 @@ Custom metrics appear in the `PKParameter` column — the same structure as stan
 ## Visualise custom results
 
 ```{r custom-tornado}
-#| output-location: default
 sensitivityTornadoPlot(analysis_custom)
 ```
 

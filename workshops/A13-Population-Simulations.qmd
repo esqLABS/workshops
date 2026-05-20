@@ -6,10 +6,7 @@ ID: A13
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
+format: esqlabs-revealjs
 ---
 
 ::: {.r-fit-text}
@@ -17,7 +14,6 @@ format:
 :::
 
 ```{r setup, echo = FALSE}
-#| output-location: default
 knitr::opts_chunk$set(fig.showtext = TRUE, fig.align = "center")
 options(ospsuite.plots.watermarkEnabled = FALSE)
 ```
@@ -35,7 +31,6 @@ options(ospsuite.plots.watermarkEnabled = FALSE)
 ## Load Sample Simulation
 
 ```{r}
-#| output-location: default
 library(ospsuite)
 
 simFilePath <- system.file(
@@ -65,7 +60,6 @@ Key arguments:
 ## Example
 
 ```{r}
-#| output-location: default
 popCharacteristics <- createPopulationCharacteristics(
   species = Species$Human,
   population = HumanPopulation$Asian_Tanaka_1996,
@@ -89,7 +83,6 @@ The population argument selects a built-in physiological database from PK-Sim. E
 Samples all individuals at once.
 
 ```{r}
-#| output-location: default
 result <- createPopulation(
   populationCharacteristics = popCharacteristics
 )
@@ -101,7 +94,6 @@ myPopulation
 ## Inspect as Data Frame
 
 ```{r}
-#| output-location: default
 popDf <- populationToDataFrame(myPopulation)
 dim(popDf)
 head(popDf[, 1:5])
@@ -114,7 +106,6 @@ Each row = one individual; columns are parameter paths.
 ## Export
 
 ```{r, eval = FALSE}
-#| output-location: default
 populationToCSV(
   population = myPopulation,
   filePath = "myPopulation.csv"
@@ -124,7 +115,6 @@ populationToCSV(
 ## Import
 
 ```{r, eval = FALSE}
-#| output-location: default
 loadedPop <- loadPopulation(csvPopulationFile = "myPopulation.csv")
 ```
 
@@ -137,7 +127,6 @@ Use CSV to share populations across machines or reuse them without regenerating 
 ## `runSimulations()` with `population`
 
 ```{r}
-#| output-location: default
 populationResults <- runSimulations(
   simulations = sim,
   population = myPopulation
@@ -149,7 +138,6 @@ populationResults
 ## Tune Parallelism
 
 ```{r, eval = FALSE}
-#| output-location: default
 simRunOptions <- SimulationRunOptions$new()
 simRunOptions$numberOfCores <- 3
 simRunOptions$showProgress <- TRUE
@@ -168,7 +156,6 @@ Defaults: `numberOfCores = max(cores) - 1`, `showProgress = FALSE`.
 ## `getOutputValues()`
 
 ```{r}
-#| output-location: default
 resultsPath <- populationResults$allQuantityPaths[[1]]
 
 resultsData <- getOutputValues(
@@ -186,7 +173,6 @@ Columns: `IndividualId`, `Time`, plus one column per requested path.
 ## Subset Individuals
 
 ```{r}
-#| output-location: default
 twoIndiv <- getOutputValues(
   populationResults,
   quantitiesOrPaths = resultsPath,
@@ -201,7 +187,6 @@ unique(twoIndiv$data$IndividualId)
 ## Quick Plot
 
 ```{r}
-#| output-location: default
 #| fig-height: 4
 dc <- DataCombined$new()
 dc$addSimulationResults(
@@ -225,7 +210,6 @@ plotTimeProfile(dc)
 ## Build Population and Run
 
 ```{r, eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 popChar <- createPopulationCharacteristics(
@@ -248,7 +232,6 @@ popResults <- runSimulations(simulations = sim, population = pop)[[1]]
 ## Plot Two Individuals
 
 ```{r, eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 path <- popResults$allQuantityPaths[[1]]
