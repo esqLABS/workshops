@@ -2,19 +2,17 @@ project:
   type: website
   execute-dir: project
   resources:
-    - staticwebapp.config.json
     - robots.txt
-    - CNAME
   render:
     - "*.qmd"
   pre-render: scripts/clean-quarto-temp.R
 
 website:
-  title: "ESQlabs R Trainings"
-  description: "R training materials and resources from ESQlabs"
+  title: "PAGE 2026 R Workshop"
+  description: "R workshop materials for PAGE 2026, by ESQlabs."
   favicon: "resources/favicon.ico"
-  site-url: "https://r-training.esqlabs.com/"
-  repo-url: "https://github.com/esqLABS/r-packages-training"
+  site-url: "https://esqlabs.github.io/PAGE2026-R-WORKSHOP/"
+  repo-url: "https://github.com/esqLABS/PAGE2026-R-WORKSHOP"
 
 execute:
   freeze: auto  # re-render only when source changes
