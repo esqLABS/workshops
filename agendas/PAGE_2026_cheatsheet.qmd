@@ -1,0 +1,303 @@
+---
+title: "PAGE 2026 — `{ospsuite}` + `{esqlabsR}` Cheatsheet"
+subtitle: "Workshop reference — 2 pages"
+author: "Pavel Balazki · Wilbert de Witte"
+date: 2026-06-01
+format:
+  pdf:
+    documentclass: article
+    geometry:
+      - top=12mm
+      - left=12mm
+      - right=12mm
+      - bottom=12mm
+    fontsize: 9pt
+    colorlinks: true
+    include-in-header:
+      text: |
+        \usepackage{multicol}
+        \usepackage{xcolor}
+        \usepackage{tabularx}
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},breaklines,breakanywhere,fontsize=\footnotesize}
+        \fvset{breaklines=true,breakanywhere=true,fontsize=\footnotesize}
+        \usepackage{titlesec}
+        \titleformat*{\section}{\large\bfseries}
+        \titleformat*{\subsection}{\normalsize\bfseries}
+        \titlespacing*{\section}{0pt}{6pt}{2pt}
+        \titlespacing*{\subsection}{0pt}{4pt}{1pt}
+        \setlength{\columnsep}{6mm}
+        \setlength{\parskip}{2pt}
+        \setlength{\parindent}{0pt}
+        \pagestyle{empty}
+---
+
+```{=latex}
+\begin{multicols}{2}
+```
+
+# `{ospsuite}` essentials
+
+## Workflow
+
+`load → inspect → modify → run → extract → analyze → plot`
+
+## Load + save
+
+```r
+sim <- loadSimulation("path/Model.pkml")
+saveSimulation(sim, "path/Model_v2.pkml")
+# Independent copy? Reload — sim$clone() is broken
+# for ospsuite (.NET-backed R6).
+sim_copy <- loadSimulation("path/Model.pkml")
+```
+
+## Inspect
+
+```r
+getAllParameterPathsIn(sim)
+getAllMoleculePathsIn(sim)
+getAllContainerPathsIn(sim)
+getAllParametersMatching("**|Volume", sim)
+```
+
+## Parameter access
+
+```r
+p  <- getParameter("Organism|Liver|Volume", sim)
+p$value; p$unit
+setParameterValuesByPath("Organism|Weight", 75, sim, units = "kg")
+```
+
+## Run
+
+```r
+res <- runSimulations(sim)[[1]]              # single
+res_list <- runSimulations(list(sim1, sim2)) # batch
+```
+
+## Extract
+
+```r
+out <- getOutputValues(res, quantitiesOrPaths = "...|Concentration")
+out$data  # → data.frame: Time, paths, values
+```
+
+## Plot — `DataCombined`
+
+```r
+dc <- DataCombined$new()
+dc$addSimulationResults(res)
+dc$addObservedData(loadDataSetFromPKML("obs.pkml"))
+plotIndividualTimeProfile(dc)        # time profile
+plotObservedVsSimulated(dc)          # GoF
+plotResidualsVsTime(dc)              # residuals
+```
+
+## PK params
+
+```r
+pk <- calculatePKAnalyses(res, "...|Concentration")
+pkAnalysesAsDataFrame(pk)            # AUC, C_max, t_max, t½
+addUserDefinedPKParameter(...)
+```
+
+## Local sensitivity
+
+```r
+sa <- sensitivityCalculation(
+  simulation = sim,
+  variableParameterPaths = c("...|Lipophilicity",
+                             "...|GFR_filtration_fraction"),
+  variationRange = 0.1)
+mostSensitiveParameters(sa, totalSensitivityThreshold = 0.9)
+```
+
+## Units
+
+```r
+toUnit("Concentration", 1, "mg/L")
+toBaseUnit("Volume", 70, "kg")
+toDisplayUnit(p, p$value)
+```
+
+## Path conventions
+
+`Aciclovir|Organism|Liver|Volume`
+
+Levels: `organ` → `compartment` → `parameter`.
+`|` separates levels. `**` = recursive wildcard.
+
+## Parameter identification
+
+```r
+library(ospsuite.parameteridentification)
+```
+
+### Optimization parameter
+
+```r
+piPar <- PIParameters$new(
+  parameters = getParameter("Aciclovir|Lipophilicity", sim))
+piPar$minValue <- -5
+piPar$maxValue <-  5
+piPar$startValue <- 2          # optional
+```
+
+### Observed data → output mapping
+
+```r
+obs <- loadDataSetsFromExcel(
+  "Data/Obs.xlsx", projectConfiguration = project)
+
+simPath <- "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
+mapping <- PIOutputMapping$new(
+  quantity = getQuantity(simPath, container = sim))
+mapping$addObservedDataSets(obs$`Aciclovir.Vergin1995.IV250`)
+```
+
+### Configure + run
+
+```r
+cfg <- PIConfiguration$new()
+cfg$algorithm     <- "DEoptim"   # or "LevenbergMarquardt"
+cfg$autoEstimateCI <- TRUE
+
+piTask <- ParameterIdentification$new(
+  simulations    = sim,
+  parameters     = piPar,
+  outputMappings = mapping,
+  configuration  = cfg)
+
+res <- piTask$run()
+piTask$plotResults()
+```
+
+```{=latex}
+\columnbreak
+```
+
+# `{esqlabsR}` essentials
+
+## Project structure
+
+```
+MyProject/
+├── ProjectConfiguration.xlsx     ← master
+├── Models/
+│   └── Simulations/   *.pkml
+├── Configurations/
+│   ├── Scenarios.xlsx
+│   ├── ModelParameters.xlsx
+│   ├── Applications.xlsx
+│   └── Plots.xlsx
+├── Data/           *.xlsx
+├── Results/
+└── Reports/        *.qmd
+```
+
+## Initialize
+
+```r
+library(esqlabsR)
+initProject(path = "~/MyProject")
+```
+
+## Project object
+
+```r
+project <- createProjectConfiguration("ProjectConfiguration.xlsx")
+project$paths$ModelsFolder
+project$paths$ConfigurationsFolder
+```
+
+## Load + run scenarios
+
+```r
+cfg <- readScenarioConfigurationFromExcel(
+  scenarioNames = c("PO_7.5mg", "IV_2mg"),
+  projectConfiguration = project)
+sc  <- createScenarios(cfg)
+res <- runScenarios(scenarios = sc)
+```
+
+## Snapshot / restore
+
+```r
+snapshot(project)        # Excel → JSON snapshot
+restore(project)         # JSON → Excel
+status(project)          # diff
+```
+
+## Plots from Excel
+
+```r
+plots <- createPlotsFromExcel(
+  plotGridNames        = c("PO_vs_obs"),
+  simulatedScenarios   = res,
+  observedData         = obs,
+  projectConfiguration = project)
+plots[[1]]
+```
+
+## Sensitivity (multi-range)
+
+```r
+simulation <- scenarios$PO_7.5mg$simulation
+analysis <- sensitivityCalculation(
+  simulation     = simulation,
+  outputPaths    = c(Plasma = "..."),
+  parameterPaths = c(Lipo = "Midazolam|Lipophilicity"),
+  variationRange = c(0.1, 0.5, 1, 2, 10),
+  pkParameters   = c("C_max", "AUC_inf"))
+sensitivitySpiderPlot(analysis)
+sensitivityTornadoPlot(analysis)
+sensitivityTimeProfiles(analysis)
+saveSensitivityCalculation(analysis, outputDir = "Results/SA")
+```
+
+## Excel cheat-row reference
+
+```{=latex}
+\renewcommand{\arraystretch}{1.2}
+\noindent\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\textbf{File} & \textbf{One row =} & \textbf{Key columns} \\
+\hline
+Scenarios & one scenario & \texttt{Scenario}, \texttt{ModelFile}, \texttt{ApplicationProtocol}, \texttt{IndividualId}, \texttt{OutputPathsId} \\
+ModelParameters & parameter override & \texttt{Id}, \texttt{ContainerPath}, \texttt{ParameterName}, \texttt{Value}, \texttt{Units} \\
+Applications & dosing protocol & \texttt{Id}, \texttt{DrugMass}, \texttt{DoseUnit}, \texttt{StartTime}, \texttt{Route} \\
+Plots & one figure & \texttt{PlotID}, \texttt{ScenarioName}, \texttt{OutputPath}, \texttt{xLog}, \texttt{yLog} \\
+\end{tabularx}
+```
+
+## Quarto report — re-render
+
+```bash
+quarto render Reports/MyReport.qmd                  # default
+quarto render Reports/MyReport.qmd -P dose_mg:15    # override param
+quarto render Reports/MyReport.qmd --to pdf         # PDF only
+```
+
+## In a chunk
+
+```{.r}
+# parameters from YAML
+params$dose_mg
+
+# auto-run scenarios
+cfg   <- readScenarioConfigurationFromExcel(params$scenario, project)
+sc    <- createScenarios(cfg)
+res   <- runScenarios(sc)
+plots <- createPlotsFromExcel(plotGridNames = "MyPlot",
+                              simulatedScenarios = res,
+                              projectConfiguration = project)
+```
+
+## Repo
+
+🌐 `r-training.esqlabs.com`
+🐙 `github.com/esqLABS/r-packages-training`
+
+```{=latex}
+\end{multicols}
+```

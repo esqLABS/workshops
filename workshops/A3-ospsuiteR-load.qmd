@@ -1,0 +1,130 @@
+---
+title: "Load Models"
+subtitle: "Introduction to `{ospsuite}`"
+module: "Introduction to `{ospsuite}`"
+ID: A03
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format: esqlabs-revealjs
+---
+
+::: {.r-fit-text}
+## **🎯 Goal: Learn how to load `.pkml` model files in `{ospsuite}`**
+:::
+
+## Included Example
+
+`{ospsuite}` comes with an example simulation of Aciclovir in a `.pkml` file. It can be accessed with:
+
+```{r, eval = FALSE}
+#| output-location: default
+system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
+```
+
+# Load
+
+## Load a Model
+
+Use the `loadSimulation()` function to load a `.pkml` file.
+
+```{r}
+library(ospsuite)
+simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
+
+sim <- loadSimulation(simFilePath)
+
+print(sim)
+```
+
+# Inspect
+
+## Attributes
+
+`Simulation` attributes can be browsed using `$`.
+
+
+```{r}
+# Solver settings
+sim$solver
+```
+
+. . . 
+
+```{r}
+# Output paths
+sim$outputSelections
+```
+
+
+. . .
+
+```{r}
+sim$outputSchema
+```
+
+## Simulation Tree
+
+A `SimulationTree` can be generated using the `getSimulationTree()` function.
+
+It will return a list of all the parameters available in the simulation.
+
+
+```{r}
+tree <- getSimulationTree(sim)
+
+tree$Aciclovir[1:5]
+```
+
+---
+
+```{r}
+tree$Organism[1:5]
+```
+
+# Export
+
+## Save a Model
+
+`Simulation` objects can be exported to a `.pkml` file using the `saveSimulation()` function.
+
+This is especially useful after having modified the original simulation object.
+
+```{r, eval = FALSE}
+saveSimulation(sim, "Aciclovir_modified.pkml")
+```
+
+# Exercise
+
+---
+
+## Load a `.pkml` file
+
+1. Load the example simulation object included in the `{ospsuite}` package.
+  Remember, you get its path using `system.file("extdata", "Aciclovir.pkml", package = "ospsuite")`.
+
+```{r, eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
+
+sim <- loadSimulation(simFilePath)
+```
+
+---
+
+## Parameter tree
+
+1. Create the parameter tree for the simulation object
+2. Explore the parameter tree within `Applications` to reach the `Volume` parameter in the simulation tree
+
+```{r, eval = TRUE, results = FALSE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+tree <- getSimulationTree(sim)
+
+tree$Events$`IV 250mg 10min`$Application_1$Volume
+```
+

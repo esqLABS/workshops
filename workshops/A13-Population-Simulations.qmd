@@ -1,0 +1,270 @@
+---
+title: "Population Simulations"
+subtitle: "Introduction to `{ospsuite}`"
+module: "Introduction to `{ospsuite}`"
+ID: A13
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format:
+  esqlabs-revealjs:
+    scrollable: true
+    code-overflow: scroll
+---
+
+::: {.r-fit-text}
+## **🎯 Goal: Generate a virtual population and run a simulation across all individuals**
+:::
+
+```{r setup, echo = FALSE}
+#| output-location: default
+knitr::opts_chunk$set(fig.showtext = TRUE, fig.align = "center")
+options(ospsuite.plots.watermarkEnabled = FALSE)
+```
+
+## Overview
+
+1. Define population characteristics
+2. Generate the population with `createPopulation()`
+3. Export/import populations via CSV
+4. Run a population simulation
+5. Retrieve and plot results
+
+# Preparation
+
+## Load Sample Simulation
+
+```{r}
+#| output-location: default
+library(ospsuite)
+
+simFilePath <- system.file(
+  "extdata",
+  "Aciclovir.pkml",
+  package = "ospsuite"
+)
+sim <- loadSimulation(simFilePath)
+```
+
+# Define Population Characteristics
+
+## `createPopulationCharacteristics()`
+
+Describes the population before sampling.
+
+Key arguments:
+
+- `species`, `population`
+- `numberOfIndividuals`
+- `proportionOfFemales` (percent, 0–100)
+- `weightMin` / `weightMax` (`weightUnit`, default `"kg"`)
+- `heightMin` / `heightMax` (`heightUnit`, default `"m"`)
+- `ageMin` / `ageMax` (`ageUnit`, default `"year(s)"`)
+- `moleculeOntogenies`
+
+## Example
+
+```{r}
+#| output-location: default
+popCharacteristics <- createPopulationCharacteristics(
+  species = Species$Human,
+  population = HumanPopulation$Asian_Tanaka_1996,
+  numberOfIndividuals = 50,
+  proportionOfFemales = 50,
+  weightMin = 30,
+  weightMax = 98,
+  weightUnit = "kg",
+  ageMin = 0,
+  ageMax = 80,
+  ageUnit = "year(s)"
+)
+
+popCharacteristics
+```
+The population argument selects a built-in physiological database from PK-Sim. Each entry in HumanPopulation corresponds to a published reference dataset (e.g., Asian_Tanaka_1996 is based on Tanaka et al. 1996). Run `names(HumanPopulation)` to see all available options.
+# Generate Population
+
+## `createPopulation()`
+
+Samples all individuals at once.
+
+```{r}
+#| output-location: default
+result <- createPopulation(
+  populationCharacteristics = popCharacteristics
+)
+
+myPopulation <- result$population
+myPopulation
+```
+
+## Inspect as Data Frame
+
+```{r}
+#| output-location: default
+popDf <- populationToDataFrame(myPopulation)
+dim(popDf)
+head(popDf[, 1:5])
+```
+
+Each row = one individual; columns are parameter paths.
+
+# CSV Round-Trip
+
+## Export
+
+```{r, eval = FALSE}
+#| output-location: default
+populationToCSV(
+  population = myPopulation,
+  filePath = "myPopulation.csv"
+)
+```
+
+## Import
+
+```{r, eval = FALSE}
+#| output-location: default
+loadedPop <- loadPopulation(csvPopulationFile = "myPopulation.csv")
+```
+
+:::{.callout-tip}
+Use CSV to share populations across machines or reuse them without regenerating via PK-Sim.
+:::
+
+# Run Population Simulation
+
+## `runSimulations()` with `population`
+
+```{r}
+#| output-location: default
+populationResults <- runSimulations(
+  simulations = sim,
+  population = myPopulation
+)[[1]]
+
+populationResults
+```
+
+## Tune Parallelism
+
+```{r, eval = FALSE}
+#| output-location: default
+simRunOptions <- SimulationRunOptions$new()
+simRunOptions$numberOfCores <- 3
+simRunOptions$showProgress <- TRUE
+
+populationResults <- runSimulations(
+  simulations = sim,
+  population = myPopulation,
+  simulationRunOptions = simRunOptions
+)[[1]]
+```
+
+Defaults: `numberOfCores = max(cores) - 1`, `showProgress = FALSE`.
+
+# Retrieve Results
+
+## `getOutputValues()`
+
+```{r}
+#| output-location: default
+resultsPath <- populationResults$allQuantityPaths[[1]]
+
+resultsData <- getOutputValues(
+  populationResults,
+  quantitiesOrPaths = resultsPath
+)
+
+str(resultsData, max.level = 1)
+names(resultsData$data)
+head(resultsData$data)
+```
+
+Columns: `IndividualId`, `Time`, plus one column per requested path.
+
+## Subset Individuals
+
+```{r}
+#| output-location: default
+twoIndiv <- getOutputValues(
+  populationResults,
+  quantitiesOrPaths = resultsPath,
+  individualIds = c(1, 2)
+)
+
+unique(twoIndiv$data$IndividualId)
+```
+
+# Visualize
+
+## Quick Plot
+
+```{r}
+#| output-location: default
+#| fig-height: 4
+dc <- DataCombined$new()
+dc$addSimulationResults(
+  simulationResults = populationResults,
+  quantitiesOrPaths = resultsPath,
+  names = "Population"
+)
+
+ospsuite.plots::setDefaults()
+plotTimeProfile(dc)
+```
+
+# Exercise
+
+## Exercise Overview
+
+- Create a 20-individual European population, ages 25–65, weights 55–95 kg
+- Run the Aciclovir simulation for that population
+- Plot plasma profiles of individuals 1 and 2
+
+## Build Population and Run
+
+```{r, eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+popChar <- createPopulationCharacteristics(
+  species = Species$Human,
+  population = HumanPopulation$European_ICRP_2002,
+  numberOfIndividuals = 20,
+  proportionOfFemales = 50,
+  weightMin = 55,
+  weightMax = 95,
+  ageMin = 25,
+  ageMax = 65
+)
+
+pop <- createPopulation(populationCharacteristics = popChar)$population
+
+sim <- loadSimulation(simFilePath)
+popResults <- runSimulations(simulations = sim, population = pop)[[1]]
+```
+
+## Plot Two Individuals
+
+```{r, eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+path <- popResults$allQuantityPaths[[1]]
+
+dc <- DataCombined$new()
+dc$addSimulationResults(
+  simulationResults = popResults,
+  quantitiesOrPaths = path,
+  individualIds = c(1, 2),
+  names = "European Population"
+)
+
+plotTimeProfile(dc)
+```
+
+## Resources
+
+- [`{ospsuite}` vignette on creating and running populations](https://www.open-systems-pharmacology.org/OSPSuite-R/articles/create-run-population.html)
+- [PK-Sim populations documentation](https://docs.open-systems-pharmacology.org/working-with-pk-sim/pk-sim-documentation/pk-sim-creating-populations)

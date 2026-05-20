@@ -1,0 +1,350 @@
+---
+title: "Dimensions & Units"
+subtitle: "Introduction to `{ospsuite}`"
+module: "Introduction to `{ospsuite}`"
+ID: A07
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format:
+  esqlabs-revealjs:
+    scrollable: true
+    code-overflow: scroll
+---
+
+::: {.r-fit-text}
+## **🎯 Goal: Learn how to wrangle with units**
+:::
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(fig.showtext = TRUE, fig.align = "center")
+```
+
+# Dimensions and Units
+
+## In PK-Sim and MoBi
+
+PK-Sim uses the concept of Dimensions and Units
+
+- A **dimension** represents the type of quantity (*e.g.* Volume, Mass, Concentration)
+- A **unit** is one of several ways to measure a dimension (*e.g.* L, mL; kg, g; mg/L, µg/mL)
+
+. . .
+
+The software uses a **base unit** for each dimension
+
+- Volume is in L
+- Mass is in kg
+- Concentration (molar) is in µmol/L
+
+## Base vs Display Units
+
+:::{.callout-note}
+Although users can set or visualize a quantity in different units, `OSPS` always uses the base unit for calculations.
+:::
+
+. . .
+
+:::{.callout-important}
+The base units are often different from the units displayed by default in PK-Sim. Those are called the **display units**.
+:::
+
+. . .
+
+[Full List of Dimensions and Units](https://docs.open-systems-pharmacology.org/appendix/appendix#a.1.-dimensions-and-base-units)
+
+## In `{ospsuite}`
+
+`{ospsuite}` uses the same concept of Dimensions and Units.
+
+All Dimensions and Units available are listed in the package.
+
+
+```{r, echo = FALSE}
+library(ospsuite)
+```
+
+```{r, out.height="20%"}
+ospsuite::ospDimensions
+```
+
+## Available Units
+
+```{r, out.height="20%"}
+ospsuite::ospUnits
+```
+
+
+# Base and Display Units
+
+## Base Units Internally
+
+Like in PK-Sim and MoBi, `{ospsuite}` uses base units internally.
+Users interact with the package through display units or any other supported unit.
+
+```{r}
+#| output-location: fragment
+library(ospsuite)
+
+sim <- loadSimulation(system.file(
+  "extdata",
+  "Aciclovir.pkml",
+  package = "ospsuite"
+))
+
+bmiParam <- getParameter("Organism|BMI", sim)
+
+bmiParam
+```
+
+## Unit Fields on a Parameter
+
+:::{.callout-note title="Base and Display units are listed in Parameters"}
+```{r}
+#| output-location: default
+bmiParam$unit
+bmiParam$displayUnit
+bmiParam$allUnits
+```
+:::
+
+kg/dm² is the base unit for BMI. Display unit is kg/m².
+
+# Convert Units
+
+## `{ospsuite}` Unit Conversion Functions
+
+The package provides a set of functions for easy conversion between units of a same dimension.
+
+. . .
+
+- `toUnit()` to convert from one unit to another
+- `toBaseUnit()` to convert from any unit to the base unit
+- `toDisplayUnit()` to convert from the base unit to the display unit
+
+. . .
+
+```{r}
+ospsuite::toUnit(
+  quantityOrDimension = "Volume",
+  values = 1,
+  sourceUnit = "L",
+  targetUnit = "mL"
+)
+```
+
+. . .
+
+```{r}
+ospsuite::toBaseUnit(quantityOrDimension = "Volume", values = 1000, unit = "mL")
+```
+
+## Convert to Display Unit
+
+```{r}
+bmiParam
+```
+
+. . .
+
+```{r}
+toDisplayUnit(quantity = bmiParam, values = 0.23)
+```
+
+## Additional Arguments
+
+In some situations, the `molWeight` and `molWeightUnit` arguments are required to convert between Weight and Molar Concentrations.
+
+. . .
+
+```{r}
+#| output-location: default
+ospsuite::toUnit(
+  quantityOrDimension = "Concentration (mass)",
+  values = 100,
+  sourceUnit = "mg/L",
+  targetUnit = "mol/L",
+  molWeight = 225.21,
+  molWeightUnit = "g/mol"
+)
+```
+
+
+## Set Parameter Values
+
+The function `setParameterValues()` can be used to set the value of a parameter from a specific unit.
+
+```{r}
+setParameterValues(bmiParam, 25)
+
+bmiParam
+```
+
+. . .
+
+```{r}
+setParameterValues(bmiParam, 25, units = "kg/m²")
+bmiParam
+```
+
+## Convert Then Set
+
+```{r}
+setParameterValues(bmiParam, toBaseUnit(bmiParam, 25, unit = "kg/m²"))
+bmiParam
+```
+
+
+## DataCombined
+
+A `DataCombined` may hold simulation results and observed data in different units. Use `convertUnits()` to align them, or to change units for reporting.
+
+```{r}
+#| output-location: default
+sim_res <- runSimulations(sim)[[1]]
+filePath <- system.file(
+  "extdata",
+  "ObsDataAciclovir_1.pkml",
+  package = "ospsuite"
+)
+dataSet <- loadDataSetFromPKML(filePath = filePath)
+
+myDataCombined <- DataCombined$new()
+myDataCombined$addSimulationResults(
+  simulationResults = sim_res
+)
+myDataCombined$addDataSets(
+  dataSet,
+  names = "Observed (Vergin 1995.Iv)",
+  groups = "Aciclovir"
+)
+```
+
+## Inspect Original Units
+
+```{r}
+#| output-location: default
+myDataCombined$toDataFrame()
+```
+
+Original data has Time in minutes and Concentration in µmol/mL.
+
+## `convertUnits()`
+
+The function `convertUnits()` can be used to convert the units of the DataCombined.
+
+
+```{r}
+convertUnits(myDataCombined, xUnit = "h", yUnit = "mg/L")
+```
+
+# Exercises
+
+## Exercise Overview
+
+Practice unit handling on the Aciclovir Dose parameter:
+
+- **Access the Dose parameter.** Use `getParameter()`.
+- **Inspect units.** Base unit and display unit.
+- **Convert kg → mg.** Try `toUnit()` and `toDisplayUnit()`.
+- **Change value.** Set Dose to 100 mg with `setParameterValues()`.
+- **Verify.** Check if the stored unit changed.
+
+## Access the Dose Parameter
+
+Access the administration Dose from the simulation. What is the base unit for this parameter?
+
+```{r}
+#| output-location: default
+sim <- loadSimulation(system.file(
+  "extdata",
+  "Aciclovir.pkml",
+  package = "ospsuite"
+))
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Solution"
+Dose <- getParameter(
+  "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose",
+  sim
+)
+
+Dose$unit
+```
+
+. . .
+
+What is the display unit of the Dose?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Solution"
+Dose$displayUnit
+```
+
+
+:::notes
+The base unit is kg and the display unit is mg.
+:::
+
+## Convert kg to mg
+
+By using two functions of your choice among `toUnit()`, `toBaseUnit()` and `toDisplayUnit()`, convert the Dose value from kg to mg.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Solution"
+# We can use toUnit and toDisplayUnit
+ospsuite::toUnit(
+  quantityOrDimension = Dose,
+  values = Dose$value,
+  sourceUnit = "kg",
+  targetUnit = "mg"
+)
+```
+
+
+. . .
+
+```{r}
+#| code-fold: true
+#| code-summary: "Solution"
+ospsuite::toDisplayUnit(quantity = Dose, values = Dose$value)
+```
+
+. . .
+
+Then, use `setParameterValues()` to change the value to 100 mg.
+
+```{r}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+setParameterValues(Dose, 100, units = "mg")
+```
+
+## Verify Stored Unit
+
+Display the Dose object. Has the unit changed?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Solution"
+Dose
+```
+
+
+:::notes
+The unit is still in kg, as the base unit remains the same.
+:::
+
+
+
+# Resources
+
+## Further Reading
+
+- [Full list of Dimensions and Base Units](https://docs.open-systems-pharmacology.org/appendix/appendix#a.1.-dimensions-and-base-units)
+- [`{ospsuite}` vignettes](https://www.open-systems-pharmacology.org/OSPSuite-R/articles/unit-conversion.html)

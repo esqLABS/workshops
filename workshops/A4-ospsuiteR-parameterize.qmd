@@ -1,0 +1,534 @@
+---
+title: "Parameterize Simulations"
+subtitle: "Introduction to `{ospsuite}`"
+module: "Introduction to `{ospsuite}`"
+ID: A04
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format: esqlabs-revealjs
+---
+
+::: r-fit-text
+## **🎯 Goal: Learn how to parameterize a model to perform new simulations using `{ospsuite}`**
+:::
+
+# Simulation Parameterization
+
+## What Can Be Changed
+
+Once a `.pkml` model file is loaded in `{ospsuite}`, simulation parameters can be changed from R.
+
+Simulation parameters are accessed and modified using their **paths**.
+
+Other aspects of the simulation that can be changed include:
+
+-   Output Paths
+-   Simulation time
+-   Simulation outputs
+-   Solver settings
+
+# Paths & Containers
+
+## Paths
+
+Paths are character strings that represent the hierarchical structure of the simulation.
+
+Each **element** of a path is separated by `|`.
+
+```{r}
+#| output-location: default
+# molecule
+molecule_path <- "Organism|VenousBlood|Plasma|Aciclovir"
+
+# parameter
+liver_interstitial_space <- "Organism|Liver|Interstitial|Volume"
+```
+
+## Paths in the Simulation Object
+
+All parameter paths are stored in the simulation object.
+
+```{r}
+library(ospsuite)
+simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
+
+sim <- loadSimulation(simFilePath)
+
+tree <- getSimulationTree(sim)
+
+tree$Organism$PeripheralVenousBlood$Aciclovir$`Plasma (Peripheral Venous Blood)`
+```
+
+## Path Anatomy
+
+Parameter paths are organized in a hierarchical tree structure.
+
+-   Each layer of a parameter path is a **container**.
+-   The last element of a parameter path is a **parameter**, a **molecule amount**, an **observer**, or a **compartment**.
+
+`Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)`
+
+## Containers
+
+A `Simulation` object is itself a container. But sub-containers can be created as path shortcuts with `getContainer()`.
+
+```{r}
+tree$Organism$Liver$Interstitial
+```
+
+. . .
+
+```{r}
+liver <- getContainer("Organism|Liver", sim)
+
+liver$path
+```
+
+## Nested Containers
+
+```{r}
+liver_interstitial <- getContainer("Interstitial", liver)
+
+liver_interstitial$path
+```
+
+## Explore Paths & Containers
+
+`{ospsuite}` has special functions to explore the containers and paths of a simulation.
+
+### `getAll*PathsIn()`
+
+Return all the containers or parameters paths in a container.
+
+```{r}
+# get all the containers available in "Liver"
+getAllContainerPathsIn(liver)[1:5]
+```
+
+## Parameter Paths in a Container
+
+```{r}
+getAllParameterPathsIn(liver)[1:5]
+```
+
+## Match Paths by Pattern
+
+### `getAll*Matching()`
+
+Return all the containers or parameters paths that match a specific pattern.
+
+```{r}
+head(
+  getAllContainersMatching("Organism|*|Interstitial", sim),
+  3
+)
+```
+
+## Match Parameters by Pattern
+
+```{r}
+head(
+  getAllParametersMatching("Organism|**|Volume", sim),
+  3
+)
+```
+
+It works in tandem with a special path syntax including *wildcards* (`*`).
+
+## Wildcards
+
+`**` is a wildcard that matches any structure of path elements.
+
+In the example below, it means that we are looking for any number of containers between `Organism` and `Interstitial`.
+
+```{r}
+# get all the containers that have an Interstitial space with any amount of layers in between
+interstitial_containers <- getAllContainersMatching(
+  "Organism|**|Interstitial",
+  sim
+)
+length(interstitial_containers)
+```
+
+. . .
+
+```{r,results='hold'}
+interstitial_containers[[1]]
+interstitial_containers[[22]]
+interstitial_containers[[9]]
+```
+
+## Single-Element Wildcard
+
+`*` is a wildcard that matches exactly one path element.
+
+```{r}
+# get all the containers that have an Interstitial with exactly one path element before "Interstitial"
+interstitial_containers_1 <- getAllContainersMatching(
+  "Organism|*|Interstitial",
+  sim
+)
+interstitial_containers_1[[1]]
+```
+
+. . .
+
+```{r}
+# get all the containers that have an Interstitial with exactly two path elements before "Interstitial"
+interstitial_containers_2 <- getAllContainersMatching(
+  "Organism|*|*|Interstitial",
+  sim
+)
+interstitial_containers_2[[1]]
+```
+
+. . .
+
+```{r}
+# get all the containers that have an Interstitial with exactly three path elements before "Interstitial"
+interstitial_containers_3 <- getAllContainersMatching(
+  "Organism|*|*|*|Interstitial",
+  sim
+)
+interstitial_containers_3[[1]]
+```
+
+# Parameter Values
+
+## Get Parameter Values
+
+Parameter values can be read from the simulation with `getParameter()`.
+
+```{r}
+getParameter("Organism|Liver|Interstitial|Volume", sim)
+```
+
+. . .
+
+It can also be assigned for future access.
+
+```{r}
+liver_int_volume <- getParameter("Organism|Liver|Interstitial|Volume", sim)
+```
+
+## Sub-container Shortcut
+
+::: {.callout-tip title="Tip: Identical results with sub-containers"}
+``` r
+getParameter("Interstitial|Volume", liver)
+getParameter("Volume", liver_interstitial)
+```
+:::
+
+## Set Parameters Values
+
+Once a `get...()` function is used, the resulting object can be used to **change** the value of the parameter or molecule initial values.
+
+```{r}
+ageParam <- getParameter("Organism|Age", sim)
+ageParam
+```
+
+. . .
+
+```{r}
+setParameterValues(ageParam, 55, units = "year(s)")
+ageParam
+```
+
+## Set Values by Path
+
+`setParameterValuesByPath()` is a shortcut that combines `getParameter()` and `setParameterValues()` into a single call. It accepts either a single path or a vector of paths.
+
+```{r}
+setParameterValuesByPath(
+  parameterPaths = c("Organism|Age", "Organism|Weight"),
+  values = c(40, 75),
+  simulation = sim
+)
+```
+
+## Reset Parameter Values
+
+Original values can be restored with `reset()`.
+
+```{r}
+ageParam$reset()
+ageParam
+```
+
+# Simulation Outputs
+
+## Change Simulation outputs
+
+The simulations outputs are set based on what is defined in the imported `.pkml` file.
+
+```{r}
+#| output-location: default
+sim$outputSelections
+```
+
+. . .
+
+Other simulation outputs can be added with `addOutputs()`
+
+```{r}
+addOutputs(
+  "Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous Blood)",
+  simulation = sim
+)
+
+sim$outputSelections
+```
+
+## Clear Simulation Outputs
+
+All simulation outputs can be removed with `clearOutputs()`.
+
+```{r}
+clearOutputs(sim)
+# The outputs are now empty, we then add the original one
+
+addOutputs(
+  "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)",
+  simulation = sim
+)
+
+sim$outputSelections
+```
+
+# Simulation time
+
+## Change Simulation time
+
+Default simulation time is the one defined in the imported `.pkml` file.
+
+```{r}
+#| output-location: default
+sim$outputSchema
+```
+
+## Add an Output Interval
+
+Another `OutputSchema` can be set with `addOutputInterval()`.
+
+```{r}
+addOutputInterval(
+  simulation = sim,
+  startTime = 1440,
+  endTime = 1500,
+  resolution = 2,
+  intervalName = "highResEndSim"
+)
+sim$outputSchema
+```
+
+## Clear and Replace Intervals
+
+All output intervals can be removed with the `clearOutputIntervals()` function.
+
+```{r}
+clearOutputIntervals(simulation = sim)
+sim$outputSchema
+
+#we add a new global interval
+addOutputInterval(
+  simulation = sim,
+  startTime = 0,
+  endTime = 1440,
+  resolution = 0.5,
+  intervalName = "globalRes"
+)
+sim$outputSchema
+```
+
+# Solver Settings
+
+## Inspect Solver Settings
+
+Numerical solver tolerances and step-size limits are stored in `sim$solver`. Tighter tolerances improve accuracy at the cost of runtime; loosen them only when runtime is prohibitive and accuracy loss is acceptable.
+
+```{r}
+sim$solver
+```
+
+## Change Solver Settings
+
+Solver fields are writable directly. Typical knobs: `absTol` (absolute tolerance), `relTol` (relative tolerance), `h0` (initial step), `hMin` / `hMax` (step bounds), `mxStep` (maximum internal steps).
+
+```{r}
+sim$solver$absTol <- 1e-10
+sim$solver$relTol <- 1e-9
+sim$solver
+```
+
+# Exercise
+
+## Exercise Overview
+
+Walk through a full iterative modeling loop:
+
+-   **Load the simulation.** Reload the Aciclovir `.pkml` into a fresh `sim` object.
+-   **Find the application protocol paths.** List every parameter path under `Events`.
+-   **Find the Dose parameter paths.** Filter the `Events` paths down to the `Dose` parameters.
+-   **Change the Dose.** Create `sim_100mg` and set the dose to 100 mg.
+-   **Change the administration protocol.** Set the infusion time to 30 minutes and verify the new value.
+-   **Change the simulation time.** Replace the output intervals with a finer-then-coarser resolution schedule.
+
+## Load Simulation
+
+Let's load again the simulation in a new and fresh object called "sim"
+
+```{r, eval = FALSE}
+#| output-location: default
+simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
+
+sim <- loadSimulation(simFilePath)
+```
+
+## Find the Application protocol paths
+
+Let's have a look at the application protocol parameters
+
+1.  Find the parameter paths that start with `Events`
+
+```{r, results = FALSE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+getAllParametersMatching("Events|**|*", sim)
+
+# ** for any number of structure layer
+# * for any parameter path endpoint
+```
+
+## Find the Dose parameter paths
+
+Now, we anticipate that we will have to change the dose in our simulation. So we will need to identify all the `Dose` parameters within `Events`.
+
+1.  Find all paths that start with `Events` and end with any kind of `Dose`
+
+::: callout-tip
+To look for all the `Dose` word, look for `*Dose*` in the path so that it will be found even if the word is surrounded by other characters.
+:::
+
+```{r, results = FALSE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+getAllParametersMatching("Events|**|*Dose*", sim)
+
+# ** for any number of structure layer
+# * for any parameter path endpoint
+# *Dose* to match any string containing "Dose".
+```
+
+## Change the Dose
+Now, we will create another simulation with a different dose. Create one simulation object, `sim_100mg`, in which you will set the dose to 100 mg.
+
+::: callout-tip
+Once you have your sim object, you can either:
+- use `getParameter()` then `setParameterValues()`, or
+- use `setParameterValuesByPath()` directly as a shortcut
+:::
+
+```{r, results = FALSE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+sim_100mg <- loadSimulation(simFilePath)
+
+# Option 1: getParameter + setParameterValues
+dose_100mg <- getParameter(
+  "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose",
+  sim_100mg
+)
+setParameterValues(dose_100mg, 100, units = "mg")
+
+# Option 2: setParameterValuesByPath
+setParameterValuesByPath(
+  parameterPaths = "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose",
+  values = 100,
+  units = "mg",
+  simulation = sim_100mg
+)
+```
+## Change Administration protocol {.scrollable}
+
+Now, we need to set the drug infusion time to 30 minutes for our simulation.
+
+1.  Find the parameter path for the `Infusion time` parameter in the `Applications` section.
+2.  Set the parameter to 30 minutes.
+3.  Get the value of the parameter to check if it has been changed.
+
+```{r, results = FALSE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+# 1) Infusion Time change
+InfusionTime <- getParameter(
+  "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Infusion time",
+  sim_100mg
+)
+# 2)
+setParameterValues(InfusionTime, 30, units = "min")
+
+# 3)
+getParameter(
+  "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Infusion time",
+  sim_100mg
+)$value
+```
+
+## Change simulation time
+
+We anticipate that the parameters we changed will mainly impact the first minutes of the simulation. So we want to increase the resolution for the first part of the simulation.
+
+1.  Clear all previously defined `outputIntervals`
+2.  Add a new interval from 0 to 15 minutes with 2 points per minutes.
+3.  Add a new interval from 15 to 120 minutes with 1 point each 2 minutes
+4.  Extend the simulation from 120 to 1440 minutes with 1 point each 15 minutes
+
+## Change simulation time — Answers 1 & 2
+
+```{r, results = FALSE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answers 1 & 2"
+# 1)
+clearOutputIntervals(simulation = sim_100mg)
+
+# 2)
+addOutputInterval(
+  simulation = sim_100mg,
+  startTime = 0,
+  endTime = 15,
+  resolution = 2,
+  intervalName = "2 points per minute"
+)
+```
+
+## Change simulation time — Answers 3 & 4
+
+```{r, results = FALSE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answers 3 & 4"
+# 3)
+addOutputInterval(
+  simulation = sim_100mg,
+  startTime = 15,
+  endTime = 120,
+  resolution = 0.5,
+  intervalName = "1 point each 2 minutes"
+)
+# 4)
+addOutputInterval(
+  simulation = sim_100mg,
+  startTime = 120,
+  endTime = 1440,
+  resolution = 0.07,
+  intervalName = "1 point each 15 minutes"
+)
+```

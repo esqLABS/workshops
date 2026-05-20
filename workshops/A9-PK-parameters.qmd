@@ -1,0 +1,483 @@
+---
+title: "PK Analysis"
+subtitle: "Introduction to `{ospsuite}`"
+module: "Introduction to `{ospsuite}`"
+ID: A09
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format:
+  esqlabs-revealjs:
+    scrollable: true
+    code-overflow: scroll
+---
+
+::: {.r-fit-text}
+## **🎯 Goal: Learn to compute pharmacokinetic parameters of a simulation**
+:::
+
+
+```{r setup, echo = FALSE}
+#| output-location: default
+knitr::opts_chunk$set(fig.showtext = TRUE, fig.align = "center")
+```
+
+
+
+## PK-Analysis View in PK-Sim
+
+:::center-x
+![](https://881660647-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2F-LNl6UIiFP7k0sNQthlR%2F-LQJPSoNjgtDlxBl9HHq%2F-LOWQ5AI-r7-sKUIoPqE%2Fpk-analysis-20-17.jpg?generation=1541162017853367&alt=media)
+
+
+Also available using `{ospsuite}` !
+:::
+
+## Available PK parameters depend on the simulation type
+
+  
+| Simulation Type | PK Parameters                              |
+|-----------------|--------------------------------------------|
+| All             | AUC, Cmax, Cend, tmax, Half-Life, MRT, ... |
+| IV              | Vss, Vd, CL, Body clearance, ...           |
+| Oral            | Vss/F, Vd/F, CL/F, Fraction absorbed, ...  |
+| Multiple adm.   | AUC, Cthrough_dDi, ...                     |
+
+:::center-x
+Full list: [docs.open-systems-pharmacology.org](https://docs.open-systems-pharmacology.org/working-with-pk-sim/pk-sim-documentation/pk-sim-simulations#pk-parameters)
+:::
+
+:::notes
+- MRT: Mean residence time
+- Vss: Volume of distribution at steady state
+- Vd: Volume of distribution
+- CL: Clearance
+- F: Bioavailability
+- Cthrough: Trough concentration just before the i-th dose is administered
+:::
+
+
+## Overview
+
+1. Compute PK parameters
+2. Access PK parameters
+3. Import and export
+4. Customize PK parameters
+
+# Compute PK Parameters
+
+## Calculated from Simulation Results
+
+- PK parameters can be calculated for all outputs of a simulation.
+- Pass a `SimulationResults` object to `calculatePKAnalyses()`.
+
+
+```r
+pkAnalysis <- calculatePKAnalyses(results = simulationResults)
+```
+
+## Get simulation results
+
+```{r}
+#| output-location: default
+# Load the package
+library(ospsuite)
+
+# Load the simulation
+sim <- loadSimulation(system.file(
+  "extdata",
+  "Aciclovir.pkml",
+  package = "ospsuite"
+))
+
+# Run the simulation
+simulationResults <- runSimulations(sim)[[1]]
+```
+
+## Calculate PK Parameters
+
+```{r}
+pkAnalysis <- calculatePKAnalyses(results = simulationResults)
+pkAnalysis
+```
+
+::: {.callout-note}
+`calculatePKAnalyses()` returns a `SimulationPKAnalyses` R6 object.
+:::
+
+# Explore PK Parameters
+
+
+## Available Output Paths & Parameters
+
+```{r}
+pkAnalysis$allQuantityPaths
+```
+
+. . .
+
+```{r}
+pkAnalysis$allPKParameterNames
+```
+
+
+
+## All Parameters for One Output Path
+
+Use `allPKParametersFor()` to retrieve all PK parameters for a given output path.
+
+```{r}
+pkAnalysis$allPKParametersFor(
+  quantityPath = "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
+)
+```
+
+## One Parameter
+
+Use `pKParameterFor()` to retrieve a single PK parameter for a given output path.
+
+```{r}
+oneParam <- pkAnalysis$pKParameterFor(
+  quantityPath = "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)",
+  pkParameter = "C_max"
+)
+oneParam
+```
+
+. . .
+
+Each returned object is a `QuantityPKParameter` with fields `$name`, `$quantityPath`, `$dimension`, `$unit`, and `$values`.
+
+```{r}
+oneParam$values
+```
+
+## Get a Data Frame
+
+`pkAnalysesToDataFrame()` returns all PK parameters for all output paths as a data frame.
+
+```{r}
+pkAnalysisDF <- pkAnalysesToDataFrame(pkAnalysis)
+pkAnalysisDF[, c("QuantityPath", "Parameter", "Value", "Unit")]
+```
+
+::: {.callout-note}
+Columns: `IndividualId`, `QuantityPath`, `Parameter`, `Value`, `Unit`.
+:::
+
+# Import and Export
+
+## CSV Interoperability
+
+- PK parameters can be exported and imported through `.csv` files.
+- These files are interoperable between PK-Sim and `{ospsuite}`.
+
+## Import
+
+```{r}
+#| output-location: default
+# example file
+PKAnalysisFilePath <- system.file(
+  "extdata",
+  "PKAnalyses.csv",
+  package = "ospsuite"
+)
+
+# import to ospsuite framework
+pkAnalysis <- importPKAnalysesFromCSV(
+  filePath = PKAnalysisFilePath,
+  simulation = sim
+)
+```
+
+::: {.callout-warning}
+The related simulation must be loaded to import the PK parameters.
+:::
+
+## Export
+
+```{r}
+#| output-location: default
+exportPKAnalysesToCSV(pkAnalyses = pkAnalysis, filePath = "PKAnalysis.csv")
+```
+
+```{r, echo = FALSE}
+#| output-location: default
+read.csv("PKAnalysis.csv")
+
+invisible(file.remove("PKAnalysis.csv"))
+```
+
+
+# User-Defined PK Parameters
+
+## Custom PK parameters
+
+- Useful when working on different time intervals or dimensions other than concentrations
+- Based on existing PK parameters (listed in `ospsuite::StandardPKParameter`)
+- Custom formulas are not supported
+
+```r
+addUserDefinedPKParameter(name, standardPKParameter)
+```
+
+## Sample of `StandardPKParameter`
+
+`ospsuite::StandardPKParameter` exposes the available base parameters:
+
+```{r}
+#| output-location: default
+names(ospsuite::StandardPKParameter)
+```
+
+## Create a New Parameter
+
+```{r}
+myAUC <- addUserDefinedPKParameter(
+  name = "MyAUC",
+  standardPKParameter = StandardPKParameter$AUC_tEnd
+)
+
+myAUC
+```
+
+## Time Interval
+
+```{r}
+# Specifies start time and end time in minutes
+myAUC$startTime <- 50
+myAUC$endTime <- 80
+
+myAUC
+```
+
+## Application-Based Interval
+
+For multi-dose protocols, restrict the interval to specific administrations using application indices and offsets instead of absolute times:
+
+```r
+myAUC$startApplicationIndex <- 2
+myAUC$endApplicationIndex <- 3
+myAUC$startTimeOffset <- 0     # minutes after start application
+myAUC$endTimeOffset <- 0       # minutes after end application
+```
+
+## Calculate User-Defined PK Parameters
+
+```{r}
+pkAnalysis <- calculatePKAnalyses(results = simulationResults)
+
+myAUC_result <- pkAnalysis$pKParameterFor(
+  quantityPath = "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)",
+  pkParameter = "MyAUC"
+)
+
+myAUC_result
+```
+
+. . .
+
+```{r}
+myAUC_result$values
+```
+
+
+
+## Exercise Overview
+
+Practice PK parameter analysis on the Aciclovir simulation:
+
+- **Plasma PK.** Get `C_max` and `C_tEnd` for plasma concentrations.
+- **Add whole blood output.** Repeat for whole blood concentrations after adding the output.
+- **Alternate dose.** Build a 100 mg simulation and export its PK table.
+- **Custom parameters.** Define time-bounded `C_max` / `C_min` and compute ratio.
+
+## Baseline PK
+
+Let's practice! Start by accessing and saving into an object the value of `C_max` and `C_tEnd` for the Plasma (Peripheral Venous Blood).
+
+```{r,  eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+library(ospsuite)
+
+# Simulation Setup
+simExercise <- loadSimulation(
+  system.file("extdata", "Aciclovir.pkml", package = "ospsuite"),
+  loadFromCache = FALSE
+)
+simExercise_res <- runSimulations(simExercise)[[1]]
+
+# We create the PK analysis
+pkAnalysisExercise <- calculatePKAnalyses(results = simExercise_res)
+
+# And access our PK parameters of interest
+C_maxExercise <- pkAnalysisExercise$pKParameterFor(
+  quantityPath = "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)",
+  pkParameter = "C_max"
+)$values
+
+C_tEndExercise <- pkAnalysisExercise$pKParameterFor(
+  quantityPath = "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)",
+  pkParameter = "C_tEnd"
+)$values
+```
+
+## Whole Blood Concentration
+
+Repeat the process but with the following output: `"Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous Blood)"`
+
+```{r,  eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+# We do the same for another output of our choice, here the whole blood
+# First, we need to add the output to the simulation, and re run it
+addOutputs(
+  "Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous Blood)",
+  simulation = simExercise
+)
+simExercise_res <- runSimulations(simExercise)[[1]]
+
+pkAnalysisExercise <- calculatePKAnalyses(results = simExercise_res)
+
+C_maxExercise_wholeBlood <- pkAnalysisExercise$pKParameterFor(
+  quantityPath = "Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous Blood)",
+  pkParameter = "C_max"
+)$values
+
+C_tendExercise_wholeBlood <- pkAnalysisExercise$pKParameterFor(
+  quantityPath = "Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous Blood)",
+  pkParameter = "C_tEnd"
+)$values
+```
+
+
+## 100 mg Simulation
+
+Create a new simulation with a dose of 100 mg, run it, then create a data frame called `pkAnalysisDF_100mg` containing all PK parameters of the Plasma (Peripheral Venous Blood). Export the PK analysis to a csv file.
+
+```{r,  eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Reminder"
+# Simulation Setup
+simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
+
+simDose100 <- loadSimulation(simFilePath, loadFromCache = FALSE)
+
+Dose100 <- getParameter(
+  "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose",
+  simDose100
+)
+setParameterValues(Dose100, 100, units = "mg")
+
+# We run the simulation
+simDose100_res <- runSimulations(simDose100)[[1]]
+```
+
+## 100 mg PK Data Frame + Export
+
+```{r,  eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+pkAnalysis_100mg <- calculatePKAnalyses(results = simDose100_res)
+
+# First, let's create the data frame and have a look at it
+pkAnalysisDF_100mg <- pkAnalysesToDataFrame(pkAnalysis_100mg)
+pkAnalysisDF_100mg
+
+# Then, we export the PK parameters
+# Note: we can do both things independently
+exportPKAnalysesToCSV(
+  pkAnalyses = pkAnalysis_100mg,
+  filePath = "pkAnalysis_100mg.csv"
+)
+```
+
+```{r, echo = FALSE}
+#| output-location: default
+invisible(file.remove("pkAnalysis_100mg.csv"))
+```
+
+## Custom C_max and C_min
+
+Now, add two PK parameters, `C_max` and `C_min`, between 10 and 90 minutes, for the plasma (Peripheral Venous Blood). Then, compute the ratio `C_max/C_min` for the original simulation and for the new one with a dose of 100 mg.
+
+```{r,  eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+myC_max <- addUserDefinedPKParameter(
+  name = "myC_max",
+  standardPKParameter = StandardPKParameter$C_max
+)
+
+myC_min <- addUserDefinedPKParameter(
+  name = "myC_min",
+  standardPKParameter = StandardPKParameter$C_min
+)
+
+myC_max$startTime <- 10
+myC_max$endTime <- 90
+
+myC_min$startTime <- 10
+myC_min$endTime <- 90
+
+pkAnalysisExercise <- calculatePKAnalyses(results = simExercise_res)
+pkAnalysis_100mg <- calculatePKAnalyses(results = simDose100_res)
+```
+
+## Ratio — Original Simulation
+
+```{r,  eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+# We compute the PK parameters for the original simulation
+pk_cmax <- pkAnalysisExercise$pKParameterFor(
+  quantityPath = "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)",
+  pkParameter = "myC_max"
+)
+
+pk_cmin <- pkAnalysisExercise$pKParameterFor(
+  quantityPath = "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)",
+  pkParameter = "myC_min"
+)
+
+ratioExercise <- pk_cmax$values / pk_cmin$values
+
+ratioExercise
+```
+
+## Ratio — 100 mg Simulation
+
+```{r,  eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+# And for the new one
+pk_cmax_100mg <- pkAnalysis_100mg$pKParameterFor(
+  quantityPath = "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)",
+  pkParameter = "myC_max"
+)
+pk_cmin_100mg <- pkAnalysis_100mg$pKParameterFor(
+  quantityPath = "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)",
+  pkParameter = "myC_min"
+)
+
+# The same ratio is obtained, but C_max and C_min values are different
+ratio100mg <- pk_cmax_100mg$values / pk_cmin_100mg$values
+
+ratio100mg
+```
+
+
+## Resources
+
+- [PK Sim section about PK-Parameters](https://docs.open-systems-pharmacology.org/working-with-pk-sim/pk-sim-documentation/pk-sim-simulations#pk-parameters)
+- [`{ospsuite}` vignette](https://www.open-systems-pharmacology.org/OSPSuite-R/articles/pk-analysis.html)
+
+

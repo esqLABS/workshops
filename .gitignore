@@ -1,0 +1,42 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+/.quarto/
+_docs/
+_site/
+*.html
+
+**/*.quarto_ipynb
+
+# Claude Code agent state — never commit
+.claude/
+
+# Quarto Visual Editor temp files
+**/.vdoc.*.r
+
+# Quarto rendered output alongside .qmd (regenerated from _freeze/)
+**/*_files/
+
+# Caches from {esqlabsR}/{ospsuite} sensitivity analysis runs
+sensitivity-results/
+workshops/sensitivity-results/
+
+# Generated certificate PDFs (regenerate via PAGE_2026_certificate_batch.R)
+agendas/certificates/
+
+# LaTeX intermediate files from cert rendering
+agendas/PAGE_2026_certificate_template.aux
+agendas/PAGE_2026_certificate_template.log
+agendas/PAGE_2026_certificate_template.tex
+agendas/PAGE_2026_certificate_template.pdf
+
+# renv library — only renv.lock should be committed
+renv/library/
+renv/staging/
+renv/local/
+renv/python/
+
+# Workshop-day results (regenerated during hands-on)
+workshops/resources/projects/*/Results/

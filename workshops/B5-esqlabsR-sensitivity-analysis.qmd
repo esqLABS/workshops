@@ -1,0 +1,436 @@
+---
+title: "Sensitivity Analysis"
+subtitle: "Introduction to `{esqlabsR}`"
+module: "Introduction to `{esqlabsR}`"
+ID: B5
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format:
+  esqlabs-revealjs:
+    scrollable: true
+    code-overflow: scroll
+---
+
+::: r-fit-text
+## 🎯 Goal: Quantify parameter influence on PK outcomes {.center}
+:::
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  fig.showtext = TRUE,
+  fig.align = "center",
+  out.width = "70%",
+  warning = FALSE,
+  message = FALSE
+)
+library(esqlabsR)
+```
+
+# Introduction
+
+## Why sensitivity analysis?
+
+- Quantify how a change in an input parameter shifts a PK outcome (C_max, t_max, AUC, ...).
+- Rank parameters by influence — focus model refinement on what matters.
+- Detect non-linear behaviour (e.g. saturation).
+
+## Workflow
+
+```{mermaid}
+flowchart LR
+  A["readScenarioConfigurationFromExcel()"] --> B["createScenarios()"]
+  B --> C["scenarios$X$simulation"]
+  C --> D["sensitivityCalculation()"]
+  D --> E1["sensitivitySpiderPlot()"]
+  D --> E2["sensitivityTornadoPlot()"]
+  D --> E3["sensitivityTimeProfiles()"]
+```
+
+::: {.callout-note title="`{esqlabsR}` vs `{ospsuite}` sensitivity analysis"}
+`{ospsuite}::sensitivityAnalysis()` performs a **local** sensitivity analysis: each parameter perturbed once around its nominal value, single sensitivity index per `(parameter, PK metric)` pair.
+
+`{esqlabsR}::sensitivityCalculation()` extends this with:
+
+- multi-factor scaling sweep (`variationRange`) → reveals non-linear / saturation behaviour,
+- custom output functions beyond `C_max` / `t_max` / `AUC_inf`,
+- ready-made spider / tornado / time-profile plots,
+- `saveSensitivityCalculation()` / `loadSensitivityCalculation()` for expensive runs.
+:::
+
+## Sensitivity index
+
+For a parameter `p` and PK outcome `y`:
+
+$$
+S = \frac{\Delta y / y}{\Delta p / p}
+$$
+
+- `S = 1` → 1 % parameter change ⇒ 1 % PK change.
+- `S = 0` → no impact.
+- Sign → direction (positive: same direction; negative: inverse).
+
+# Setup
+
+## Build a scenario
+
+`sensitivityCalculation()` operates on a `Simulation` object. In the `{esqlabsR}` workflow the simulation is created by a **scenario** — reuse the same path as B3 / B4 instead of loading the `.pkml` directly.
+
+```{r build-scenario}
+#| code-fold: show
+projectConfigurationPath <- exampleProjectConfigurationPath()
+
+projectConfiguration <- createProjectConfiguration(
+  projectConfigurationPath,
+  ignoreVersionCheck = TRUE
+)
+
+scenarioConfigurations <- readScenarioConfigurationFromExcel(
+  scenarioNames = "TestScenario",
+  projectConfiguration = projectConfiguration
+)
+
+scenarios <- createScenarios(scenarioConfigurations)
+```
+
+## Grab the underlying simulation
+
+Each `Scenario` exposes its loaded simulation (with parameters, individual, protocol, and time intervals already applied) via `$simulation`.
+
+```{r get-sim}
+#| code-fold: show
+simulation <- scenarios$TestScenario$simulation
+```
+
+::: {.callout-tip}
+List every parameter path of the loaded simulation with `ospsuite::getAllParameterPathsIn(simulation)`.
+:::
+
+# Define inputs
+
+## Output paths
+
+Simulation output paths for which sensitivity will be assessed. Each PK parameter (or custom output function) is calculated **for every output path** — one sensitivity result set per `(output path, PK parameter)` combination.
+
+Named vector — names appear as labels in plots.
+
+```{r outputs}
+outputPaths <- c(
+  Plasma = "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
+)
+```
+
+::: {.callout-tip}
+Navigate the simulation tree with `ospsuite::getSimulationTree(simulation)` to find output paths.
+:::
+
+## Parameter paths
+
+Example - vary four PBPK-relevant inputs.
+
+```{r params}
+parameterPaths <- c(
+  Lipophilicity = "Aciclovir|Lipophilicity",
+  `Fraction unbound` = "Aciclovir|Fraction unbound (plasma, reference value)",
+  Dose = "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose",
+  `Tubular secretion` = "Neighborhoods|Kidney_pls_Kidney_ur|Aciclovir|Renal Clearances-TS-Aciclovir|Tubular secretion"
+)
+```
+
+::: {.callout-tip}
+Names of the vector → labels on plots / tables. Pick descriptive ones.
+:::
+
+::: {.callout-tip}
+Find alle parameters that could be used in sensitivity analysis with `ospsuite::getAllParameterPathsIn(simulation)`.
+:::
+
+# Run sensitivity
+
+## `sensitivityCalculation()`
+
+```r
+analysis <- sensitivityCalculation(
+  simulation     = simulation,
+  outputPaths    = outputPaths,
+  parameterPaths = parameterPaths,
+  variationRange = c(0.1, 0.5, 1, 2, 10),
+  pkParameters   = c("C_max", "t_max", "AUC_inf")
+)
+```
+
+What it does:
+
+- Re-runs the simulation once per `(parameter, factor)` pair.
+- Scales each parameter by every value in `variationRange`.
+- Computes the requested PK metrics + the sensitivity index.
+
+## Run it
+
+```{r run-sens}
+#| code-fold: show
+analysis <- sensitivityCalculation(
+  simulation = simulation,
+  outputPaths = outputPaths,
+  parameterPaths = parameterPaths
+)
+```
+
+## Inspect `analysis$pkData`
+
+```{r inspect}
+#| output-location: default
+head(analysis$pkData)
+```
+
+Columns: `ParameterPath`, `ParameterFactor`, `ParameterValue`, `PKParameter`, `PKParameterValue`, `PKPercentChange`, `SensitivityPKParameter`.
+
+# Visualise
+
+## Spider plot
+
+PK metric on y, scaling factor on x — one panel per metric, one line per parameter.
+
+```{r spider}
+#| output-location: default
+sensitivitySpiderPlot(analysis)
+```
+
+## Tornado plot
+
+Rank parameters by influence at a fixed scaling — bars compare `0.1×` vs `10×` by default.
+
+```{r tornado}
+#| output-location: default
+sensitivityTornadoPlot(analysis)
+```
+
+## Time profiles
+
+Full concentration–time curve per scaling factor (blue → black → red as factor increases).
+
+```{r time-profiles}
+#| output-location: default
+sensitivityTimeProfiles(analysis)
+```
+
+# Beyond defaults
+
+## Custom output functions
+
+`customOutputFunctions` — named list of functions with parameters `x` (time), `y` (output values), or both. Each must return a single number.
+
+```{r custom-fns-def}
+#| code-fold: show
+customOutputFunctions <- list(
+  MeanConcentration = function(y) mean(y),
+  NormalizedConcentration = function(y) mean(y / max(y))
+)
+```
+
+::: {.callout-tip}
+- `x` — simulation time vector (minutes); `y` — output vector (base unit of the output)
+- Pass `pkParameters = character(0)` to compute **only** custom metrics.
+:::
+
+## Run with custom functions
+
+```{r custom-analysis}
+#| code-fold: show
+analysis_custom <- sensitivityCalculation(
+  simulation = simulation,
+  outputPaths = outputPaths,
+  parameterPaths = parameterPaths,
+  pkParameters = character(0),
+  customOutputFunctions = customOutputFunctions
+)
+
+head(analysis_custom$pkData)
+```
+
+Custom metrics appear in the `PKParameter` column — the same structure as standard PK parameters.
+
+## Visualise custom results
+
+```{r custom-tornado}
+#| output-location: default
+sensitivityTornadoPlot(analysis_custom)
+```
+
+## Save / load
+
+Sensitivity runs are expensive — persist them.
+
+```r
+saveSensitivityCalculation(analysis, outputDir = "sensitivity-results")
+
+# Later session
+analysis <- loadSensitivityCalculation(
+  outputDir  = "sensitivity-results",
+  simulation = simulation
+)
+```
+
+# Exercises
+
+## Exercise 1: Build the scenario
+
+1. Set `projectConfigurationPath` to `exampleProjectConfigurationPath()`.
+2. Build `projectConfiguration` with `createProjectConfiguration(..., ignoreVersionCheck = TRUE)`.
+3. Read the `TestScenario` configuration with `readScenarioConfigurationFromExcel()`.
+4. Realise it via `createScenarios()`.
+5. Pull `simulation <- scenarios$TestScenario$simulation` and print it.
+
+```{r ex1}
+#| code-fold: true
+#| code-summary: "Solution"
+projectConfigurationPath <- exampleProjectConfigurationPath()
+
+projectConfiguration <- createProjectConfiguration(
+  projectConfigurationPath,
+  ignoreVersionCheck = TRUE
+)
+
+scenarioConfigurations <- readScenarioConfigurationFromExcel(
+  scenarioNames = "TestScenario",
+  projectConfiguration = projectConfiguration
+)
+
+scenarios <- createScenarios(scenarioConfigurations)
+
+simulation <- scenarios$TestScenario$simulation
+
+simulation
+```
+
+## Exercise 2: Run a sensitivity calculation
+
+Vary lipophilicity, fraction unbound, dose, tubular secretion — track plasma.
+
+1. Build the named `outputPaths` and `parameterPaths` vectors.
+2. Call `sensitivityCalculation()` with defaults — assign to `analysis`.
+3. `head(analysis$pkData)`.
+
+```{r ex2}
+#| code-fold: true
+#| code-summary: "Solution"
+outputPaths <- c(
+  Plasma = "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
+)
+
+parameterPaths <- c(
+  Lipophilicity = "Aciclovir|Lipophilicity",
+  `Fraction unbound` = "Aciclovir|Fraction unbound (plasma, reference value)",
+  Dose = "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose",
+  `Tubular secretion` = "Neighborhoods|Kidney_pls_Kidney_ur|Aciclovir|Renal Clearances-TS-Aciclovir|Tubular secretion"
+)
+
+analysis <- sensitivityCalculation(
+  simulation = simulation,
+  outputPaths = outputPaths,
+  parameterPaths = parameterPaths
+)
+
+head(analysis$pkData)
+```
+
+::: {.callout-tip}
+Path mismatch errors → confirm with `ospsuite::getAllParameterPathsIn(simulation)` and `ospsuite::getAllStateVariablesPaths(simulation)`.
+:::
+
+## Exercise 3: Spider plot
+
+1. Generate a spider plot of `analysis`.
+2. Identify the PK metric most affected by `Tubular secretion`.
+
+```{r ex3}
+#| code-fold: true
+#| code-summary: "Solution"
+sensitivitySpiderPlot(analysis)
+```
+
+## Exercise 4: Tornado plot
+
+1. Generate the tornado plot.
+2. Rank parameters by their influence on `AUC_inf`.
+
+```{r ex4}
+#| code-fold: true
+#| code-summary: "Solution"
+sensitivityTornadoPlot(analysis)
+```
+
+## Exercise 5: Time profiles + interpretation
+
+1. Plot the time profiles.
+2. Which parameter has the strongest visual effect on the terminal slope of the plasma curve? Why?
+
+```{r ex5}
+#| code-fold: true
+#| code-summary: "Solution"
+sensitivityTimeProfiles(analysis)
+```
+
+::: {.callout-tip}
+Terminal slope reflects elimination — parameters touching clearance pathways (e.g. tubular secretion) dominate it.
+:::
+
+## Exercise 6 (optional): Persist results
+
+1. Save `analysis` to `sensitivity-results/` with `saveSensitivityCalculation()`.
+2. In a new R session: rebuild the scenario (`createScenarios()`), pull `simulation` from it, then reload with `loadSensitivityCalculation()`.
+3. Verify by re-running `sensitivitySpiderPlot()` on the loaded object.
+
+```{r ex6}
+#| code-fold: true
+#| code-summary: "Solution"
+saveSensitivityCalculation(
+  analysis,
+  outputDir = "sensitivity-results",
+  overwrite = TRUE
+)
+
+# Fresh session — rebuild the scenario, then reload the analysis.
+scenarios <- createScenarios(scenarioConfigurations)
+simulation <- scenarios$TestScenario$simulation
+
+analysis <- loadSensitivityCalculation(
+  outputDir = "sensitivity-results",
+  simulation = simulation
+)
+
+sensitivitySpiderPlot(analysis)
+```
+
+## Exercise 7 (optional): Custom output function
+
+1. Define a custom function `MaxEliminationRate` returning the steepest (most negative) slope of the concentration–time curve.
+2. Run `sensitivityCalculation()` with `pkParameters = character(0)` and only that function.
+3. Generate a tornado plot — does the ranking match Exercise 4?
+
+```{r ex7}
+#| code-fold: true
+#| code-summary: "Solution"
+customFunctions7 <- list(
+  MaxEliminationRate = function(x, y) {
+    slopes <- diff(y) / diff(x)
+    abs(min(slopes))
+  }
+)
+
+analysis7 <- sensitivityCalculation(
+  simulation = simulation,
+  outputPaths = outputPaths,
+  parameterPaths = parameterPaths,
+  pkParameters = character(0),
+  customOutputFunctions = customFunctions7
+)
+
+sensitivityTornadoPlot(analysis7)
+```
+
+## Resources
+
+- [`{esqlabsR}` sensitivity article](https://esqlabs.github.io/esqlabsR/articles/sensitivity.html)
+- [`{ospsuite}` PK parameters reference](https://www.open-systems-pharmacology.org/OSPSuite-R/reference/pkParameters.html)
+- [`{esqlabsR}` code repository](https://github.com/esqLABS/esqlabsR/)

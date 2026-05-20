@@ -1,0 +1,284 @@
+---
+title: "Run Simulations"
+subtitle: "Introduction to `{ospsuite}`"
+module: "Introduction to `{ospsuite}`"
+ID: A05
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format: esqlabs-revealjs
+---
+
+
+::: {.r-fit-text}
+## **🎯 Goal: Learn how to run simulations using `{ospsuite}`**
+:::
+
+
+# Run Simulations
+
+## `runSimulations()`
+
+Use `runSimulations()` for every run — one simulation or many.
+
+- Takes a **list** of `Simulation` objects, or a single `Simulation` object.
+- Returns a **named list** of `SimulationResults` objects, keyed by simulation id.
+
+```r
+runSimulations(sim)         # single
+runSimulations(list(sim1, sim2))  # multiple
+```
+
+::: {.callout-warning title="Deprecated"}
+`runSimulation()` (singular) is deprecated. Do not use it in new code.
+:::
+
+## Run a Single Simulation
+
+```{r}
+library(ospsuite)
+
+sim <- loadSimulation(system.file(
+  "extdata",
+  "Aciclovir.pkml",
+  package = "ospsuite"
+))
+
+simulationResults <- runSimulations(sim)
+
+# runSimulations() always returns a list — unwrap to get the SimulationResults
+simulationResult <- simulationResults[[1]]
+simulationResult
+```
+
+## Run Multiple Simulations
+
+```{r}
+sim1 <- loadSimulation(system.file(
+  "extdata",
+  "Aciclovir.pkml",
+  package = "ospsuite"
+))
+sim2 <- loadSimulation(system.file(
+  "extdata",
+  "Aciclovir.pkml",
+  package = "ospsuite"
+))
+
+simulationResults <- runSimulations(simulations = list(sim1, sim2))
+
+simulationResults
+```
+
+## Result List Names = Simulation IDs
+
+The names of the list returned by `runSimulations()` are the **simulation ids** (`sim$id`), not the R variable names. Use them to look up a specific result.
+
+```{r}
+#| output-location: default
+names(simulationResults)
+```
+
+. . .
+
+```{r}
+#| output-location: default
+# Each simulation carries its own id
+c(sim1$id, sim2$id)
+```
+
+. . .
+
+```{r}
+#| output-location: default
+# Access a result by id
+simulationResults[[sim1$id]]
+```
+
+
+# Simulation Results
+
+## Access simulation results values
+
+A `SimulationResults` object does not expose values directly. Extract them with one of the helpers below.
+
+First, pick a single `SimulationResults` out of the list returned by `runSimulations()`.
+
+```{r}
+simulationResult <- simulationResults[[1]]
+```
+
+## `getOutputValues()`
+
+```{r}
+outputValues <- getOutputValues(simulationResult)
+names(outputValues)
+```
+
+## Output Values — `data`
+
+Contains a basic `data.frame` with simulation results values.
+
+```{r}
+#| output-location: default
+outputValues$data
+```
+
+## Output Values — `metaData`
+
+Contains context for the simulation results values.
+
+```{r}
+#| output-location: default
+outputValues$metaData
+```
+
+## Pick Specific Outputs
+
+`getOutputValues()` returns all outputs by default. Pass `quantitiesOrPaths` to restrict to one or more paths.
+
+```{r}
+#| output-location: default
+plasmaPath <- "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
+getOutputValues(simulationResult, quantitiesOrPaths = plasmaPath)$data
+```
+
+## `simulationResultsToDataFrame()`
+
+Gathers simulation results values and metadata into a single `data.frame`.
+
+```{r}
+head(
+  simulationResultsToDataFrame(simulationResult)
+)
+```
+
+
+# Run Options
+
+## `SimulationRunOptions`
+
+`runSimulations()` accepts a `simulationRunOptions` argument built with `SimulationRunOptions$new()`. Use it to tune parallelism, control negative value checks, and more.
+
+```{r, eval = TRUE}
+options <- SimulationRunOptions$new(
+  numberOfCores = 4, # run sims in parallel
+  showProgress = TRUE, # print progress bar
+  checkForNegativeValues = TRUE
+)
+
+simulationResults <- runSimulations(
+  simulations = list(sim1, sim2),
+  simulationRunOptions = options
+)
+```
+
+Parallel execution matters when the list holds many simulations or running population simulations — scaling is near-linear up to physical core count.
+
+## Handling Failed Runs
+
+If a simulation fails, its slot in the returned list is `NULL`. Always check before extracting values.
+
+```{r, eval = TRUE}
+results <- runSimulations(list(sim1, sim2))
+
+# Keep only successful runs
+successful <- Filter(Negate(is.null), results)
+
+# Or inspect which failed
+failed_ids <- names(results)[vapply(results, is.null, logical(1))]
+```
+
+# Save & Load Results
+
+## Export to CSV
+
+`exportResultsToCSV()` writes a `SimulationResults` object to disk. Useful for caching long-running simulations or sharing with colleagues.
+
+```{r, eval = FALSE}
+exportResultsToCSV(simulationResult, "aciclovir_results.csv")
+```
+
+## Import from CSV
+
+`importResultsFromCSV()` reconstructs a `SimulationResults` object from a previously exported CSV. Requires the original `Simulation` object.
+
+```{r, eval = FALSE}
+simulationResult <- importResultsFromCSV(sim, "aciclovir_results.csv")
+```
+
+
+# Exercise
+
+## Exercise Overview
+
+Compare two doses of Aciclovir end-to-end:
+
+-   **Load & parameterize.** Two simulations, one with the default dose and one at 100 mg.
+-   **Run both.** A single call to `runSimulations()`.
+-   **Extract results.** Pull the output values out of the returned list.
+-   **Compare.** Maximum plasma concentration for each run.
+
+## Load and create two simulations {.scrollable}
+
+1. Load the example Aciclovir model to create two simulations: `sim` and `sim_100mg`
+2. Set `Dose` parameter of `sim_100mg` to 100 mg (path: `Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose`)
+3. Run both simulations
+
+
+```{r, eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer 1 & 2"
+library(ospsuite)
+
+# 1)
+simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
+
+sim <- loadSimulation(simFilePath)
+sim_100mg <- loadSimulation(simFilePath)
+
+# 2)
+setParameterValuesByPath(
+  parameterPaths = "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose",
+  values = 100,
+  units = "mg",
+  simulation = sim_100mg
+)
+```
+
+## Run Both Simulations
+
+```{r, eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer 3"
+# 3)
+simulationResults <- runSimulations(list(sim, sim_100mg))
+```
+
+## Extract the simulation results {.scrollable}
+
+1. Extract the output values of `sim` and `sim_100mg` and assign them to `results_sim` and `results_sim_100mg` respectively.
+2. Get the maximum concentration of Aciclovir in the Plasma for both simulations.
+
+```{r, eval = TRUE, results = FALSE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+# 1)
+names(simulationResults)
+
+results_sim <- simulationResultsToDataFrame(simulationResults[[sim$id]])
+results_sim_100mg <- simulationResultsToDataFrame(simulationResults[[
+  sim_100mg$id
+]])
+
+# 2) Aciclovir plasma is the only output in the default pkml,
+#    so max() over simulationValues is the plasma Cmax.
+max(results_sim$simulationValues)
+max(results_sim_100mg$simulationValues)
+
+#> 50.25272
+#> 20.10109
+```

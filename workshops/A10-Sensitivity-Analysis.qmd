@@ -1,0 +1,463 @@
+---
+title: "Local Sensitivity Analysis"
+subtitle: "Introduction to `{ospsuite}`"
+module: "Introduction to `{ospsuite}`"
+ID: A10
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format:
+  esqlabs-revealjs:
+    scrollable: true
+    code-overflow: scroll
+---
+
+::: {.r-fit-text}
+## **🎯 Goal: Learn how to identify the most influential parameters on the model output.**
+:::
+
+
+```{r setup, echo = FALSE}
+#| output-location: default
+knitr::opts_chunk$set(fig.showtext = TRUE, fig.align = "center")
+```
+
+## Sensitivity Analysis in PK-Sim
+
+![](https://881660647-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2F-LNl6UIiFP7k0sNQthlR%2F-LOWPv3bS-p6gLjXajFs%2F-LOWQ5HAkIoayhFuXldn%2FSA_Parameters1.png?generation=1539232796810927&alt=media)
+
+. . .
+
+:::center-x
+Also available using `{ospsuite}` !
+:::
+
+
+## Overview
+
+1. Setup sensitivity analysis
+2. Run sensitivity analysis
+3. Explore results
+4. Import & Export
+
+# Preparation
+
+## Load `{ospsuite}`
+
+```{r}
+#| output-location: default
+library(ospsuite)
+```
+
+## Load Sample Simulation
+
+```{r}
+#| output-location: default
+sim <- loadSimulation(system.file(
+  "extdata",
+  "Aciclovir.pkml",
+  package = "ospsuite"
+))
+clearOutputs(sim)
+addOutputs(
+  "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)",
+  sim
+)
+```
+
+# Setup sensitivity analysis
+
+## Workflow
+
+Steps:
+
+  1. Define parameters to be varied
+  2. Create `SensitivityAnalysis` object
+  3. Setup parameter variations
+  
+:::notes
+
+- The parameters to vary, that we selected (default: all suitable parameters, here 228)
+- The range of variation, that we defined (default: 10%)
+- The number of steps, that we defined (default: 2)
+
+Then, the sensitivity analysis will be performed, and it will give us an idea on how much different PK parameters, such as Cmax or AUC, will vary along with the parameters we selected.
+
+Previously, we defined a variation of 20%, once, for the fraction unbound, lipophilicity and liver volume. We will see how much these variations impact the PK parameters.
+:::
+
+## Define parameters to be varied
+
+Specific parameters to vary can be defined selectively.  
+
+If no parameters are specified, all constant and suitable parameters are automatically varied.
+
+Use `potentialVariableParametersFor()` to get a list of all suitable parameters.
+
+
+```{r}
+params <- potentialVariableParameterPathsFor(sim)
+params
+```
+
+## Create `SensitivityAnalysis` object
+
+With all potential parameters:
+
+```{r}
+sa <- SensitivityAnalysis$new(simulation = sim, parameterPaths = params)
+sa
+```
+
+## Select Parameters
+
+With only some parameters:
+
+```{r}
+sa <- SensitivityAnalysis$new(
+  simulation = sim,
+  parameterPaths = c(
+    "Aciclovir|Lipophilicity",
+    "Aciclovir|Fraction unbound (plasma, reference value)"
+  )
+)
+sa
+```
+
+
+## Add Parameters Afterwards
+
+:::{.callout-important}
+Supplementary parameters can be added to an existing `SensitivityAnalysis`.
+:::
+
+```{r}
+#| output-location: default
+sa$addParameterPaths("Organism|Liver|Volume")
+
+sa
+```
+
+:::{.callout-warning}
+On an analysis created **without** `parameterPaths` (all-params default), `addParameterPaths()` switches the SA to vary **only** the newly added parameters.
+:::
+
+
+## Setup parameter variations
+
+By default, parameters are incremented/decremented by 10%, twice.
+
+But this can be customized: Here, we will vary the parameters by 20% once.
+
+```{r}
+# One variation per direction (default: 2)
+sa$numberOfSteps <- 1
+
+# Variation range (default: 0.1 = 10%)
+sa$variationRange <- 0.2
+
+sa
+```
+
+
+. . .
+
+::: {.callout-important}
+Settings are applied to all parameters.
+:::
+
+. . .
+
+::: {.callout-note}
+`variationRange` is **symmetric**: `0.2` varies each parameter from `-20%` to `+20%` around its baseline.
+
+Total simulations per run = `2 * numberOfSteps * length(parameterPaths)`.
+:::
+
+
+# Run Sensitivity Analysis
+
+## Execute
+
+Simply execute:
+
+```{r}
+saResult <- runSensitivityAnalysis(sa)
+
+saResult
+```
+
+. . .
+
+:::{.callout-tip}
+## Add Run options with `SensitivityAnalysisRunOptions`
+
+- `numberOfCores`
+- `showProgress`
+
+```{r, eval = TRUE}
+#| output-location: default
+runSensitivityAnalysis(
+  sa,
+  sensitivityAnalysisRunOptions = SensitivityAnalysisRunOptions$new(
+    numberOfCores = 2,
+    showProgress = TRUE
+  )
+)
+```
+:::
+
+
+# Explore Sensitivity Analysis Results
+
+## List Available Results
+
+```{r}
+saResult$allQuantityPaths
+```
+
+. . .
+
+
+```{r}
+saResult$allPKParameterNames
+```
+
+
+
+## Retrieve results
+
+```{r}
+outputPath <- saResult$allQuantityPaths[[1]]
+saResult$allPKParameterSensitivitiesFor(
+  pkParameterName = "C_max",
+  outputPath = outputPath
+)
+```
+
+. . . 
+
+```{r}
+saResult$allPKParameterSensitivitiesFor(
+  pkParameterName = "AUC_inf",
+  outputPath = outputPath
+)
+```
+
+
+## Sensitivity Threshold
+
+By default, only the most important parameters are returned: those contributing 90% of the total sensitivity.
+
+Adjust via the `totalSensitivityThreshold` argument of `allPKParameterSensitivitiesFor()` (default `0.9`).
+
+Set `totalSensitivityThreshold = 1` to return all parameters.
+
+```{r}
+saResult$allPKParameterSensitivitiesFor(
+  pkParameterName = "AUC_inf",
+  outputPath = outputPath,
+  totalSensitivityThreshold = 1
+)
+```
+
+## Interpret Results
+
+Sensitivity definition:
+
+$$S_{Y,X} = \frac{\Delta Y / Y}{\Delta X / X}$$
+
+Relative change in PK parameter `Y` per relative change in model parameter `X`.
+
+Examples:
+
+- Variation range set to 0.1 (10%) for parameter X
+- Returned value of `-1` as sensitivity for parameter Y
+
+A variation of 10 % of parameter X leads to a decrease (minus sign) of Y by 10 % (-1 * 10%)
+
+- Variation range set to 0.2 (20%) for parameter X
+- Returned value of `0.25` as sensitivity for parameter Y
+
+A variation of 20 % of parameter X leads to an increase (positive) of Y by 5 % (0.25 * 20%)
+
+
+## Single Sensitivity Value
+
+```{r}
+saResult$pkParameterSensitivityValueFor(
+  pkParameterName = "C_max",
+  parameterName = "Aciclovir-Fraction unbound (plasma, reference value)",
+  outputPath = outputPath
+)
+```
+
+```{r, echo = FALSE}
+#| output-location: default
+# Retrieve the value for one PKparameter/parameter combination
+c_max_fraction_unbound <- saResult$pkParameterSensitivityValueFor(
+  pkParameterName = "C_max",
+  parameterName = "Aciclovir-Fraction unbound (plasma, reference value)",
+  outputPath = outputPath
+)
+```
+
+. . . 
+
+`r c_max_fraction_unbound` means that a 20% increase (defined variation range of 0.2) of the fraction unbound in plasma leads to a `r scales::percent(c_max_fraction_unbound*0.2)` (`r scales::percent(c_max_fraction_unbound)` * `r scales::percent(0.2)`) `r if (c_max_fraction_unbound < 0) "decrease" else "increase"` of $C_{max}$ at `r outputPath`.
+
+
+# Import & Export
+
+## CSV Round-Trip
+
+```{r, eval = TRUE}
+# Export
+exportSensitivityAnalysisResultsToCSV(
+  results = saResult,
+  filePath = "mySAResults.csv"
+)
+```
+
+. . . 
+
+```{r, eval = TRUE}
+# Import
+importedSAResult <- importSensitivityAnalysisResultsFromCSV(
+  filePaths = "mySAResults.csv",
+  simulation = sim
+)
+```
+
+. . . 
+
+:::{.callout-important}
+Original Simulation is required to import sensitivity analysis results.
+:::
+
+```{r, echo = FALSE}
+#| output-location: default
+invisible(file.remove("mySAResults.csv"))
+```
+
+# Exercise
+
+## Exercise Overview
+
+- Create a new sensitivity analysis from scratch
+- Select 5 parameters (include Dose and Fraction unbound)
+- Run with defaults, then with `variationRange = 0.2`
+- Compare results for `C_max` and `CL`
+
+## Create the Analysis
+
+Create a new sensitivity analysis from scratch. Select 5 parameters of your choice. Include the Dose and the fraction unbound.
+
+```{r, eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+sim <- loadSimulation(system.file(
+  "extdata",
+  "Aciclovir.pkml",
+  package = "ospsuite"
+))
+
+sa <- SensitivityAnalysis$new(
+  simulation = sim,
+  parameterPaths = c(
+    "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose",
+    "Aciclovir|Fraction unbound (plasma, reference value)",
+    "Organism|Spleen|Volume",
+    "Organism|Protein ratio (interstitial/plasma)",
+    "Organism|VenousBlood|Volume"
+  )
+)
+```
+
+
+## Run Two Analyses
+
+Compare two sensitivity analyses. Keep steps and variation range as default for the first, set `variationRange` to 0.2 for the second, same parameters. Run both.
+
+```{r, eval = TRUE, results = FALSE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+sa20 <- SensitivityAnalysis$new(
+  simulation = sim,
+  parameterPaths = c(
+    "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose",
+    "Aciclovir|Fraction unbound (plasma, reference value)",
+    "Organism|Spleen|Volume",
+    "Organism|Protein ratio (interstitial/plasma)",
+    "Organism|VenousBlood|Volume"
+  )
+)
+
+sa20$variationRange <- 0.2
+
+saResult <- runSensitivityAnalysis(sa)
+saResult20 <- runSensitivityAnalysis(sa20)
+```
+
+## Compare `C_max`
+
+Compare both results for `C_max`. Display all parameters (`totalSensitivityThreshold = 1`).
+
+```{r, eval = TRUE, results = FALSE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+outputPath <- saResult$allQuantityPaths[[1]]
+outputPath20 <- saResult20$allQuantityPaths[[1]]
+
+# Let's look at the results for Cmax
+saResult$allPKParameterSensitivitiesFor(
+  pkParameterName = "C_max",
+  outputPath = outputPath,
+  totalSensitivityThreshold = 1
+)
+saResult20$allPKParameterSensitivitiesFor(
+  pkParameterName = "C_max",
+  outputPath = outputPath20,
+  totalSensitivityThreshold = 1
+)
+```
+
+## Compare `CL`
+
+```{r, eval = TRUE, results = FALSE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+# Clearance results
+saResult$allPKParameterSensitivitiesFor(
+  pkParameterName = "CL",
+  outputPath = outputPath,
+  totalSensitivityThreshold = 1
+)
+saResult20$allPKParameterSensitivitiesFor(
+  pkParameterName = "CL",
+  outputPath = outputPath20,
+  totalSensitivityThreshold = 1
+)
+```
+
+## Interpretation
+
+How do you interpret the results?
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+- `C_max` vs `Dose` is (almost) 1 in both cases: a 10% increase in `Dose` leads to a 10% increase in `C_max`, same for 20%
+- `CL` vs `Fraction unbound` is around 0.68 in both cases: 10% increase of `Fraction unbound` → 10% * 68% = 6.8% increase in `CL`; 20% → 20% * 68% = 13.6% increase
+
+Sensitivity analysis is "local" and does not consider non-linearities — expect slightly different results for different variation ranges.
+:::
+
+## Resources
+
+- [PK Sim section about Sensitivity Analysis](https://docs.open-systems-pharmacology.org/shared-tools-and-example-workflows/sensitivity-analysis)
+- [`{ospsuite}` vignette](https://www.open-systems-pharmacology.org/OSPSuite-R/articles/sensitivity-analysis.html)

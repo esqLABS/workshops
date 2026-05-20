@@ -1,0 +1,414 @@
+---
+title: "Project Initialization"
+subtitle: "Introduction to `{esqlabsR}`"
+module: "Introduction to `{esqlabsR}`"
+ID: B2
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format:
+  esqlabs-revealjs:
+    scrollable: true
+    code-overflow: scroll
+---
+
+::: {.r-fit-text}
+## 🎯 Goal: Initialize a {esqlabsR} project
+:::
+
+# Introduction
+
+```{r, include = FALSE}
+library(esqlabsR)
+```
+
+## Project Structure
+
+::::: columns
+::: {.column width="40%"}
+```
+ Project Folder
+ ├── ProjectConfiguration.xlsx
+ ├── ProjectConfiguration.json
+ ├── Data/
+ ├── Models/
+ ├── Configurations/
+ └── Results/
+```
+:::
+
+::: {.column width="60%"}
+- 4 folders.
+- 1 `ProjectConfiguration.xlsx` to link them all.
+- 1 `ProjectConfiguration.json` snapshot of the project state.
+:::
+:::::
+
+## `ProjectConfiguration.xlsx`
+
+Tells `{esqlabsR}` where to find each folder/file. Ships with sensible defaults; customize to match your project layout.
+This makes the workflow fully reproducible: anyone with the same files and configuration will get the same results.
+
+Load the bundled example to inspect:
+
+```{r}
+my_project_configuration <- createProjectConfiguration(
+  path = esqlabsR::exampleProjectConfigurationPath(),
+  ignoreVersionCheck = TRUE
+)
+my_project_configuration
+```
+
+## Properties — Folders
+
+| Property | Description |
+|---|---|
+| `projectConfigurationFilePath` | Path to your `ProjectConfiguration.xlsx`. Anchors all relative paths. |
+| `projectConfigurationDirPath` | Folder where that file lives. |
+| `modelFolder` | Folder with `.pkml` simulation files. |
+| `configurationsFolder` | Folder with the configuration Excel files. |
+| `dataFolder` | Folder with experimental data files. |
+| `outputFolder` | Folder where simulation results are written. |
+
+## Properties — Configuration Files
+
+| Property | Description |
+|---|---|
+| `modelParamsFile` | Excel file with model parameter overrides. |
+| `individualsFile` | Excel file with individual characteristics. |
+| `populationsFile` | Excel file describing populations. |
+| `populationsFolder` | Folder with populations defined as CSV files. |
+| `scenariosFile` | Excel file with scenario definitions. |
+| `applicationsFile` | Excel file with application protocols. |
+| `plotsFile` | Excel file with plot definitions. |
+| `parameterIdentificationFile` | Excel file with parameter-identification tasks. |
+
+## Properties — Data & Status
+
+| Property | Description |
+|---|---|
+| `dataFile` | Excel file with experimental data. |
+| `dataImporterConfigurationFile` | XML config used to import the data. |
+| `modified` | Whether any property has changed since loading. Read-only. |
+| `esqlabsRVersion` | Version of `{esqlabsR}` recorded in the project. Read-only. |
+
+# Project Folders
+
+## Data Folder
+
+```{.bash code-line-numbers="4"}
+ Project Folder
+ ├── ProjectConfiguration.xlsx
+ ├── ProjectConfiguration.json
+ ├── Data/
+ ├── Models/
+ ├── Configurations/
+ └── Results/
+```
+
+::: {.center-x}
+Where to store all input data for the project.
+:::
+
+## Data Templates
+
+The **Data** folder also contains some input templates:
+
+:::::: columns
+::: {.column width="40%"}
+```
+Project Folder/Data/
+├── *_TimeValuesData.xlsx
+└── dataImporter_configuration.xml
+```
+:::
+
+:::: {.column width="60%"}
+::: incremental
+- `*_TimeValuesData.xlsx` — sample file with the expected structure for observed data.
+- `dataImporter_configuration.xml` — sample import configuration matching the `*_TimeValuesData.xlsx` structure.
+- Can also be loaded in PK-Sim and MoBi.
+:::
+::::
+::::::
+
+## Models Folder
+
+```{.bash code-line-numbers="5"}
+ Project Folder
+ ├── ProjectConfiguration.xlsx
+ ├── ProjectConfiguration.json
+ ├── Data/
+ ├── Models/
+ ├── Configurations/
+ └── Results/
+```
+
+Stores all simulation files coming from PK-Sim or MoBi.
+
+:::::: columns
+::: {.column width="40%"}
+```
+Project Folder/Models/
+└── Simulations/
+```
+:::
+
+::: {.column width="60%"}
+- `Simulations/` — where to store `.pkml` simulation files.
+:::
+::::::
+
+## Configurations Folder
+
+```{.bash code-line-numbers="6"}
+ Project Folder
+ ├── ProjectConfiguration.xlsx
+ ├── ProjectConfiguration.json
+ ├── Data/
+ ├── Models/
+ ├── Configurations/
+ └── Results/
+```
+
+Contains all the essential settings files for the `{esqlabsR}` workflow.
+
+## Configuration Files
+
+:::::: columns
+::: {.column width="40%"}
+```
+Project Folder/Configurations/
+├── Applications.xlsx
+├── Individuals.xlsx
+├── ModelParameters.xlsx
+├── ParameterIdentification.xlsx
+├── Plots.xlsx
+├── Populations.xlsx
+├── Scenarios.xlsx
+└── PopulationsCSV/
+    └── TestPopulation.csv
+```
+:::
+
+:::: {.column width="60%"}
+::: incremental
+- `Applications.xlsx` — define administration protocols.
+- `Individuals.xlsx` — set up individual characteristics.
+- `ModelParameters.xlsx` — specify model parameter sets.
+- `Populations.xlsx` + `PopulationsCSV/` — define populations.
+- `Scenarios.xlsx` — main file defining simulation **scenarios** using all the previously listed files.
+- `Plots.xlsx` — define plots and plot grids that will be generated.
+- `ParameterIdentification.xlsx` — define PI tasks.
+:::
+::::
+::::::
+
+## Results Folder
+
+```{.bash code-line-numbers="7"}
+ Project Folder
+ ├── ProjectConfiguration.xlsx
+ ├── ProjectConfiguration.json
+ ├── Data/
+ ├── Models/
+ ├── Configurations/
+ └── Results/
+```
+
+Default destination for `SimulationResults` and generated plots.
+
+# `ProjectConfiguration.json`
+
+## Snapshot of the Project
+
+::: {.center-x}
+- Captures `ProjectConfiguration.xlsx` and all Excel files in `Configurations/`.
+- Plain text — version-control friendly.
+- Can be committed to Git and shared with collaborators.
+
+Same purpose as `ProjectConfiguration.xlsx`, but in plain text: easier to track changes, compare versions, and collaborate via Git.
+:::
+
+## Validate
+
+`validateAllConfigurations()` checks the project for structural issues, data integrity, uniqueness, and cross-file references.
+
+```r
+validationResults <- validateAllConfigurations(myProjectConfig)
+
+if (isAnyCriticalErrors(validationResults)) {
+  validationSummary(validationResults)
+}
+```
+
+::: {.callout-note}
+Each entry of `validationResults` exposes `critical_errors`, `warnings`, and `data` — use `validationSummary()` for a readable overview.
+:::
+
+## Excel ↔ JSON Interoperability
+
+| Function | Direction | Purpose |
+|---|---|---|
+| `snapshotProjectConfiguration()` | Excel → JSON | Freeze current state into a snapshot. |
+| `restoreProjectConfiguration()` | JSON → Excel + folders | Recreate Excel files (and folder layout) from a snapshot. |
+| `projectConfigurationStatus()` | compare | Report whether Excel and JSON are in sync. |
+
+## Round-Trip Example
+
+```r
+# 1. Snapshot the current Excel state
+snapshotProjectConfiguration("ProjectConfiguration.xlsx")
+
+# 2. Commit ProjectConfiguration.json to Git, share with team
+
+# 3. Restore Excel files on another machine
+restoredConfig <- restoreProjectConfiguration("ProjectConfiguration.json")
+
+# 4. Check sync status at any time
+status <- projectConfigurationStatus(
+  "ProjectConfiguration.xlsx",
+  "ProjectConfiguration.json"
+)
+```
+
+# Initialize a Project
+
+## `initProject()`
+
+`{esqlabsR}` ships a default project structure. Scaffold it with one call:
+
+```{r, eval = FALSE}
+#| output-location: default
+esqlabsR::initProject(destination = "path/to/your/new/folder")
+```
+
+::: incremental
+1. Create a new empty folder.
+2. Open RStudio outside any active project.
+3. Run `esqlabsR::initProject(destination = "path/to/your/new/folder")` — files and folders are created.
+4. In RStudio: `File > New Project > Existing Directory` and select the new folder.
+:::
+
+# `ProjectConfiguration`
+
+## Create a `ProjectConfiguration`
+
+The `ProjectConfiguration` object is the R representation of `ProjectConfiguration.xlsx`.
+
+Build one with `createProjectConfiguration()`:
+
+```r
+myProjectConfig <- createProjectConfiguration(
+  path = "path/to/ProjectConfiguration.xlsx"
+)
+```
+
+## Modify a `ProjectConfiguration`
+
+Two ways to change a configuration:
+
+- Edit `ProjectConfiguration.xlsx` **before** creating the R object.
+- Mutate the R object **after** creation via active fields.
+
+```r
+myProjectConfig$outputFolder <- "anotherOutputFolder"
+print(myProjectConfig)
+```
+
+```{.r code-line-numbers="11"}
+<ProjectConfiguration>
+  • Working Directory: ~
+  • Project Configuration file stored at: ~/testProject/ProjectConfiguration.xlsx
+
+── Paths ──
+
+Folders:
+  • Configurations Folder: ~/testProject/Configurations
+  • Model Folder: ~/testProject/Models/Simulations
+  • Data Folder: ~/testProject/Data
+  • Output Folder: ~/testProject/anotherOutputFolder
+  • Populations Folder: ~/testProject/Configurations/PopulationsCSV
+Files:
+  • Model Parameters File: ~/testProject/Configurations/ModelParameters.xlsx
+  • Individuals File: ~/testProject/Configurations/Individuals.xlsx
+  • Populations File: ~/testProject/Configurations/Populations.xlsx
+  • Scenarios File: ~/testProject/Configurations/Scenarios.xlsx
+  • Applications File: ~/testProject/Configurations/Applications.xlsx
+  • Plots File: ~/testProject/Configurations/Plots.xlsx
+  • Data File: ~/testProject/Data/TestProject_TimeValuesData.xlsx
+  • Data Importer Configuration File: ~/testProject/Data/esqlabs_dataImporter_configuration.xml
+```
+
+# Exercises
+
+## Exercise Overview
+
+1. Create a folder `esqLabsR_training` and initialize a project there.
+2. Inspect the resulting layout in your file browser and in RStudio.
+3. Switch the project to use a custom `Configurations_V2/` folder — first via the Excel file, then via the R object.
+
+## Initialize the Project
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+1. Create a new folder called `esqLabsR_training`.
+2. Open RStudio outside any active project.
+3. Run:
+
+```r
+esqlabsR::initProject(destination = "path/to/esqLabsR_training")
+```
+
+4. `File > New Project > Existing Directory` and select `esqLabsR_training`.
+:::
+
+## Switch Configurations Folder
+
+We want to point the project at a renamed `Configurations_V2/` folder.
+
+1. Create the new folder `Configurations_V2`.
+2. Update `ProjectConfiguration.xlsx` so it points at `Configurations_V2`.
+3. Build the `ProjectConfiguration` R object.
+
+```{r, echo = TRUE, eval = FALSE}
+#| code-fold: true
+#| code-summary: "Solution"
+myProjectConfig <- createProjectConfiguration(
+  path = "myNewProject/ProjectConfiguration.xlsx"
+)
+
+myProjectConfig
+# `Configurations_V2` is now linked
+```
+
+. . .
+
+4. Change your mind: rewire the folder directly on the existing `ProjectConfiguration` object.
+
+::: {.callout-tip collapse="true"}
+## Hint
+
+Active fields are accessed with `$`. The relevant field is `configurationsFolder`.
+:::
+
+```{r, echo = TRUE, eval = FALSE}
+#| code-fold: true
+#| code-summary: "Solution"
+myProjectConfig$configurationsFolder <- "Configurations_V2"
+```
+
+# Next Steps
+
+## Continue with B3
+
+Scenarios are configured in the Excel files inside `Configurations/`. Continue with the next deck:
+
+- [B3 — Scenario Design](B3-esqlabsR-scenario-design.qmd)
+
+## Resources
+
+- [`{esqlabsR}` documentation website](https://esqlabs.github.io/esqlabsR/)
+- [Project structure article](https://esqlabs.github.io/esqlabsR/articles/project-structure.html)
+- [`{esqlabsR}` code repository](https://github.com/esqLABS/esqlabsR/)

@@ -1,0 +1,255 @@
+---
+title: "Creating Individuals"
+subtitle: "Introduction to `{ospsuite}`"
+module: "Introduction to `{ospsuite}`"
+ID: A12
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format:
+  esqlabs-revealjs:
+    scrollable: true
+    code-overflow: scroll
+---
+
+::: {.r-fit-text}
+## **🎯 Goal: Generate virtual individuals from the PK-Sim physiology database and apply them to a simulation**
+:::
+
+```{r setup, echo = FALSE}
+#| output-location: default
+knitr::opts_chunk$set(fig.showtext = TRUE, fig.align = "center")
+suppressPackageStartupMessages(library(ospsuite))
+options(ospsuite.plots.watermarkEnabled = FALSE)
+```
+
+## Overview
+
+1. Define individual characteristics
+2. Generate parameter values with `createIndividual()`
+3. Apply parameters to a simulation
+4. Assign enzyme ontogenies
+
+# Define Individual Characteristics
+
+## `createIndividualCharacteristics()`
+
+Describes the individual before parameter generation.
+
+Required:
+
+- `species` — `Species$Human`, `Species$Rat`, `Species$Dog`, ...
+- `population` (humans only) — `HumanPopulation$...`
+- `gender` (humans only) — `Gender$Male` / `Gender$Female`
+
+Optional:
+
+- `weight`, `weightUnit` (default `"kg"`)
+- `height`, `heightUnit` (default `"m"`)
+- `age`, `ageUnit` (default `"year(s)"`)
+- `moleculeOntogenies`
+
+## Example
+
+```{r}
+#| output-location: default
+library(ospsuite)
+
+individualCharacteristics <- createIndividualCharacteristics(
+  species = Species$Human,
+  population = HumanPopulation$Japanese_Population,
+  gender = Gender$Female,
+  weight = 75,
+  height = 1.75,
+  heightUnit = "m",
+  age = 43
+)
+
+individualCharacteristics
+```
+
+## Supported Species and Populations
+
+```{r}
+#| output-location: default
+names(Species)
+names(HumanPopulation)
+```
+
+# Generate Parameter Values
+
+## `createIndividual()`
+
+PK-Sim draws parameter values matching the characteristics.
+
+```{r}
+#| output-location: default
+individual <- createIndividual(
+  individualCharacteristics = individualCharacteristics
+)
+
+names(individual)
+```
+
+## Result Structure
+
+- `distributedParameters` — parameters drawn from physiology distributions (`$paths`, `$values`)
+- `derivedParameters` — formula-derived parameters (do **not** set manually)
+
+```{r}
+#| output-location: default
+head(individual$distributedParameters$paths, 3)
+head(individual$distributedParameters$values, 3)
+```
+
+:::{.callout-warning}
+Only apply `distributedParameters` to the simulation. Setting `derivedParameters` breaks formula dependencies.
+:::
+
+# Apply to Simulation
+
+## `setParameterValuesByPath()`
+
+```{r}
+#| output-location: default
+simFilePath <- system.file(
+  "extdata",
+  "Aciclovir.pkml",
+  package = "ospsuite"
+)
+sim <- loadSimulation(simFilePath)
+
+setParameterValuesByPath(
+  parameterPaths = individual$distributedParameters$paths,
+  values = individual$distributedParameters$values,
+  simulation = sim
+)
+```
+
+:::{.callout-important}
+**Species must match the original `.pkml`.** Applying a human individual to a rat simulation runs without error but produces nonsense.
+:::
+
+# Enzyme Ontogenies
+
+## What Is a Molecule Ontogeny?
+
+Molecule ontogenies describe the development of protein expression during aging.
+
+The expression database stores ontogenies as age-dependent values.
+
+When defining protein ontogenies for `individualCharacteristics`, the ontogeny value is calculated from the generated individual's age and stored in the parameters list.
+
+## `MoleculeOntogeny`
+
+Assign standard ontogeny patterns to custom molecules.
+
+```{r}
+#| output-location: default
+myProteinOntogeny <- MoleculeOntogeny$new(
+  molecule = "MyProtein",
+  ontogeny = StandardOntogeny$CYP3A4
+)
+
+myProteinOntogeny
+```
+
+## Available Ontogenies
+
+```{r}
+#| output-location: default
+names(StandardOntogeny)
+```
+
+## Attach to Characteristics
+
+```{r, eval = FALSE}
+#| output-location: default
+individualCharacteristics <- createIndividualCharacteristics(
+  species = Species$Human,
+  population = HumanPopulation$European_ICRP_2002,
+  gender = Gender$Male,
+  age = 30,
+  moleculeOntogenies = list(myProteinOntogeny)
+)
+```
+
+# Exercise
+
+## Exercise Overview
+
+- Run the standard Aciclovir simulation (baseline)
+- Create an Asian female individual, 45 yr, 60 kg, 1.65 m
+- Apply individual parameters to the simulation and run again
+- Compare both profiles in one figure
+
+## Baseline Simulation
+
+```{r, eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+simFilePath <- system.file(
+  "extdata",
+  "Aciclovir.pkml",
+  package = "ospsuite"
+)
+simBaseline <- loadSimulation(simFilePath)
+resultsBaseline <- runSimulations(simBaseline)[[1]]
+```
+
+## Create and Apply the Individual
+
+```{r, eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+asianFemale <- createIndividualCharacteristics(
+  species = Species$Human,
+  population = HumanPopulation$Asian_Tanaka_1996,
+  gender = Gender$Female,
+  weight = 60,
+  height = 1.65,
+  heightUnit = "m",
+  age = 45
+)
+
+indiv <- createIndividual(individualCharacteristics = asianFemale)
+
+simIndiv <- loadSimulation(simFilePath)
+setParameterValuesByPath(
+  parameterPaths = indiv$distributedParameters$paths,
+  values = indiv$distributedParameters$values,
+  simulation = simIndiv
+)
+
+resultsAsian <- runSimulations(simIndiv)[[1]]
+```
+
+## Compare Profiles
+
+```{r, eval = TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Solution"
+outputPath <- "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
+
+dc <- DataCombined$new()
+dc$addSimulationResults(
+  simulationResults = resultsBaseline,
+  quantitiesOrPaths = outputPath,
+  names = "Baseline"
+)
+dc$addSimulationResults(
+  simulationResults = resultsAsian,
+  quantitiesOrPaths = outputPath,
+  names = "Asian Female 45y"
+)
+
+plotTimeProfile(plotData = dc)
+```
+
+## Resources
+
+- [`{ospsuite}` vignette on creating individuals](https://www.open-systems-pharmacology.org/OSPSuite-R/articles/create-individual.html)
+- [PK-Sim documentation on creating individuals](https://docs.open-systems-pharmacology.org/working-with-pk-sim/pk-sim-documentation/pk-sim-creating-individuals)

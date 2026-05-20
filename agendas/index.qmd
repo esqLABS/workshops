@@ -1,0 +1,27 @@
+---
+title: "🗓️ Agendas"
+format:
+  html
+title-block-banner-color: "#ffffff"
+listing:
+  - id: agendas-listing
+    type: table
+    fields: [ID, Module, title, file-modified, author]
+    sort:
+      - ID
+    date-format: "YYYY-MM-DD"
+    sort-ui: false
+    filter-ui: [Module, Number, title, author]
+---
+
+## 🇭🇷 Featured: PAGE 2026 Workshop
+
+- 📋 [PAGE 2026 — Day-of agenda + deck](PAGE_2026.qmd)
+- 📩 [Pre-workshop email + setup instructions](PAGE_2026_pre-workshop-email.md)
+- 🧾 [2-page cheatsheet](PAGE_2026_cheatsheet.qmd) (`{ospsuite}` + `{esqlabsR}`)
+- 🎓 [Certificate template](PAGE_2026_certificate_template.qmd) — batch via `PAGE_2026_certificate_batch.R`
+
+## All agendas
+
+::: {#agendas-listing}
+:::

@@ -1,0 +1,267 @@
+---
+title: "`{ospsuite}` Workflow"
+subtitle: "Introduction to `{ospsuite}`"
+Module : "Introduction to `{ospsuite}`"
+ID: A02
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format:
+  esqlabs-revealjs:
+    scrollable: true
+    code-overflow: scroll
+---
+
+
+::: {.r-fit-text}
+## **🎯 Goal: Get a general overview of the `{ospsuite}` workflow**
+:::
+
+
+```{r setup, echo = FALSE}
+#| output-location: default
+knitr::opts_chunk$set(
+  fig.showtext = TRUE,
+  fig.align = "center",
+  out.width = "61.8%"
+)
+
+library(ospsuite)
+options(ospsuite.plots.watermarkEnabled = FALSE)
+```
+
+# Introduction
+
+## `{ospsuite}`
+
+An R package that supports A-Z PK-Sim and MoBi simulation workflow on **R**.
+
+-   Load
+-   Manipulate
+-   Run
+-   Visualize
+-   Calculate PK-parameters
+-   Perform (local) sensitivity analysis
+
+# R6 Reference Semantics
+
+## R6 Reference Semantics {.scrollable}
+
+Most `{ospsuite}` objects (`Simulation`, `Parameter`, `Molecule`, `SimulationResults`, `DataCombined`, ...) are **R6**: reference semantics, not base-R copy-on-modify.
+
+-   Base R (data frames, vectors, lists): **copy on modify**
+-   R6 objects: **mutate in place**; `x <- y` creates an alias, not a copy
+
+```{r}
+#| output-location: default
+simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
+sim <- loadSimulation(simFilePath)
+
+a <- getParameter("Organism|Liver|Interstitial|Volume", sim)
+b <- a # NOT a copy — same object
+
+setParameterValues(b, 1.2)
+a$value # 1.2 — mutation of b visible on a
+```
+
+Need fresh state? **Reload** the `.pkml` — `{ospsuite}` R6 objects are not cloneable.
+
+## Working With R6 Objects
+
+Access fields/methods with `$`; construct with `ClassName$new()`:
+
+```{r, eval = FALSE}
+#| output-location: default
+sim$solver
+sim$outputSelections
+
+dc <- DataCombined$new()
+dc$addSimulationResults(
+  simulationResults = simulationResults,
+  quantitiesOrPaths = outputPath
+)
+```
+
+Practical rules:
+
+-   `setParameterValues()`, `addOutputs()`, `clearOutputs()`, `addOutputInterval()` **mutate** their argument — no reassignment
+-   Passing an R6 to a function = passing a pointer; the function can change it
+-   `reset()` on a parameter restores its pkml default without reloading
+-   Fresh independent state: call `loadSimulation(path)` again
+
+# Basic workflow
+
+## Load
+
+```{r}
+#| output-location: default
+simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
+sim <- loadSimulation(simFilePath)
+print(sim)
+```
+
+## Manipulate {.scrollable}
+
+```{r}
+#| output-location: default
+parameterPath <- "Organism|Liver|Interstitial|Volume"
+param <- getParameter(parameterPath, sim)
+print(param)
+```
+
+```{r}
+#| output-location: default
+setParameterValues(param, 0.5)
+print(param)
+```
+
+# R6 Reference Semantics
+
+## Why This Matters
+
+Most `{ospsuite}` objects (`Simulation`, `Parameter`, `Molecule`, `SimulationResults`, `DataCombined`, ...) are **R6** objects.
+
+R6 behaves differently from base R:
+
+-   Base R data frames, vectors, lists: **copy on modify** (functional style).
+-   R6 objects: **reference semantics** (like Python, Java).
+
+Notice what happened on the previous slide: `setParameterValues(param, 0.5)` did not return a new parameter. We never reassigned `param`. Yet the next `print(param)` shows the new value. The object was **mutated in place**.
+
+## Assignment Does Not Copy
+
+```{r}
+#| output-location: default
+a <- getParameter("Organism|Liver|Interstitial|Volume", sim)
+b <- a # NOT a copy — b and a point to the same object
+
+setParameterValues(b, 1.2)
+
+a$value # also 1.2 — mutating b mutates a
+```
+
+Same applies to `sim`: `sim2 <- sim` gives two handles to one simulation. To work on an independent copy, **reload** the `.pkml`:
+
+```{r}
+#| output-location: default
+sim_independent <- loadSimulation(simFilePath)
+# sim and sim_independent are now fully separate
+```
+
+## Fields, Methods, and `$new()`
+
+Access state and behavior with `$`:
+
+```{r}
+#| output-location: default
+sim$solver # field
+sim$outputSelections # field
+```
+
+Construct R6 objects with `ClassName$new(...)`:
+
+```{r, eval = FALSE}
+#| output-location: default
+dc <- DataCombined$new()
+sa <- SensitivityAnalysis$new(
+  simulation = sim,
+  parameterPaths = "Aciclovir|Lipophilicity"
+)
+```
+
+Some methods are called via `$`:
+
+```{r, eval = FALSE}
+#| output-location: default
+dc$addSimulationResults(
+  simulationResults = simulationResults,
+  quantitiesOrPaths = outputPath
+)
+```
+
+## Practical Rules
+
+-   Functions like `setParameterValues()`, `addOutputs()`, `clearOutputs()`, `addOutputInterval()` **mutate** their argument. No reassignment needed.
+-   Passing an R6 object to a function is like passing a pointer — the function can change it.
+-   `x <- y` where `y` is R6: `x` is an alias, not a copy.
+-   Need a fresh state? Call `loadSimulation(path)` again — R6 objects in `{ospsuite}` are not cloneable.
+-   `reset()` on a parameter restores its pkml default without reloading the whole simulation.
+
+# Basic workflow
+
+## Run
+
+```{r}
+#| output-location: default
+# Always returns a named list
+simulationResults <- runSimulations(sim)[[1]]
+print(simulationResults)
+# Convert simulation results to a data frame
+head(simulationResultsToDataFrame(simulationResults))
+```
+
+## Visualize
+
+```{r, echo = FALSE}
+#| output-location: default
+outputPath <- "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
+obsData <- lapply(
+  c(
+    "ObsDataAciclovir_1.pkml",
+    "ObsDataAciclovir_2.pkml",
+    "ObsDataAciclovir_3.pkml"
+  ),
+  function(x) {
+    loadDataSetFromPKML(system.file("extdata", x, package = "ospsuite"))
+  }
+)
+# Name the elements of the list according to the names of the loaded `DataSet`.
+names(obsData) <- lapply(obsData, function(x) x$name)
+
+myDataCombined <- DataCombined$new()
+
+myDataCombined$addSimulationResults(
+  simulationResults = simulationResults,
+  quantitiesOrPaths = outputPath,
+  names = "Aciclovir Plasma"
+)
+
+myDataCombined$addDataSets(
+  obsData$`Vergin 1995.Iv`
+)
+```
+
+```{r, out.width="61.7%"}
+#| output-location: default
+# Detailed description in following slides
+plotTimeProfile(plotData = myDataCombined)
+```
+
+
+## Calculate PK-parameters {.scrollable}
+
+```{r}
+#| output-location: default
+pkAnalyses <- calculatePKAnalyses(results = simulationResults)
+head(pkAnalysesToDataFrame(pkAnalyses))
+```
+
+## Perform sensitivity analysis {.scrollable}
+
+```{r}
+#| output-location: default
+sa <- SensitivityAnalysis$new(
+  simulation = sim,
+  parameterPaths = c(
+    "Aciclovir|Lipophilicity",
+    "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose"
+  )
+)
+saResult <- runSensitivityAnalysis(sa)
+print(saResult)
+```
+
+
+## Resources
+
+-   [`{ospsuite}` vignettes](https://www.open-systems-pharmacology.org/OSPSuite-R/articles/)

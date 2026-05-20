@@ -1,0 +1,219 @@
+---
+title: "Open System Pharmacology R packages Ecosystem"
+subtitle: "Introduction to `{ospsuite}`"
+Module : "Introduction to `{ospsuite}`"
+ID: A01
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format: esqlabs-revealjs
+---
+
+::: {.r-fit-text}
+## **🎯 Goal: Familiarize with the packages of the OSP ecosystem and discern their respective functions and applications. **
+:::
+
+
+## Open System Pharmacology Suite
+
+
+```{r, echo = FALSE}
+# DO NOT DELETE THIS CODE CHUNK
+#| include: false
+showtext::showtext_auto()
+```   
+
+### Standalone softwares
+
+::: {layout-ncol="2"}
+![](https://cloud.githubusercontent.com/assets/1041237/22438535/5b908010-e6fa-11e6-802b-a79992b54188.png){fig-align="center"}
+
+![](https://cloud.githubusercontent.com/assets/1041237/22438534/5b8d6b28-e6fa-11e6-9180-3d079eea356a.png){fig-align="center"}
+:::
+
+:::{.center-x}
+A Modular software suite for efficient multi-scale modeling from whole-body to molecular levels.
+:::
+
+## {ospsuite} R packages
+
+::: {.r-fit-text}
+::: center-x
+Bring the features of OSPSuite into R !\
+`Code` instead of *clicks*
+:::
+:::
+
+---
+
+-   Growing collection of R packages
+-   Free and Open Source
+-   OSP Software R Developer Team members: 10+
+-   Under (very) active development
+
+![](resources/A1/ESQlabs_Contribution.png){fig-align="center"}
+
+---
+
+![](resources/A1/packages_ecosystem.png){fig-align="center"}
+
+# 👥 User Oriented Packages (Selection) {.center}
+
+::: {layout-ncol="4"}
+![](resources/A1/ospsuite.png)
+
+![](resources/A1/esqlabsR.png)
+
+![](resources/A1/esqapp.png)
+
+![](resources/A1/parameter-identification.png)
+
+:::
+
+---
+
+::: columns
+::: {.column width="40%"}
+![](resources/A1/ospsuite.png){fig-align="left"}
+:::
+
+::: {.column width="60%"}
+**Main R interface with OSP Suite**
+
+-   Load, Manipulate and Run Simulations
+-   Shares the same simulation "Core" as PK-Sim and MoBi
+-   Perform PK parameter calculations
+-   Perform sensitivity analysis
+-   Create standard plots
+:::
+:::
+
+---
+
+::: columns
+::: {.column width="40%"}
+![](resources/A1/esqlabsR.png){fig-align="left"}
+:::
+
+::: {.column width="60%"}
+**Tailor Made Interface to OSPSuite R**
+
+-   Excel-Driven Simulation Design - From scenario creation to automated reporting
+-   Enforced Reproducibility - Simulation scenarios based workflow
+-   Standardized Visualization
+-   Advanced Sensitivity Analysis
+-   Parameter Identification
+-   GUI for interactive use
+-   Agent-based modeling and simulation (in development)
+:::
+:::
+
+---
+
+::: columns
+::: {.column width="40%"}
+![](resources/A1/parameter-identification.png){fig-align="left"}
+:::
+
+::: {.column width="60%"}
+**Estimate model parameters from observed data**
+
+-  Parameter estimation using different optimization algorithms
+-  Confidence intervals estimation
+-  Custom cost functions
+-  Standardized visualization of results
+
+![](resources/A1/pi-output.png){fig-align="center"}
+:::
+:::
+
+---
+
+::: columns
+::: {.column width="40%"}
+![](resources/A1/osp-plots.png){fig-align="left" width="337"}
+:::
+
+::: {.column width="60%"}
+**Figures and tables generation**
+
+- Generation of standard figures
+- `{ggplot2}`-based plotting functions
+
+![](resources/A1/plots-example.png){fig-align="center"}
+
+:::
+:::
+
+# ⚙️ Development Oriented Packages {.center}
+
+::: {layout-ncol="2"}
+![](resources/A1/rSharp.png){width="337"}
+
+![](resources/A1/ospsuite-utils.png){width="337"}
+:::
+
+---
+
+::: columns
+::: {.column width="40%"}
+![](resources/A1/rSharp.png){fig-align="left" width="337"}
+:::
+
+::: {.column width="60%"}
+**Interface with OSPSuite Core**
+
+-   Allows the R packages to use PK-Sim and MoBi computational core
+
+![](resources/A1/r_dotnet_schema.svg){fig-align="center"}
+:::
+:::
+
+::: notes
+OSPSuite-R package will use the same computational core as OSPSuite.
+:::
+
+---
+
+::: columns
+::: {.column width="40%"}
+![](resources/A1/ospsuite-utils.png){fig-align="left" width="337"}
+:::
+
+::: {.column width="60%"}
+**Utility functions used by all other packages from the OSPSuite R packages Universe**
+
+-   Checks
+-   Error messages
+-   Predefined listing and objects
+:::
+:::
+
+## Code Repositories
+
+All packages are available open source on [GitHub.com](https://github.com)
+
+![](resources/A1/github.png){fig-align="center"}
+
+## Documentation Websites
+
+Each package has its own dedicated website containing:
+
+  - Code Documentation
+  - Get Started Tutorials
+  - Vignettes
+  - Changelog
+  
+![](resources/A1/site_navigation_bar.png)
+
+## Documentation Websites (Selection)
+
+- [esqlabs.github.io/esqlabsR/](https://esqlabs.github.io/esqlabsR/)
+- [open-systems-pharmacology.org/OSPSuite-R](https://www.open-systems-pharmacology.org/OSPSuite-R/)
+- [open-systems-pharmacology.org/OSPSuite.ParameterIdentification](https://open-systems-pharmacology.org/OSPSuite.ParameterIdentification/)
+- [open-systems-pharmacology.org/OSPSuite.Plots](https://www.open-systems-pharmacology.org/OSPSuite.Plots/index.html)
+
+
+
+
+

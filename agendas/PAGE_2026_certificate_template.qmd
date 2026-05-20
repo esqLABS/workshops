@@ -1,0 +1,104 @@
+---
+params:
+  attendee_name: "Attendee Name"
+  date: "01 June 2026"
+title: ""
+engine: knitr
+format:
+  pdf:
+    pdf-engine: xelatex
+    documentclass: article
+    geometry:
+      - top=0mm
+      - left=0mm
+      - right=0mm
+      - bottom=0mm
+      - paperwidth=297mm
+      - paperheight=210mm
+    pagestyle: empty
+    include-in-header:
+      text: |
+        \usepackage{xcolor}
+        \usepackage{tikz}
+        \usepackage{anyfontsize}
+        \pagestyle{empty}
+        \pagenumbering{gobble}
+---
+
+```{r}
+#| echo: false
+#| results: asis
+# Inject params as LaTeX macros so the TikZ block can use them.
+# Using \def (not \newcommand) so re-running in same session does not error.
+esc <- function(s) {
+  s <- gsub("\\\\", "\\\\textbackslash{}", s, fixed = TRUE)
+  for (ch in c("&", "%", "$", "#", "_", "{", "}")) {
+    s <- gsub(ch, paste0("\\", ch), s, fixed = TRUE)
+  }
+  s <- gsub("~", "\\textasciitilde{}", s, fixed = TRUE)
+  s <- gsub("^", "\\textasciicircum{}", s, fixed = TRUE)
+  s
+}
+cat(sprintf("\\def\\AttendeeName{%s}\n", esc(params$attendee_name)))
+cat(sprintf("\\def\\AttendeeDate{%s}\n", esc(params$date)))
+```
+
+\begin{tikzpicture}[remember picture, overlay]
+
+% Border
+\draw[line width=4pt, color=black!70]
+  ([xshift=10mm,yshift=10mm]current page.south west) rectangle
+  ([xshift=-10mm,yshift=-10mm]current page.north east);
+\draw[line width=1pt, color=black!50]
+  ([xshift=15mm,yshift=15mm]current page.south west) rectangle
+  ([xshift=-15mm,yshift=-15mm]current page.north east);
+
+% Title
+\node[align=center] at ([yshift=-45mm]current page.north) {
+  {\fontsize{38}{44}\selectfont\bfseries Certificate of Completion}
+};
+
+\node[align=center] at ([yshift=-65mm]current page.north) {
+  {\fontsize{16}{18}\selectfont PAGE 2026 Pre-Conference Workshop}
+};
+
+% Subtitle
+\node[align=center] at ([yshift=-90mm]current page.north) {
+  {\fontsize{14}{18}\selectfont This is to certify that}
+};
+
+% Name
+\node[align=center] at ([yshift=-110mm]current page.north) {
+  {\fontsize{32}{38}\selectfont\bfseries \AttendeeName}
+};
+
+% Body
+\node[align=center, text width=200mm] at ([yshift=-135mm]current page.north) {
+  {\fontsize{13}{18}\selectfont
+  has successfully completed the full-day workshop \par
+  \textit{R Workflows for advanced PB-QSP Modeling with \{ospsuite\} and \{esqlabsR\}} \par
+  on \AttendeeDate{} in Dubrovnik, Croatia.}
+};
+
+% Signatures
+\node[align=center] at ([xshift=-50mm,yshift=40mm]current page.south) {
+  \begin{tabular}{c}
+    \rule{60mm}{0.4pt} \\
+    Pavel Balazki \\
+    Senior Scientist, ESQlabs
+  \end{tabular}
+};
+
+\node[align=center] at ([xshift=50mm,yshift=40mm]current page.south) {
+  \begin{tabular}{c}
+    \rule{60mm}{0.4pt} \\
+    Wilbert de Witte \\
+    Senior Scientist, ESQlabs
+  \end{tabular}
+};
+
+\node[align=center] at ([yshift=15mm]current page.south) {
+  {\fontsize{8}{10}\selectfont \textcolor{black!60}{esqlabs.com \textbar\ r-training.esqlabs.com}}
+};
+
+\end{tikzpicture}

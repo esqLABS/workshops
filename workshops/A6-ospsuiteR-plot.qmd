@@ -1,0 +1,593 @@
+---
+title: "Plot Simulation Results"
+subtitle: "Introduction to `{ospsuite}`"
+module: "Introduction to `{ospsuite}`"
+ID: A06
+date: last-modified
+institute: |
+  ![](../resources/esqlabs.svg){height=100}
+format:
+  esqlabs-revealjs:
+    scrollable: true
+---
+
+
+
+
+::: {.r-fit-text}
+## **🎯 Goal: Learn how to create plots from Simulation Results using `{ospsuite}`**
+:::
+
+
+```{r setup, echo = FALSE}
+#| output-location: default
+knitr::opts_chunk$set(
+  fig.showtext = TRUE,
+  fig.align = "center",
+  out.width = "61.8%"
+)
+
+library(ospsuite)
+ospsuite.plots::setDefaults()
+options(ospsuite.plots.watermarkEnabled = FALSE)
+```
+
+# Plot Simulation Results
+
+## Simulated and Observed Data
+
+Comparing simulated and observed data is crucial in modeling and simulation workflow.
+
+`{ospsuite}` provides a set of features to handle these data before visualizing them.
+
+-   `DataSet` to import and store observed data,
+-   `DataCombined` to link observed and simulated data
+
+## DataSet
+
+In `{ospsuite}` observed data are stored in `DataSet` objects.
+
+Standard format for data coming from:
+
+-   Manual entry,
+-   `.pkml` files,
+-   Excel files
+
+## Create DataSet in R
+
+Each `DataSet` must be **named** when the object is created.
+
+```{r}
+dataSet <- DataSet$new("Aciclovir")
+dataSet
+```
+
+## Set Values
+
+```{r}
+dataSet$setValues(
+  xValues = c(1, 2, 3, 4),
+  yValues = c(0, 0.1, 0.6, 10),
+  yErrorValues = c(0.001, 0.001, 0.1, 1)
+)
+dataSetToTibble(dataSet)
+```
+
+## Import DataSet from PKML Files
+
+```{r}
+filePath <- system.file(
+  "extdata",
+  "ObsDataAciclovir_1.pkml",
+  package = "ospsuite"
+)
+dataSet <- loadDataSetFromPKML(filePath = filePath)
+dataSetToTibble(dataSet)
+```
+
+## Import DataSet from Excel File
+
+Loading observed data from an Excel sheet requires an `ImporterConfiguration` object.
+
+`ImporterConfiguration` describes the mapping of the columns and metadata of the Excel sheet.
+
+Can be created in PK-Sim or MoBi (`.xml` file) and loaded in R using the `loadDataImporterConfiguration()` function.
+
+## Load Importer Configuration {.scrollable}
+
+```{r}
+configurationFilePath <- system.file(
+  "extdata",
+  "dataImporterConfiguration.xml",
+  package = "ospsuite"
+)
+excelFilePath <- system.file(
+  "extdata",
+  "CompiledDataSet.xlsx",
+  package = "ospsuite"
+)
+dataImporterConfiguration <- loadDataImporterConfiguration(
+  configurationFilePath = configurationFilePath
+)
+
+dataImporterConfiguration
+```
+
+## Load Data Sets from Excel
+
+```{r}
+dataImporterConfiguration$sheets <- "TestSheet_1"
+dataSets <- loadDataSetsFromExcel(
+  xlsFilePath = excelFilePath,
+  importerConfigurationOrPath = dataImporterConfiguration
+)
+
+names(dataSets)
+```
+
+## DataCombined
+
+Links simulated and observed data.
+
+✅ Simulated Data + ✅ Observed Data = `DataCombined`
+
+## Create a DataCombined Object
+
+```{r}
+myDataCombined <- DataCombined$new()
+myDataCombined
+```
+
+
+## Add simulation results
+
+Use the `addSimulationResults()` method.
+
+```{r}
+sim <- loadSimulation(system.file(
+  "extdata",
+  "Aciclovir.pkml",
+  package = "ospsuite"
+))
+
+clearOutputs(sim)
+addOutputs(
+  "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)",
+  sim
+)
+
+sim_res <- runSimulations(sim)
+
+myDataCombined$addSimulationResults(
+  simulationResults = sim_res[[1]]
+)
+```
+
+. . .
+
+## Add simulation results — Inspect
+
+```{r}
+myDataCombined
+```
+
+## Add Observed Data
+
+Use the `addDataSets()` method.
+
+```{r}
+filePath <- system.file(
+  "extdata",
+  "ObsDataAciclovir_1.pkml",
+  package = "ospsuite"
+)
+obsData <- loadDataSetFromPKML(filePath = filePath)
+
+myDataCombined$addDataSets(
+  obsData
+)
+myDataCombined
+```
+
+## Inspect as Data Frame
+
+```{r}
+myDC_df <- myDataCombined$toDataFrame()
+head(myDC_df)
+```
+
+. . .
+
+```{r}
+unique(myDC_df$name)
+```
+
+## First Look — Default Plot
+
+```{r}
+plotTimeProfile(myDataCombined)
+```
+
+## Rename and Group Simulated and Observed Data
+
+```{r}
+#| output-location: default
+myDataCombined <- DataCombined$new()
+
+myDataCombined$addSimulationResults(
+  simulationResults = sim_res[[1]],
+  names = "Simulated",
+  groups = "Aciclovir"
+)
+
+myDataCombined$addDataSets(
+  obsData,
+  names = "Observed (Vergin 1995.Iv)",
+  groups = "Aciclovir"
+)
+
+myDC_df <- myDataCombined$toDataFrame()
+```
+
+## Rename and Group — Inspect
+
+```{r}
+unique(myDC_df$name)
+```
+
+. . .
+
+```{r}
+unique(myDC_df$group)
+```
+
+. . .
+
+```{r, echo = TRUE}
+#| output-location: default
+plotTimeProfile(myDataCombined)
+```
+
+## Add several Observed Data
+
+```{r, warning= FALSE}
+#| output-location: default
+myDataCombined2 <- DataCombined$new()
+
+
+myDataCombined2$addSimulationResults(
+  simulationResults = sim_res[[1]],
+  names = "Simulated"
+)
+
+obsData <- lapply(
+  c(
+    "ObsDataAciclovir_1.pkml",
+    "ObsDataAciclovir_2.pkml",
+    "ObsDataAciclovir_3.pkml"
+  ),
+  function(x) {
+    loadDataSetFromPKML(system.file("extdata", x, package = "ospsuite"))
+  }
+)
+# Name the elements of the list according to the names of the loaded `DataSet`.
+names(obsData) <- lapply(obsData, function(x) x$name)
+
+myDataCombined2$addDataSets(
+  dataSets = c(obsData$`Vergin 1995.Iv`, obsData$`Laskin 1982.Group C`),
+  names = c("Observed (Vergin 1995.Iv)", "Observed (Laskin 1982.Group C)"),
+  groups = "Aciclovir"
+)
+
+myDC_df <- myDataCombined2$toDataFrame()
+```
+
+## Several Observed — Inspect
+
+```{r, warning= FALSE}
+unique(myDC_df$name)
+```
+
+. . .
+
+```{r, warning= FALSE}
+unique(myDC_df$group)
+```
+
+## Several Observed — Plot
+
+```{r}
+#| output-location: default
+plotTimeProfile(myDataCombined2)
+```
+
+## Generate Plots
+
+`{ospsuite.plots}` provides five plotting functions. All return `ggplot2` objects.
+
+-   `plotTimeProfile()` — time profiles
+-   `plotPredictedVsObserved()` — goodness of fit
+-   `plotResidualsVsCovariate()` — residuals against time, observed, or predicted
+-   `plotResidualsAsHistogram()` — residuals distribution
+-   `plotQuantileQuantilePlot()` — residuals normality check
+
+::: {.callout-note title="`setDefaults()`"}
+`ospsuite.plots::setDefaults()` (called in the setup chunk) installs the OSP house style: color palettes, linear/log scales, legend placement, and watermark settings. Call it once per session before plotting.
+:::
+
+## Time Profile
+
+```{r}
+#| output-location: default
+plotTimeProfile(myDataCombined)
+```
+
+## Time Profile — Log Scale
+
+Plasma profiles are typically read on a log scale. Pass `yScale = "log"`.
+
+```{r}
+#| output-location: default
+plotTimeProfile(myDataCombined, yScale = "log")
+```
+
+## Predicted vs Observed
+
+```{r}
+#| output-location: default
+plotPredictedVsObserved(myDataCombined)
+```
+
+## Residuals vs Predicted
+
+```{r}
+#| output-location: default
+plotResidualsVsCovariate(myDataCombined, xAxis = "predicted")
+```
+
+## Residuals vs Time
+
+```{r}
+#| output-location: default
+plotResidualsVsCovariate(myDataCombined, xAxis = "time")
+```
+
+## Residuals Histogram
+
+```{r}
+#| output-location: default
+plotResidualsAsHistogram(myDataCombined)
+```
+
+## Residuals Q-Q Plot
+
+```{r}
+#| output-location: default
+plotQuantileQuantilePlot(myDataCombined)
+```
+
+## Customize Plots
+
+All plotting functions return `ggplot2` objects, so customization uses the standard `ggplot2` `+` operator.
+`ggplot2` builds plots in layers: each `+` adds something new (a title, a theme, axis limits, etc.). A quick reference: [ggplot2.tidyverse.org](https://ggplot2.tidyverse.org/reference/index.html)
+
+```{r}
+#| output-location: default
+library(ggplot2)
+
+plotTimeProfile(myDataCombined) +
+  labs(
+    title = "Example: Customize a Plot",
+    subtitle = "Using ggplot2 layers",
+    caption = "Source: Aciclovir data"
+  ) +
+  theme_minimal()
+```
+
+## Multi-Panel with `{patchwork}`
+
+`{ospsuite.plots}` returns plain `ggplot2` objects. Combine them with `{patchwork}` operators `+`, `|`, `/`;
+`|` places plots side by side, `/` stacks them vertically.
+
+```{r}
+#| output-location: default
+library(patchwork)
+
+timeProfile <- plotTimeProfile(myDataCombined)
+resVsPred <- plotResidualsVsCovariate(myDataCombined, xAxis = "predicted")
+resVsTime <- plotResidualsVsCovariate(myDataCombined, xAxis = "time")
+
+((timeProfile | resVsPred) / resVsTime) +
+  plot_annotation(title = "Multiple plots in one figure")
+```
+
+## Save Plots
+
+Use `ospsuite.plots::exportPlot()` to write a plot to disk.
+
+```{r, eval = FALSE}
+#| output-location: default
+p <- plotTimeProfile(myDataCombined)
+
+ospsuite.plots::exportPlot(
+  plotObject = p,
+  filePath = "resources/A6/exportedPlot.png",
+  width = 20,
+  height = NULL,
+  dpi = 300
+)
+```
+
+
+# Exercises
+
+## Run Simulations
+
+1. Load ospsuite and the aciclovir model in two separate simulation objects called `sim` and `sim_100mg`
+2. Modify the `Dose` parameter in `sim_100mg` to 100 mg
+3. Run the simulations and assign the output to `results`
+
+```{r, eval=TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+library(ospsuite)
+simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
+
+sim <- loadSimulation(simFilePath)
+sim_100mg <- loadSimulation(simFilePath)
+
+setParameterValuesByPath(
+  simulation = sim_100mg,
+  parameterPaths = "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose",
+  values = 100,
+  units = "mg"
+)
+
+results <- runSimulations(simulations = list(sim = sim, sim_100mg = sim_100mg))
+```
+
+
+## Create a `DataCombined` object
+
+1. Initialize a `DataCombined` object called `myDataCombined`,
+2. Load the data set contained in the `ObsDataAciclovir_1.pkml` file,
+3. Add the dataset to `myDataCombined` and specify that the data set name is `Observed` and that it belongs to the `Aciclovir` group,
+
+
+```{r, eval=TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+# 1)
+myDataCombined <- DataCombined$new()
+
+# 2)
+filePath <- system.file(
+  "extdata",
+  "ObsDataAciclovir_1.pkml",
+  package = "ospsuite"
+)
+dataSet <- loadDataSetFromPKML(filePath = filePath)
+
+# 3)
+
+myDataCombined$addDataSets(
+  dataSet,
+  names = "Observed",
+  groups = "Aciclovir"
+)
+```
+
+
+## Add Simulation Results
+
+1. Add the simulation results to `myDataCombined` and specify that the simulation results name is `Simulated` and that it belongs to the `Aciclovir` group.
+2. Plot the time profile for `myDataCombined`.
+
+::: {.callout-tip}
+The default pkml exposes more than one output path. When passing a single `name`, also pass `quantitiesOrPaths` to restrict to one output — the vector lengths must match.
+:::
+
+```{r, eval=TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+plasmaPath <- "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
+
+myDataCombined$addSimulationResults(
+  simulationResults = results[[1]],
+  quantitiesOrPaths = plasmaPath,
+  names = "Simulated",
+  groups = "Aciclovir"
+)
+
+plotTimeProfile(myDataCombined)
+```
+## Update Simulation Results
+
+1. Replace previous simulation results with the results of the `sim_100mg` simulation in `myDataCombined`
+2. Plot the time profile and the predicted vs observed plot from `myDataCombined`
+
+```{r, eval=TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+myDataCombined$addSimulationResults(
+  simulationResults = results[[2]],
+  quantitiesOrPaths = plasmaPath,
+  names = "Simulated",
+  groups = "Aciclovir"
+)
+
+
+plotTimeProfile(myDataCombined)
+plotPredictedVsObserved(myDataCombined)
+```
+
+## Plot several outputs
+
+1. Clear the default outputs of `sim` and set the following three outputs:
+    - `Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)`
+    - `Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous Blood)`
+    - `Organism|Kidney|Plasma|Aciclovir|Concentration`
+
+2. Rerun the simulation
+3. Create a new `DataCombined` object called `myDataCombined2`
+
+## Plot several outputs — Answer
+
+```{r, eval=TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+# 1) clear default outputs first, then add the three we want
+clearOutputs(sim)
+addOutputs(
+  quantitiesOrPaths = "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)",
+  simulation = sim
+)
+addOutputs(
+  quantitiesOrPaths = "Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous Blood)",
+  simulation = sim
+)
+addOutputs(
+  quantitiesOrPaths = "Organism|Kidney|Plasma|Aciclovir|Concentration",
+  simulation = sim
+)
+
+# 2)
+results2 <- runSimulations(sim)
+
+# 3)
+myDataCombined2 <- DataCombined$new()
+```
+
+
+## Add Simulation Results and Customize plot
+
+4. Add the simulation results to `myDataCombined2`. The number of names to provide (in a vector) must match the number of `results2[[1]]$allQuantityPaths` elements.
+5. Plot the time profile for `myDataCombined2`, restrict the x-axis to 0–60 minutes, and add a title — using `ggplot2` layers on the returned plot.
+
+## Add Simulation Results and Customize plot — Answer
+
+```{r, eval=TRUE}
+#| output-location: default
+#| code-fold: true
+#| code-summary: "Answer"
+library(ggplot2)
+
+# 4)
+myDataCombined2$addSimulationResults(
+  simulationResults = results2[[1]],
+  names = c("Plasma", "Whole Blood", "Kidney Plasma")
+)
+
+# 5)
+plotTimeProfile(myDataCombined2) +
+  coord_cartesian(xlim = c(0, 60)) +
+  labs(
+    title = "Comparison of Aciclovir Concentrations in Different Compartments"
+  )
+```
+
