@@ -26,10 +26,3 @@ PBPK project used in **PAGE 2026 workshop**, blocks 4–6 (afternoon).
 The Midazolam model + observed datasets are sourced from the OSP community:
 
 - [Open-Systems-Pharmacology/Midazolam-Model](https://github.com/Open-Systems-Pharmacology/Midazolam-Model) (GPLv2)
-- Ketoconazole-Midazolam DDI showcase (GPLv2)
-
-Full per-asset inventory and licensing live in the instructor-side dev folder (not shipped).
-
-## Licensing
-
-Upstream OSP assets are GPLv2. Workshop adaptations preserve attribution.
