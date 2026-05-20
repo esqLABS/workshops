@@ -64,16 +64,16 @@ library(gt)
 library(kableExtra)
 library(here)
 
-# Anchor here() at the Midazolam-PAGE project directory regardless of the
-# working directory the renderer sets.
-here::i_am("Reports/Midazolam-report.qmd")
+# Paths anchored at the repository root (.here at the top level).
+midazolam_dir <- here::here(
+  "workshops", "resources", "projects", "Midazolam-PAGE"
+)
 
 # Source helper functions (createResults, getParameterValuesAsTable,
 # getModelPerformanceAsTable, etc.)
-sourceAll(here::here("Reports", "utilities-report"))
-# Project configuration
+sourceAll(file.path(midazolam_dir, "Reports", "utilities-report"))
 projectConfiguration <- esqlabsR::createProjectConfiguration(
-  here::here("ProjectConfiguration.xlsx")
+  file.path(midazolam_dir, "ProjectConfiguration.xlsx")
 )
 
 knitr::opts_chunk$set(
