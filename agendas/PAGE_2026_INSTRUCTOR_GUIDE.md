@@ -13,7 +13,6 @@ agendas/PAGE_2026.qmd          ← THE deck. Self-contained, ~90 slides.
 workshops/A1-…-A13.qmd         ← Full reference modules. Hosted on the website.
 workshops/B1-…-B5.qmd            Not shown live — attendees use post-workshop.
 workshops/C1-Parameter-Identification.qmd
-workshops/D1-Quarto-Reporting.qmd
 
 exercises/PAGE_2026/block*.R   ← Hands-on scripts. Attendees open in RStudio.
 agendas/PAGE_2026_cheatsheet.qmd       ← Printed 2-page handout
