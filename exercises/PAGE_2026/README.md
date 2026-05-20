@@ -8,7 +8,6 @@
 | 4a | `block4a_scenarios.R` | 30 min | Add Midazolam scenario via Excel |
 | 4b | `block4b_plots.R` | 20 min | Define figure in Plots.xlsx |
 | 5 | `block5_sensitivity.R` | 20 min | Advanced SA on Midazolam |
-| 6 | `block6_report.R` | 10 min | Re-render Quarto report with new params |
 
 Solutions live in `solutions/` (added during prep — keep hidden until each block).
 

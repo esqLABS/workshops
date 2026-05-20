@@ -13,7 +13,6 @@ agendas/PAGE_2026.qmd          ← THE deck. Self-contained, ~90 slides.
 workshops/A1-…-A13.qmd         ← Full reference modules. Hosted on the website.
 workshops/B1-…-B5.qmd            Not shown live — attendees use post-workshop.
 workshops/C1-Parameter-Identification.qmd
-workshops/D1-Quarto-Reporting.qmd
 
 exercises/PAGE_2026/block*.R   ← Hands-on scripts. Attendees open in RStudio.
 agendas/PAGE_2026_cheatsheet.qmd       ← Printed 2-page handout
@@ -70,7 +69,7 @@ Auto-reloads on save.
 | 3 — PK · SA · Pop demo | A12/A13 are DEMO ONLY — speed through, no hands-on for populations | `block3.R` for the 15-min SA hands-on |
 | 4 — esqlabsR project | Switch to Midazolam. Demo ESQapp in parallel window if helpful | `block4a_scenarios.R` + `block4b_plots.R` |
 | 5 — Advanced SA + Param ID | Hands-on for SA, PI is DEMO ONLY | `block5_sensitivity.R`; PI demo via prebuilt scenario in `_source/Midazolam-Model.json` |
-| 6 — Quarto reporting + close | Render demo + 10-min hands-on; final feedback poll | `block6_report.R` — `quarto render` from a terminal pane in RStudio |
+| Close (16:30–17:00) | Recap + final feedback poll + farewell | No script — direct on deck |
 
 # At hands-on slides
 

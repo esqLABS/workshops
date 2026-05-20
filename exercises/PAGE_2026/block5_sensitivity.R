@@ -47,6 +47,6 @@ parameterPaths <- c(
 # HINT: sensitivitySpiderPlot(analysis); sensitivityTornadoPlot(analysis)
 # YOUR CODE:
 
-# 6. Persist for Block 6 Quarto report -----------------------------------
+# 6. Persist results ----------------------------------------------------
 # HINT: saveSensitivityCalculation(analysis, outputDir = file.path(project$outputFolder, "SA_Midazolam"))
 # YOUR CODE:

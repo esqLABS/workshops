@@ -40,7 +40,7 @@ Contents:
 | Block 4 hands-on (15 mg) | `po 15 mg (tablet)` |
 | Block 4 IV reference | `iv 2 mg (bolus)` |
 | Block 5 SA target | `po 7.5 mg (tablet)` |
-| Block 6 Quarto report | `po 7.5 mg (tablet)` (default param) + `po 15 mg (tablet)` (override) |
+| `Reports/Midazolam-report.qmd` | `po 7.5 mg (tablet)` (default param) + `po 15 mg (tablet)` (override) |
 | C1 demo (param ID) | `PI Tablet 7.5 mg` (already configured) |
 
 Full list:

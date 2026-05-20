@@ -144,7 +144,7 @@ One-click rendering. Re-runnable. Version-controlled. Auditable.
 | 14:00–15:30 | 4 | `{esqlabsR}` project workflow |
 | 15:30–15:45 | ☕ | Break |
 | 15:45–16:30 | 5 | Advanced SA · Param ID demo |
-| 16:30–17:00 | 6 | Quarto reporting + close |
+| 16:30–17:00 | 🎁 | Wrap-up · final feedback · farewell |
 
 ## Format
 
@@ -1472,7 +1472,7 @@ Tasks:
 2. Define `outputPaths` (plasma) + `parameterPaths` (`Lipophilicity`, `CYP3A4_kcat`, `GFR_fraction`)
 3. Run `sensitivityCalculation()` with `variationRange = c(0.1, 0.5, 1, 2, 10)` and `pkParameters = c("C_max", "AUC_inf")`
 4. Render `sensitivitySpiderPlot()` + `sensitivityTornadoPlot()`
-5. `saveSensitivityCalculation(analysis, outputDir = "Results/SA_Midazolam")` — Block 6 report reads it back
+5. `saveSensitivityCalculation(analysis, outputDir = "Results/SA_Midazolam")` — persist for re-use
 
 ::: {.center-x}
 ⏰ **20 min**
@@ -1512,73 +1512,6 @@ Full hands-on in **C1** of the repo.
 - **Identifiability** is the hard problem — check OFV profiles before you trust your fit
 :::
 
-# Block 6 — Quarto reporting + close {background-color="#8f4d1a"}
-
-## Goal of Block 6
-
-::: {.r-fit-text}
-**One-button regulatory report from your project.**
-:::
-
-## Quarto in 90 seconds
-
-- Markdown + R/Python code chunks
-- Renders to **HTML / PDF / Word / reveal.js / docx**
-- Parameters: `params:` in YAML → re-render with new inputs
-- Caching, citations, cross-refs, equations — all built in
-
-## A reproducible M&S report
-
-```yaml
----
-title: "Midazolam PBPK — Single Dose"
-params:
-  dose_mg: 7.5
-  route: "PO"
-format:
-  html: default
-  pdf:
-    documentclass: scrreprt
----
-```
-
-```{.r}
-# in a chunk — runs scenarios + builds figures + tables
-project        <- createProjectConfiguration("ProjectConfiguration.xlsx")
-scenarioConfig <- readScenarioConfigurationFromExcel(/* picks scenario from params$dose_mg */)
-scenarios      <- createScenarios(scenarioConfig)
-results        <- runScenarios(scenarios)
-```
-
-## What goes in the report
-
-1. **Background + objectives** (markdown)
-2. **Model description** (auto-tabulated from `Models/`)
-3. **Scenario specs** (auto-table from `Scenarios.xlsx`)
-4. **Simulation results** (figure grid via `createPlotsFromExcel`)
-5. **PK parameters** (auto-table via `calculatePKAnalyses`)
-6. **Sensitivity summary** (load from `Results/SA_*.rds`)
-7. **Conclusions** (markdown)
-
-. . .
-
-::: {.center-x}
-**Re-render with `quarto render -P dose_mg:15` → fresh PDF.**
-:::
-
-## 🖐️ Hands-on 6 — re-render the report (10 min)
-
-Tasks:
-
-1. Open `Reports/Midazolam-report.qmd`
-2. Render with default params: `quarto render` → opens HTML
-3. Re-render with `dose_mg = 15`: `quarto render Reports/Midazolam-report.qmd -P dose_mg:15`
-4. Compare the two PDFs — observe the figure regeneration
-
-::: {.center-x}
-⏰ **10 min**
-:::
-
 # 🎁 Closing {background-color="#1a4d8f"}
 
 ## What you can do now
@@ -1588,7 +1521,6 @@ Tasks:
 - Run batches of simulations with traceable parameter overrides
 - Compute PK + sensitivity, generate publication figures
 - Structure a regulatory-grade M&S project
-- Re-render a Quarto report end-to-end from raw inputs
 :::
 
 ## Take-home
