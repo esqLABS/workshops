@@ -1,0 +1,51 @@
+<svg width="1000" height="400" viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .label { font-family: sans-serif; font-size: 18px; fill: #444; }
+    .side-label { font-size: 22px; }
+    .box-text { font-family: sans-serif; font-size: 18px; fill: white; }
+    .tech-label { font-family: sans-serif; font-size: 14px; fill: white; font-weight: bold; }
+    .package-text { font-family: sans-serif; font-size: 18px; fill: white; }
+    .arrow { stroke: #4A7EBB; stroke-width: 2; fill: #4A7EBB; }
+  </style>
+
+  <rect x="10" y="60" width="560" height="320" fill="none" stroke="#7030A0" stroke-width="3" stroke-dasharray="20,10,5,10" />
+  <text x="20" y="40" class="label side-label" fill="#7030A0">.NET side</text>
+
+  <rect x="620" y="60" width="360" height="320" fill="none" stroke="#2F5597" stroke-width="3" stroke-dasharray="20,10,5,10" />
+  <text x="910" y="40" class="label side-label" fill="#2F5597">R side</text>
+
+  <rect x="40" y="140" width="180" height="150" fill="#F4B183" />
+  <rect x="40" y="140" width="50" height="40" fill="black" />
+  <text x="45" y="165" class="tech-label">.NET</text>
+  <text x="85" y="225" class="package-text">OSPSuite</text>
+
+  <ellipse cx="360" cy="215" rx="80" ry="60" fill="#F4B183" />
+  <text x="335" y="220" class="package-text">DLLs</text>
+
+  <rect x="510" y="140" width="200" height="150" fill="#F4B183" />
+  <rect x="510" y="140" width="50" height="40" fill="black" />
+  <text x="515" y="165" class="tech-label">.NET</text>
+  <rect x="575" y="140" width="50" height="40" fill="black" />
+  <text x="585" y="165" class="tech-label">C++</text>
+  <rect x="640" y="140" width="50" height="40" fill="black" />
+  <text x="660" y="165" class="tech-label">R</text>
+  <text x="580" y="225" class="package-text">rSharp</text>
+
+  <rect x="750" y="140" width="210" height="150" fill="#F4B183" />
+  <rect x="750" y="140" width="50" height="40" fill="black" />
+  <text x="768" y="165" class="tech-label">R</text>
+  <text x="770" y="225" class="package-text">OSPSuite-R package</text>
+
+  <line x1="220" y1="215" x2="270" y2="215" stroke="#4A7EBB" stroke-width="2" />
+  <polygon points="270,210 280,215 270,220" fill="#4A7EBB" />
+
+  <line x1="440" y1="215" x2="500" y2="215" stroke="#4A7EBB" stroke-width="2" />
+  <polygon points="500,210 510,215 500,220" fill="#4A7EBB" />
+
+  <line x1="750" y1="200" x2="720" y2="200" stroke="#4A7EBB" stroke-width="2" />
+  <polygon points="720,195 710,200 720,205" fill="#4A7EBB" />
+
+  <line x1="710" y1="230" x2="740" y2="230" stroke="#4A7EBB" stroke-width="2" />
+  <polygon points="740,225 750,230 740,235" fill="#4A7EBB" />
+
+</svg>
