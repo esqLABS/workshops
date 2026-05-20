@@ -1,0 +1,15 @@
+{
+  "hash": "d2b3b8d04cd3dcb3d9adb0226d5cbe9e",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nparams:\n  attendee_name: \"Attendee Name\"\n  date: \"01 June 2026\"\ntitle: \"\"\nengine: knitr\nformat:\n  pdf:\n    pdf-engine: xelatex\n    documentclass: article\n    geometry:\n      - top=0mm\n      - left=0mm\n      - right=0mm\n      - bottom=0mm\n      - paperwidth=297mm\n      - paperheight=210mm\n    pagestyle: empty\n    include-in-header:\n      text: |\n        \\usepackage{xcolor}\n        \\usepackage{tikz}\n        \\usepackage{anyfontsize}\n        \\pagestyle{empty}\n        \\pagenumbering{gobble}\n---\n\n\\def\\AttendeeName{Attendee Name}\n\\def\\AttendeeDate{01 June 2026}\n\n\\begin{tikzpicture}[remember picture, overlay]\n\n% Border\n\\draw[line width=4pt, color=black!70]\n  ([xshift=10mm,yshift=10mm]current page.south west) rectangle\n  ([xshift=-10mm,yshift=-10mm]current page.north east);\n\\draw[line width=1pt, color=black!50]\n  ([xshift=15mm,yshift=15mm]current page.south west) rectangle\n  ([xshift=-15mm,yshift=-15mm]current page.north east);\n\n% Title\n\\node[align=center] at ([yshift=-45mm]current page.north) {\n  {\\fontsize{38}{44}\\selectfont\\bfseries Certificate of Completion}\n};\n\n\\node[align=center] at ([yshift=-65mm]current page.north) {\n  {\\fontsize{16}{18}\\selectfont PAGE 2026 Pre-Conference Workshop}\n};\n\n% Subtitle\n\\node[align=center] at ([yshift=-90mm]current page.north) {\n  {\\fontsize{14}{18}\\selectfont This is to certify that}\n};\n\n% Name\n\\node[align=center] at ([yshift=-110mm]current page.north) {\n  {\\fontsize{32}{38}\\selectfont\\bfseries \\AttendeeName}\n};\n\n% Body\n\\node[align=center, text width=200mm] at ([yshift=-135mm]current page.north) {\n  {\\fontsize{13}{18}\\selectfont\n  has successfully completed the full-day workshop \\par\n  \\textit{R Workflows for advanced PB-QSP Modeling with \\{ospsuite\\} and \\{esqlabsR\\}} \\par\n  on \\AttendeeDate{} in Dubrovnik, Croatia.}\n};\n\n% Signatures\n\\node[align=center] at ([xshift=-50mm,yshift=40mm]current page.south) {\n  \\begin{tabular}{c}\n    \\rule{60mm}{0.4pt} \\\\\n    Pavel Balazki \\\\\n    Senior Scientist, ESQlabs\n  \\end{tabular}\n};\n\n\\node[align=center] at ([xshift=50mm,yshift=40mm]current page.south) {\n  \\begin{tabular}{c}\n    \\rule{60mm}{0.4pt} \\\\\n    Wilbert de Witte \\\\\n    Senior Scientist, ESQlabs\n  \\end{tabular}\n};\n\n\\node[align=center] at ([yshift=15mm]current page.south) {\n  {\\fontsize{8}{10}\\selectfont \\textcolor{black!60}{esqlabs.com \\textbar\\ r-training.esqlabs.com}}\n};\n\n\\end{tikzpicture}\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}
