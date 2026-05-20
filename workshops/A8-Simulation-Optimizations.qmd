@@ -6,10 +6,7 @@ ID: A08
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
+format: esqlabs-revealjs
 ---
 
 ::: {.r-fit-text}
@@ -18,7 +15,6 @@ format:
 
 
 ```{r setup, echo = FALSE}
-#| output-location: default
 knitr::opts_chunk$set(fig.showtext = TRUE, fig.align = "center")
 ```
 
@@ -53,7 +49,6 @@ A typical simulation workflow includes the following steps.
 ## Load, Set, Run — Code
 
 ```{r, eval = TRUE}
-#| output-location: default
 library(ospsuite)
 
 # Load the simulation
@@ -94,7 +89,6 @@ results <- runSimulations(simulations = sim)[[1]]
 ## Sequential Runs — Code
 
 ```{r, eval = TRUE}
-#| output-location: default
 library(ospsuite)
 
 # Load the simulation
@@ -141,7 +135,6 @@ Most useful for quick and easy run of simple and few simulations and scenarios.
 ## Load Twice, Run in Parallel — Code
 
 ```{r, eval = TRUE}
-#| output-location: default
 simulation_file <- system.file(
   "extdata",
   "Aciclovir.pkml",
@@ -211,7 +204,6 @@ All other parameters are "frozen" and cannot be changed later.
 ## Create and Run a Batch
 
 ```{r, eval = TRUE}
-#| output-location: default
 parameterPaths <- c("Aciclovir|Lipophilicity", "Aciclovir|Permeability")
 
 simBatch <- createSimulationBatch(
@@ -254,7 +246,6 @@ print(names(results[[simBatch$id]]))
 Each run gets a unique ID which are used to access results in the result list
 
 ```{r}
-#| output-location: default
 print(names(unlist(results)))
 ```
 :::
@@ -297,7 +288,6 @@ In the second lecture, you have created two objects: `simExercise` and `simDose1
 Here is a reminder of what it looked like:
 
 ```{r,  eval = TRUE}
-#| output-location: default
 library(ospsuite)
 
 # Simulation Setup
@@ -318,7 +308,6 @@ simDose100_res <- runSimulations(simulations = simDose100)
 ```
 
 ```{r,  eval = TRUE, echo=FALSE}
-#| output-location: default
 library(ospsuite)
 
 # Simulation Setup
@@ -353,7 +342,6 @@ simulation_time <- Sys.time() - start
 Now is your turn! Try to do the same, but using the "parallel" approach.
 
 ```{r, eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
@@ -373,7 +361,6 @@ results <- runSimulations(simulations = list(simExercise, simDose100))
 
 
 ```{r,echo=FALSE,  eval = TRUE, results='hide'}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution part 1"
 simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
@@ -404,7 +391,6 @@ simulation_time <- Sys.time() - start
 ## Get the results
 
 ```{r}
-#| output-location: default
 results
 ```
 
@@ -413,7 +399,6 @@ results
 
 
 ```{r}
-#| output-location: default
 results_250 <- results[[simExercise$id]]
 results_100 <- results[[simDose100$id]]
 ```
@@ -424,7 +409,6 @@ results_100 <- results[[simDose100$id]]
 
 ::: {.column width="50%"}
 ```{r}
-#| output-location: default
 simulationResultsToDataFrame(results_250)
 ```
 :::
@@ -432,7 +416,6 @@ simulationResultsToDataFrame(results_250)
 
 ::: {.column width="50%"}
 ```{r}
-#| output-location: default
 simulationResultsToDataFrame(results_100)
 ```
 :::
@@ -445,7 +428,6 @@ Great, let's do the same, but with the "batch" function.
 
 
 ```{r,echo=TRUE, eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 parameterPaths <- c(
@@ -470,7 +452,6 @@ results <- runSimulationBatches(simBatch)
 
 
 ```{r, eval = TRUE, include = FALSE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution part 1"
 parameterPaths <- c(
@@ -528,7 +509,6 @@ results_100 <- results[[1]][[2]]
 
 ::: {.column width="50%"}
 ```{r}
-#| output-location: default
 simulationResultsToDataFrame(results_250)
 ```
 :::
@@ -536,7 +516,6 @@ simulationResultsToDataFrame(results_250)
 
 ::: {.column width="50%"}
 ```{r}
-#| output-location: default
 simulationResultsToDataFrame(results_100)
 ```
 :::
@@ -549,7 +528,6 @@ Try to create one simulation with dose=250 mg and a 30 min infusion time, and an
 
 
 ```{r, echo=TRUE, eval = TRUE, results='hide'}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 parameterPaths <- c(

@@ -6,10 +6,7 @@ ID: A12
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
+format: esqlabs-revealjs
 ---
 
 ::: {.r-fit-text}
@@ -17,7 +14,6 @@ format:
 :::
 
 ```{r setup, echo = FALSE}
-#| output-location: default
 knitr::opts_chunk$set(fig.showtext = TRUE, fig.align = "center")
 suppressPackageStartupMessages(library(ospsuite))
 options(ospsuite.plots.watermarkEnabled = FALSE)
@@ -52,7 +48,6 @@ Optional:
 ## Example
 
 ```{r}
-#| output-location: default
 library(ospsuite)
 
 individualCharacteristics <- createIndividualCharacteristics(
@@ -71,7 +66,6 @@ individualCharacteristics
 ## Supported Species and Populations
 
 ```{r}
-#| output-location: default
 names(Species)
 names(HumanPopulation)
 ```
@@ -83,7 +77,6 @@ names(HumanPopulation)
 PK-Sim draws parameter values matching the characteristics.
 
 ```{r}
-#| output-location: default
 individual <- createIndividual(
   individualCharacteristics = individualCharacteristics
 )
@@ -97,7 +90,6 @@ names(individual)
 - `derivedParameters` — formula-derived parameters (do **not** set manually)
 
 ```{r}
-#| output-location: default
 head(individual$distributedParameters$paths, 3)
 head(individual$distributedParameters$values, 3)
 ```
@@ -111,7 +103,6 @@ Only apply `distributedParameters` to the simulation. Setting `derivedParameters
 ## `setParameterValuesByPath()`
 
 ```{r}
-#| output-location: default
 simFilePath <- system.file(
   "extdata",
   "Aciclovir.pkml",
@@ -145,7 +136,6 @@ When defining protein ontogenies for `individualCharacteristics`, the ontogeny v
 Assign standard ontogeny patterns to custom molecules.
 
 ```{r}
-#| output-location: default
 myProteinOntogeny <- MoleculeOntogeny$new(
   molecule = "MyProtein",
   ontogeny = StandardOntogeny$CYP3A4
@@ -157,14 +147,12 @@ myProteinOntogeny
 ## Available Ontogenies
 
 ```{r}
-#| output-location: default
 names(StandardOntogeny)
 ```
 
 ## Attach to Characteristics
 
 ```{r, eval = FALSE}
-#| output-location: default
 individualCharacteristics <- createIndividualCharacteristics(
   species = Species$Human,
   population = HumanPopulation$European_ICRP_2002,
@@ -186,7 +174,6 @@ individualCharacteristics <- createIndividualCharacteristics(
 ## Baseline Simulation
 
 ```{r, eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 simFilePath <- system.file(
@@ -201,7 +188,6 @@ resultsBaseline <- runSimulations(simBaseline)[[1]]
 ## Create and Apply the Individual
 
 ```{r, eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 asianFemale <- createIndividualCharacteristics(
@@ -229,7 +215,6 @@ resultsAsian <- runSimulations(simIndiv)[[1]]
 ## Compare Profiles
 
 ```{r, eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Solution"
 outputPath <- "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"

@@ -6,11 +6,7 @@ ID: B3
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
-resources: resources/B3/esqlabsR_training.zip
+format: esqlabs-revealjs
 ---
 
 ::: {.r-fit-text}
@@ -258,7 +254,6 @@ Use `projectConfigurationStatus()` to check whether the Excel files and the JSON
 Create a `ScenarioConfiguration` containing all the settings defined in the configuration files.
 
 ```{r}
-#| output-location: default
 projectConfiguration <- createProjectConfiguration(
   exampleProjectConfigurationPath(),
   ignoreVersionCheck = TRUE
@@ -276,7 +271,6 @@ scenarioConfigurations <- readScenarioConfigurationFromExcel(
 ## Inspect Configuration
 
 ```{r}
-#| output-location: default
 print(scenarioConfigurations, projectConfiguration = FALSE)
 ```
 
@@ -293,7 +287,6 @@ scenarios$TestScenario$finalCustomParams
 ## Run Scenarios
 
 ```{r}
-#| output-location: default
 scenarioResults <- runScenarios(scenarios = scenarios)
 ```
 

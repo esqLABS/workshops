@@ -1,15 +1,12 @@
 ---
 title: "`{ospsuite}` Workflow"
 subtitle: "Introduction to `{ospsuite}`"
-Module : "Introduction to `{ospsuite}`"
+module : "Introduction to `{ospsuite}`"
 ID: A02
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
+format: esqlabs-revealjs
 ---
 
 
@@ -19,7 +16,6 @@ format:
 
 
 ```{r setup, echo = FALSE}
-#| output-location: default
 knitr::opts_chunk$set(
   fig.showtext = TRUE,
   fig.align = "center",
@@ -53,7 +49,6 @@ Most `{ospsuite}` objects (`Simulation`, `Parameter`, `Molecule`, `SimulationRes
 -   R6 objects: **mutate in place**; `x <- y` creates an alias, not a copy
 
 ```{r}
-#| output-location: default
 simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
 sim <- loadSimulation(simFilePath)
 
@@ -71,7 +66,6 @@ Need fresh state? **Reload** the `.pkml` — `{ospsuite}` R6 objects are not clo
 Access fields/methods with `$`; construct with `ClassName$new()`:
 
 ```{r, eval = FALSE}
-#| output-location: default
 sim$solver
 sim$outputSelections
 
@@ -94,7 +88,6 @@ Practical rules:
 ## Load
 
 ```{r}
-#| output-location: default
 simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
 sim <- loadSimulation(simFilePath)
 print(sim)
@@ -103,14 +96,12 @@ print(sim)
 ## Manipulate {.scrollable}
 
 ```{r}
-#| output-location: default
 parameterPath <- "Organism|Liver|Interstitial|Volume"
 param <- getParameter(parameterPath, sim)
 print(param)
 ```
 
 ```{r}
-#| output-location: default
 setParameterValues(param, 0.5)
 print(param)
 ```
@@ -131,7 +122,6 @@ Notice what happened on the previous slide: `setParameterValues(param, 0.5)` did
 ## Assignment Does Not Copy
 
 ```{r}
-#| output-location: default
 a <- getParameter("Organism|Liver|Interstitial|Volume", sim)
 b <- a # NOT a copy — b and a point to the same object
 
@@ -143,7 +133,6 @@ a$value # also 1.2 — mutating b mutates a
 Same applies to `sim`: `sim2 <- sim` gives two handles to one simulation. To work on an independent copy, **reload** the `.pkml`:
 
 ```{r}
-#| output-location: default
 sim_independent <- loadSimulation(simFilePath)
 # sim and sim_independent are now fully separate
 ```
@@ -153,7 +142,6 @@ sim_independent <- loadSimulation(simFilePath)
 Access state and behavior with `$`:
 
 ```{r}
-#| output-location: default
 sim$solver # field
 sim$outputSelections # field
 ```
@@ -161,7 +149,6 @@ sim$outputSelections # field
 Construct R6 objects with `ClassName$new(...)`:
 
 ```{r, eval = FALSE}
-#| output-location: default
 dc <- DataCombined$new()
 sa <- SensitivityAnalysis$new(
   simulation = sim,
@@ -172,7 +159,6 @@ sa <- SensitivityAnalysis$new(
 Some methods are called via `$`:
 
 ```{r, eval = FALSE}
-#| output-location: default
 dc$addSimulationResults(
   simulationResults = simulationResults,
   quantitiesOrPaths = outputPath
@@ -192,7 +178,6 @@ dc$addSimulationResults(
 ## Run
 
 ```{r}
-#| output-location: default
 # Always returns a named list
 simulationResults <- runSimulations(sim)[[1]]
 print(simulationResults)
@@ -203,7 +188,6 @@ head(simulationResultsToDataFrame(simulationResults))
 ## Visualize
 
 ```{r, echo = FALSE}
-#| output-location: default
 outputPath <- "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
 obsData <- lapply(
   c(
@@ -232,7 +216,6 @@ myDataCombined$addDataSets(
 ```
 
 ```{r, out.width="61.7%"}
-#| output-location: default
 # Detailed description in following slides
 plotTimeProfile(plotData = myDataCombined)
 ```
@@ -241,7 +224,6 @@ plotTimeProfile(plotData = myDataCombined)
 ## Calculate PK-parameters {.scrollable}
 
 ```{r}
-#| output-location: default
 pkAnalyses <- calculatePKAnalyses(results = simulationResults)
 head(pkAnalysesToDataFrame(pkAnalyses))
 ```
@@ -249,7 +231,6 @@ head(pkAnalysesToDataFrame(pkAnalyses))
 ## Perform sensitivity analysis {.scrollable}
 
 ```{r}
-#| output-location: default
 sa <- SensitivityAnalysis$new(
   simulation = sim,
   parameterPaths = c(

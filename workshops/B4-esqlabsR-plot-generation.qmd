@@ -1,15 +1,12 @@
 ---
 title: "Plot Generation"
 subtitle: "Introduction to `{esqlabsR}`"
-Module : "Introduction to `{esqlabsR}`"
+module : "Introduction to `{esqlabsR}`"
 ID: B4
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
+format: esqlabs-revealjs
 ---
 
 ::: r-fit-text
@@ -180,7 +177,6 @@ Now sync Excel and run the simulation.
 ```{r, eval=FALSE}
 #| code-fold: true
 #| code-summary: "Result"
-#| output-location: default
 library(esqlabsR)
 
 restoreProjectConfiguration(
@@ -224,7 +220,6 @@ Observed data is then loaded with `loadObservedData()`.
 ```{r, eval=FALSE}
 #| code-fold: true
 #| code-summary: "Result"
-#| output-location: default
 # 1: sheet is "Laskin 1982.Group A"
 
 # 2
@@ -265,7 +260,6 @@ Once a DataCombined is defined in the ESQapp, it can be created in R with `creat
 ---
 
 ```{r, eval=FALSE}
-#| output-location: default
 createDataCombinedFromExcel(
   projectConfiguration = myProjectConfiguration,
   dataCombinedNames = "myDataCombined",
@@ -284,7 +278,6 @@ Verify the `DataCombined` is correctly defined.
 ```{r, eval=FALSE}
 #| code-fold: true
 #| code-summary: "Result"
-#| output-location: default
 # 1
 myDataCombined <- createDataCombinedFromExcel(
   projectConfiguration = myProjectConfiguration,
@@ -302,7 +295,6 @@ names(myDataCombined)
 Quantify fit numerically with `calculateResiduals()` — operates on a single `DataCombined` and returns observed − simulated.
 
 ```{r, eval=FALSE}
-#| output-location: default
 residuals <- calculateResiduals(
   dataCombined = myDataCombined$AciclovirExercise,
   scaling = "lin"
@@ -459,7 +451,6 @@ observedData <- loadObservedData(
 ```{r, eval=FALSE}
 #| code-fold: true
 #| code-summary: "Result"
-#| output-location: default
 restoreProjectConfiguration(
   file.path(trainingDir, "ProjectConfiguration.json")
 )
@@ -475,7 +466,6 @@ myPlots <- createPlotsFromExcel(
 ---
 
 ```{r, eval=FALSE}
-#| output-location: default
 myPlots$AciclovirExercise
 ```
 
@@ -484,7 +474,6 @@ myPlots$AciclovirExercise
 ---
 
 ```{r, eval=FALSE}
-#| output-location: default
 myPlots$PlasmaVsFat
 ```
 ![](resources/B4/plasma-vs-fat.png){fig-align="center"}
@@ -533,7 +522,6 @@ Compare plasma profiles for 250 mg vs 100 mg.
 ```{r, eval=FALSE}
 #| code-fold: true
 #| code-summary: "Result"
-#| output-location: default
 restoreProjectConfiguration(file.path(b3Dir, "ProjectConfiguration.json"))
 
 b3Plots <- createPlotsFromExcel(
@@ -559,7 +547,6 @@ Show how disabling tubular secretion changes the plasma profile (`scenarioExerci
 ```{r, eval=FALSE}
 #| code-fold: true
 #| code-summary: "Result"
-#| output-location: default
 b3Plots <- createPlotsFromExcel(
   plotGridNames = "RenalImpact",
   simulatedScenarios = b3Results,
@@ -594,7 +581,6 @@ Pack Exercises 7–9 into one multi-panel figure.
 ```{r, eval=FALSE}
 #| code-fold: true
 #| code-summary: "Result"
-#| output-location: default
 b3Plots <- createPlotsFromExcel(
   plotGridNames = "B3Summary",
   simulatedScenarios = b3Results,

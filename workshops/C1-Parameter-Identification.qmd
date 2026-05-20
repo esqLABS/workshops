@@ -6,9 +6,7 @@ ID: C1
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
+format: esqlabs-revealjs
 editor_options:
   chunk_output_type: console
 ---
@@ -52,7 +50,6 @@ Creating a `ParameterIdentification` instance requires:
 Example with all potential input parameters:
 
 ```{r, eval = FALSE}
-#| output-location: default
 piTask <- ParameterIdentification$new(
   simulations = sims,
   parameters = params,
@@ -93,14 +90,12 @@ Let's create the input parameters first!
 Load `{ospsuite.parameteridentification}`
 
 ```{r}
-#| output-location: default
 library(ospsuite.parameteridentification)
 ```
 
 Load two instances of the Aciclovir PBPK model to optimize lipophilicity and renal clearance for 250 mg and 500 mg doses:
 
 ```{r}
-#| output-location: default
 sim_250mg <- loadSimulation(system.file(
   "extdata",
   "Aciclovir.pkml",
@@ -124,7 +119,6 @@ Utilize `Simulation` objects as described in `{ospsuite-r}` documentation on [ho
 Retrieve the path to the dose parameter from the first simulation:
 
 ```{r}
-#| output-location: default
 doseParameterPath <- "Events|IV 250mg 10min|Application_1|ProtocolSchemaItem|Dose"
 ```
 
@@ -172,7 +166,6 @@ Define three PIParameters objects to optimize parameters across simulations.\
 [Lipophilicity]{.underline} - Link the lipophilicity parameter between two simulations to optimize jointly:
 
 ```{r}
-#| output-location: default
 piParameterLipo <- PIParameters$new(
   parameters = list(
     getParameter(path = "Aciclovir|Lipophilicity", container = sim_250mg),
@@ -184,7 +177,6 @@ piParameterLipo <- PIParameters$new(
 [Renal Clearance]{.underline} - Create separate PIParameters renal clearance to be independently optimized in each simulation for 250mg and 500mg doses:
 
 ```{r}
-#| output-location: default
 piParameterCl_250mg <- PIParameters$new(
   parameters = getParameter(
     path = "Neighborhoods|Kidney_pls_Kidney_ur|Aciclovir|Renal Clearances-TS-Aciclovir|TSspec",
@@ -220,7 +212,6 @@ print(piParameterCl_250mg)
 Extend lipophilicity boundaries to \[-5, 5\] and renal clearance to \[0, 5\] 1/min:
 
 ```{r}
-#| output-location: default
 piParameterLipo$minValue <- -5
 
 piParameterLipo$maxValue <- 5
@@ -283,14 +274,12 @@ print(names(obsData))
 Define the simulation output path for aciclovir venous blood concentration:
 
 ```{r}
-#| output-location: default
 simOutputPath <- "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
 ```
 
 Instantiate two `PIOutputMapping` objects for each dose group:
 
 ```{r}
-#| output-location: default
 outputMapping_250mg <- PIOutputMapping$new(
   quantity = getQuantity(path = simOutputPath, container = sim_250mg)
 )
@@ -303,7 +292,6 @@ outputMapping_500mg <- PIOutputMapping$new(
 Associate simulation results with their corresponding observed data:
 
 ```{r}
-#| output-location: default
 outputMapping_250mg$addObservedDataSets(
   obsData$`Aciclovir_Profiles.Vergin 1995.Iv.250 mg`
 )
@@ -350,7 +338,6 @@ The above configuration employs default configuration settings.
 Use defined simulations, parameters, data mappings, and configurations in a `ParameterIdentification` class instance.
 
 ```{r, echo=FALSE}
-#| output-location: default
 # Snapshot starting values so later comparison runs start from the same point
 initialValues <- list(
   lipo = piParameterLipo$currValue,
@@ -363,7 +350,6 @@ piParameterCl_500mg$startValue <- initialValues$cl500
 ```
 
 ```{r}
-#| output-location: default
 piTask <- ParameterIdentification$new(
   simulations = list(sim_250mg, sim_500mg),
   parameters = list(piParameterLipo, piParameterCl_250mg, piParameterCl_500mg),

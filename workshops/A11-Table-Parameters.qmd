@@ -6,10 +6,7 @@ ID: A11
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
+format: esqlabs-revealjs
 ---
 
 ::: {.r-fit-text}
@@ -17,7 +14,6 @@ format:
 :::
 
 ```{r setup, echo = FALSE}
-#|output-location: default
 knitr::opts_chunk$set(fig.showtext = TRUE, fig.align = "center")
 ```
 
@@ -107,7 +103,6 @@ tableParam$formula$allPoints
 `allPoints` is a list of `ValuePoint` objects. Each has `$x`, `$y`, and `$restartSolver` fields.
 
 ```{r}
-#| output-location: default
 pt <- tableParam$formula$allPoints[[1]]
 list(x = pt$x, y = pt$y, restartSolver = pt$restartSolver)
 ```

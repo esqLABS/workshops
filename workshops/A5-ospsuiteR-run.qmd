@@ -75,14 +75,12 @@ simulationResults
 The names of the list returned by `runSimulations()` are the **simulation ids** (`sim$id`), not the R variable names. Use them to look up a specific result.
 
 ```{r}
-#| output-location: default
 names(simulationResults)
 ```
 
 . . .
 
 ```{r}
-#| output-location: default
 # Each simulation carries its own id
 c(sim1$id, sim2$id)
 ```
@@ -90,7 +88,6 @@ c(sim1$id, sim2$id)
 . . .
 
 ```{r}
-#| output-location: default
 # Access a result by id
 simulationResults[[sim1$id]]
 ```
@@ -120,7 +117,6 @@ names(outputValues)
 Contains a basic `data.frame` with simulation results values.
 
 ```{r}
-#| output-location: default
 outputValues$data
 ```
 
@@ -129,7 +125,6 @@ outputValues$data
 Contains context for the simulation results values.
 
 ```{r}
-#| output-location: default
 outputValues$metaData
 ```
 
@@ -138,7 +133,6 @@ outputValues$metaData
 `getOutputValues()` returns all outputs by default. Pass `quantitiesOrPaths` to restrict to one or more paths.
 
 ```{r}
-#| output-location: default
 plasmaPath <- "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
 getOutputValues(simulationResult, quantitiesOrPaths = plasmaPath)$data
 ```
@@ -227,7 +221,6 @@ Compare two doses of Aciclovir end-to-end:
 
 
 ```{r, eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer 1 & 2"
 library(ospsuite)
@@ -250,7 +243,6 @@ setParameterValuesByPath(
 ## Run Both Simulations
 
 ```{r, eval = TRUE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer 3"
 # 3)
@@ -263,7 +255,6 @@ simulationResults <- runSimulations(list(sim, sim_100mg))
 2. Get the maximum concentration of Aciclovir in the Plasma for both simulations.
 
 ```{r, eval = TRUE, results = FALSE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer"
 # 1)

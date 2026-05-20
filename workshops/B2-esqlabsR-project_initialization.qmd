@@ -6,10 +6,7 @@ ID: B2
 date: last-modified
 institute: |
   ![](../resources/esqlabs.svg){height=100}
-format:
-  esqlabs-revealjs:
-    scrollable: true
-    code-overflow: scroll
+format: esqlabs-revealjs
 ---
 
 ::: {.r-fit-text}
@@ -279,7 +276,6 @@ status <- projectConfigurationStatus(
 `{esqlabsR}` ships a default project structure. Scaffold it with one call:
 
 ```{r, eval = FALSE}
-#| output-location: default
 esqlabsR::initProject(destination = "path/to/your/new/folder")
 ```
 

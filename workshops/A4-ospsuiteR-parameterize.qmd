@@ -37,7 +37,6 @@ Paths are character strings that represent the hierarchical structure of the sim
 Each **element** of a path is separated by `|`.
 
 ```{r}
-#| output-location: default
 # molecule
 molecule_path <- "Organism|VenousBlood|Plasma|Aciclovir"
 
@@ -265,7 +264,6 @@ ageParam
 The simulations outputs are set based on what is defined in the imported `.pkml` file.
 
 ```{r}
-#| output-location: default
 sim$outputSelections
 ```
 
@@ -305,7 +303,6 @@ sim$outputSelections
 Default simulation time is the one defined in the imported `.pkml` file.
 
 ```{r}
-#| output-location: default
 sim$outputSchema
 ```
 
@@ -381,7 +378,6 @@ Walk through a full iterative modeling loop:
 Let's load again the simulation in a new and fresh object called "sim"
 
 ```{r, eval = FALSE}
-#| output-location: default
 simFilePath <- system.file("extdata", "Aciclovir.pkml", package = "ospsuite")
 
 sim <- loadSimulation(simFilePath)
@@ -394,7 +390,6 @@ Let's have a look at the application protocol parameters
 1.  Find the parameter paths that start with `Events`
 
 ```{r, results = FALSE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer"
 getAllParametersMatching("Events|**|*", sim)
@@ -414,7 +409,6 @@ To look for all the `Dose` word, look for `*Dose*` in the path so that it will b
 :::
 
 ```{r, results = FALSE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer"
 getAllParametersMatching("Events|**|*Dose*", sim)
@@ -434,7 +428,6 @@ Once you have your sim object, you can either:
 :::
 
 ```{r, results = FALSE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer"
 sim_100mg <- loadSimulation(simFilePath)
@@ -463,7 +456,6 @@ Now, we need to set the drug infusion time to 30 minutes for our simulation.
 3.  Get the value of the parameter to check if it has been changed.
 
 ```{r, results = FALSE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answer"
 # 1) Infusion Time change
@@ -493,7 +485,6 @@ We anticipate that the parameters we changed will mainly impact the first minute
 ## Change simulation time — Answers 1 & 2
 
 ```{r, results = FALSE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answers 1 & 2"
 # 1)
@@ -512,7 +503,6 @@ addOutputInterval(
 ## Change simulation time — Answers 3 & 4
 
 ```{r, results = FALSE}
-#| output-location: default
 #| code-fold: true
 #| code-summary: "Answers 3 & 4"
 # 3)
