@@ -50,7 +50,10 @@ jobs:
       - name: Encrypt site with staticrypt
         run: |
           PASSWORD="$(tr -d '\n' < .workshop-password)"
-          npx --yes staticrypt _site \
+          # Pass _site/* (not _site) so staticrypt overwrites files in place
+          # instead of nesting encrypted output under _site/_site/.
+          shopt -s nullglob
+          npx --yes staticrypt _site/* \
             --recursive \
             --short \
             --remember 7 \
