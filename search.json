@@ -1173,7 +1173,7 @@
     "href": "agendas/PAGE_2026.html#who-we-are",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Who we are",
-    "text": "Who we are\n\n\nPavel Balazki\n\nTeamlead Software Development, ESQlabs\nSenior Scientist, focus on QSP disease modeling\n10+ years PBPK in OSPS\n\n\nWilbert de Witte\n\n[bio placeholder — Wilbert to fill]\nWill roam the room, debug your hands-on, and answer your questions"
+    "text": "Who we are\n\n\nPavel Balazki\n\nTeamlead Software Development, ESQlabs\nSenior Scientist, focus on QSP disease modeling\n10+ years PBPK in OSPS\n\n\nWilbert de Witte\n\nPlatform Lead Large Molecule PBPK, ESQlabs\nPrincipal Scientist, focus on biologics and project workflows\nLikes log scales and reproducible code\nWill roam the room, debug your hands-on, and answer your questions"
   },
   {
     "objectID": "agendas/PAGE_2026.html#why-are-you-here",
@@ -1194,21 +1194,21 @@
     "href": "agendas/PAGE_2026.html#agenda-at-a-glance",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Agenda — at a glance",
-    "text": "Agenda — at a glance\n\n\n\nTime\nBlock\nTopic\n\n\n\n\n09:00–09:30\n0\nWelcome + setup + skill poll\n\n\n09:30–10:30\n1\n{ospsuite} foundations — load + inspect\n\n\n10:30–10:45\n☕\nBreak\n\n\n10:45–12:15\n2\nParameterize · Run · Plot\n\n\n12:15–13:15\n🍽\nLunch\n\n\n13:15–14:00\n3\nPK params · Sensitivity · Populations\n\n\n14:00–15:30\n4\n{esqlabsR} project workflow\n\n\n15:30–15:45\n☕\nBreak\n\n\n15:45–16:30\n5\nAdvanced SA · Param ID demo\n\n\n16:30–17:00\n6\nQuarto reporting + close"
+    "text": "Agenda — at a glance\n\n\n\nTime\nBlock\nTopic\n\n\n\n\n09:00–09:30\n0\nWelcome + setup + skill poll\n\n\n09:30–10:30\n1\n{ospsuite} foundations — load + inspect\n\n\n10:30–10:45\n☕\nBreak\n\n\n10:45–12:30\n2\nParameterize · Run · Plot\n\n\n12:30–13:30\n🍽\nLunch\n\n\n13:30–14:00\n3\nPK params · Sensitivity · Populations\n\n\n14:00–15:00\n4\n{esqlabsR} project workflow\n\n\n15:00–15:15\n☕\nBreak\n\n\n15:15–16:30\n5\nAdvanced SA · Param ID demo\n\n\n16:30–17:00\n6\nQuarto reporting + close"
   },
   {
     "objectID": "agendas/PAGE_2026.html#format",
     "href": "agendas/PAGE_2026.html#format",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Format",
-    "text": "Format\n\n~60% demo / ~40% hands-on\nTwo compounds:\n\nAciclovir (morning, simple PK)\nMidazolam–CYP3A (afternoon, regulatory-style project)\n\nShow-of-hands polls at start + key transitions\nAll materials online: r-training.esqlabs.com / github.com/esqLABS/r-packages-training"
+    "text": "Format\n\n~60% demo / ~40% hands-on\nTwo compounds:\n\nAciclovir (morning, simple PK)\nMidazolam–CYP3A (afternoon, regulatory-style project)\n\nAll materials online: https://esqlabs.github.io/PAGE2026-R-WORKSHOP/"
   },
   {
     "objectID": "agendas/PAGE_2026.html#learning-objectives",
     "href": "agendas/PAGE_2026.html#learning-objectives",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🎯 Learning objectives",
-    "text": "🎯 Learning objectives\n\nLoad & manipulate PK-Sim models from R using {ospsuite}\nRun & plot simulations programmatically\nCompute PK parameters and sensitivity indices\nStructure a regulatory-grade project with {esqlabsR}\nGenerate publication-/submission-ready Quarto reports\nKnow which package to reach for and why"
+    "text": "🎯 Learning objectives\n\nLoad & manipulate PK-Sim models from R using {ospsuite}\nRun & plot simulations programmatically\nCompute PK parameters and sensitivity indices\nStructure a reproducible project with {esqlabsR}\nGenerate publication-/submission-ready Quarto reports\nKnow which package to reach for and why"
   },
   {
     "objectID": "agendas/PAGE_2026.html#prerequisites-lets-check",
@@ -1229,14 +1229,21 @@
     "href": "agendas/PAGE_2026.html#azure-vm-login",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Azure VM login",
-    "text": "Azure VM login\n\nOpen the email “PAGE 2026 — your VM credentials”\nClick the link → browser RDP\nUsername + password from the email\nOnce logged in, double-click “Workshop Materials” desktop shortcut\nRStudio opens with the r-packages-training project pre-loaded"
+    "text": "Azure VM login\n\nOpen the email “PAGE 2026 — your VM credentials”\nClick the link → browser RDP\nUsername + password from the email"
+  },
+  {
+    "objectID": "agendas/PAGE_2026.html#open-the-project-in-rstudio",
+    "href": "agendas/PAGE_2026.html#open-the-project-in-rstudio",
+    "title": "R Workflows for advanced PB-QSP Modeling",
+    "section": "Open the project in RStudio",
+    "text": "Open the project in RStudio\n\nOpen RStudio (link on the desktop)\nFile → New Project → Existing Directory\nSelect the Midazolam-PAGE folder on the Desktop"
   },
   {
     "objectID": "agendas/PAGE_2026.html#sanity-check-run-in-rstudio-console",
     "href": "agendas/PAGE_2026.html#sanity-check-run-in-rstudio-console",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Sanity check (run in RStudio console)",
-    "text": "Sanity check (run in RStudio console)\n\nlibrary(ospsuite)\nlibrary(esqlabsR)\nsim &lt;- loadSimulation(system.file(\n  \"extdata\",\n  \"Aciclovir.pkml\",\n  package = \"ospsuite\"\n))\nsim\n\n&lt;Simulation&gt;\n  • Name: Vergin 1995 IV\n  • Source file:\n  /home/runner/work/_temp/renv/cache/v5/linux-ubuntu-noble/R-4.6/x86_64-pc-linux-gnu/ospsuite/12.4.2.9024/7d736ba50d59ab5fa0a86ccceca2bc16/ospsuite/extdata/Aciclovir.pkml\n\n\nIf you see a simulation summary → ✅ ready for the day."
+    "text": "Sanity check (run in RStudio console)\n\nlibrary(ospsuite)\nlibrary(esqlabsR)\nsim &lt;- loadSimulation(system.file(\n  \"extdata\",\n  \"Aciclovir.pkml\",\n  package = \"ospsuite\"\n))\nsim\n\n&lt;Simulation&gt;\n  • Name: Vergin 1995 IV\n  • Source file: D:/GitHub\n  repositories/ESQlabs/PAGE2026-R-WORKSHOP/renv/library/windows/R-4.6/x86_64-w64-mingw32/ospsuite/extdata/Aciclovir.pkml\n\n\nIf you see a simulation summary → ✅ ready for the day."
   },
   {
     "objectID": "agendas/PAGE_2026.html#optional-20-min-r-refresher",
@@ -1264,7 +1271,7 @@
     "href": "agendas/PAGE_2026.html#goal-of-block-1",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Goal of Block 1",
-    "text": "Goal of Block 1\n\nLoad a PK-Sim model in R · inspect its structure · save it back."
+    "text": "Goal of Block 1\n\nLoad an OSP model in R · inspect its structure · save it back."
   },
   {
     "objectID": "agendas/PAGE_2026.html#the-osp-r-package-ecosystem",
@@ -1341,7 +1348,7 @@
     "href": "agendas/PAGE_2026.html#loading-a-simulation",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Loading a simulation",
-    "text": "Loading a simulation\n\nlibrary(ospsuite)\n\n# bundled with the package\nsim_path &lt;- system.file(\"extdata\", \"Aciclovir.pkml\", package = \"ospsuite\")\nsim &lt;- loadSimulation(sim_path)\n\nprint(sim)\n\n&lt;Simulation&gt;\n  • Name: Vergin 1995 IV\n  • Source file:\n  /home/runner/work/_temp/renv/cache/v5/linux-ubuntu-noble/R-4.6/x86_64-pc-linux-gnu/ospsuite/12.4.2.9024/7d736ba50d59ab5fa0a86ccceca2bc16/ospsuite/extdata/Aciclovir.pkml"
+    "text": "Loading a simulation\n\nlibrary(ospsuite)\n\n# bundled with the package\nsim_path &lt;- system.file(\"extdata\", \"Aciclovir.pkml\", package = \"ospsuite\")\nsim &lt;- loadSimulation(sim_path)\n\nprint(sim)\n\n&lt;Simulation&gt;\n  • Name: Vergin 1995 IV\n  • Source file: D:/GitHub\n  repositories/ESQlabs/PAGE2026-R-WORKSHOP/renv/library/windows/R-4.6/x86_64-w64-mingw32/ospsuite/extdata/Aciclovir.pkml"
   },
   {
     "objectID": "agendas/PAGE_2026.html#inspect-the-simulation",
@@ -1384,6 +1391,13 @@
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🖐️ Hands-on 1 — explore the model (15 min)",
     "text": "🖐️ Hands-on 1 — explore the model (15 min)\nOpen exercises/PAGE_2026/block1.R in RStudio. Tasks:\n\nLoad the bundled Aciclovir.pkml\nBuild the simulation tree with getSimulationTree(sim)\nTab-complete from tree$Organism$... — find the Liver volume parameter\nUse getParameter() to read its value, unit, and dimension\nUse getAllParametersMatching(\"**|Volume\", sim) to list every Volume in the model\n\n\n⏰ 15 min · Wilbert is in the room — flag him over for blockers\n\n\nSolutions in exercises/PAGE_2026/solutions/block1.R. Common gotchas: forgetting system.file, escaping | in regex (don’t — these are not regex), confusing * and ** wildcards."
+  },
+  {
+    "objectID": "agendas/PAGE_2026.html#break-15-min",
+    "href": "agendas/PAGE_2026.html#break-15-min",
+    "title": "R Workflows for advanced PB-QSP Modeling",
+    "section": "☕ Break — 15 min",
+    "text": "☕ Break — 15 min\n\nSee you at 10:45 for Parameterize · Run · Plot."
   },
   {
     "objectID": "agendas/PAGE_2026.html#goal-of-block-2",
@@ -1467,7 +1481,7 @@
     "href": "agendas/PAGE_2026.html#runsimulations",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "runSimulations",
-    "text": "runSimulations\nRuns one or many simulations and returns a named list of SimulationResults, keyed by each simulation’s ID (sim$id).\n\nres_list &lt;- runSimulations(sim)\nnames(res_list) # the simulation IDs\n\n[1] \"hMax3yNzqkSbriCuTLlJ4Q\"\n\nres &lt;- res_list[[1]] # or: res_list[[sim$id]]\nres\n\n&lt;SimulationResults&gt;\n  • Number of individuals: 1\nFor paths:\n  • Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)\n  • Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous\n  Blood)\n  • Organism|VenousBlood|Plasma|Aciclovir|Plasma Unbound\n\n\n\n\n\n\n\n\n\nNote\n\n\nAlways a list, even for one simulation. Don’t forget [[1]] (or look up by sim$id) to get the actual SimulationResults object."
+    "text": "runSimulations\nRuns one or many simulations and returns a named list of SimulationResults, keyed by each simulation’s ID (sim$id).\n\nres_list &lt;- runSimulations(sim)\nnames(res_list) # the simulation IDs\n\n[1] \"Yc0h-6EA8EKFaDlco3xvbw\"\n\nres &lt;- res_list[[1]] # or: res_list[[sim$id]]\nres\n\n&lt;SimulationResults&gt;\n  • Number of individuals: 1\nFor paths:\n  • Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)\n  • Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous\n  Blood)\n  • Organism|VenousBlood|Plasma|Aciclovir|Plasma Unbound\n\n\n\n\n\n\n\n\n\nNote\n\n\nAlways a list, even for one simulation. Don’t forget [[1]] (or look up by sim$id) to get the actual SimulationResults object."
   },
   {
     "objectID": "agendas/PAGE_2026.html#running-many-simulations",
@@ -1617,11 +1631,11 @@
     "text": "🖐️ Hands-on 2 — knock out renal clearance (30 min)\nCompare default Aciclovir vs. a “no GFR” variant. Open exercises/PAGE_2026/block2.R.\n\nLoad Aciclovir twice — sim (default) + sim_noGFR\nIn sim_noGFR, set GFR fraction to 0 at Neighborhoods|Kidney_pls_Kidney_ur|Aciclovir|Glomerular Filtration-GFR-Aciclovir|GFR fraction\nrunSimulations(list(sim, sim_noGFR)) → two SimulationResults\nBuild a DataCombined with both sims + observed data from ObsDataAciclovir_1.pkml\nplotTimeProfile(dc, yScale = \"log\") — compare profiles\nBonus: plotResidualsVsCovariate(dc, xAxis = \"time\")\n\n\n⏰ 30 min · Solutions in exercises/PAGE_2026/solutions/block2.R\n\n\nTalking point: removing renal clearance ≈ doubling AUC for Aciclovir (drug is ~80% renally cleared). Mechanistic demo of clearance-pathway knock-out — bridge to Block 5 SA story."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#break-15-min",
-    "href": "agendas/PAGE_2026.html#break-15-min",
+    "objectID": "agendas/PAGE_2026.html#lunch-60-min",
+    "href": "agendas/PAGE_2026.html#lunch-60-min",
     "title": "R Workflows for advanced PB-QSP Modeling",
-    "section": "☕ Break — 15 min",
-    "text": "☕ Break — 15 min\n\nSee you at 12:15 sharp for PK params + sensitivity.\n(replace this slide with the right time on the day)"
+    "section": "🍽️ Lunch — 60 min",
+    "text": "🍽️ Lunch — 60 min\n\nSee you at 13:30 for PK params + sensitivity."
   },
   {
     "objectID": "agendas/PAGE_2026.html#goal-of-block-3",
@@ -1673,25 +1687,18 @@
     "text": "Demo only — populations\npop_chars &lt;- createPopulationCharacteristics(\n  species = Species$Human, population = HumanPopulation$European_ICRP_2002,\n  numberOfIndividuals = 50, weightMin = 60, weightMax = 90\n)\npop &lt;- createPopulation(populationCharacteristics = pop_chars)$population\n\nresults_pop &lt;- runSimulations(sim, population = pop)[[1]]\n\nFull hands-on in modules A12 + A13 of the repo."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#lunch-60-min",
-    "href": "agendas/PAGE_2026.html#lunch-60-min",
-    "title": "R Workflows for advanced PB-QSP Modeling",
-    "section": "🍽️ Lunch — 60 min",
-    "text": "🍽️ Lunch — 60 min\n\nSee you at 14:00"
-  },
-  {
     "objectID": "agendas/PAGE_2026.html#goal-of-block-4",
     "href": "agendas/PAGE_2026.html#goal-of-block-4",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Goal of Block 4",
-    "text": "Goal of Block 4\n\nMove from “scripts in a folder” to a regulatory-grade, Excel-driven project."
+    "text": "Goal of Block 4\n\nMove from “scripts in a folder” to a regulatory-grade, Snapshot-driven project."
   },
   {
     "objectID": "agendas/PAGE_2026.html#switch-compound-midazolam",
     "href": "agendas/PAGE_2026.html#switch-compound-midazolam",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Switch compound — Midazolam",
-    "text": "Switch compound — Midazolam\n\nCYP3A4-mediated metabolism\nClassic DDI victim drug (with ketoconazole / itraconazole)\nPublic PK data for IV + PO routes\nReal-world target for an M&S submission package\n\n\n\nUse case for the rest of the day: assemble a Midazolam M&S project that survives a regulatory audit."
+    "text": "Switch compound — Midazolam\n\nCYP3A4-mediated metabolism\nClassic DDI victim drug (with ketoconazole / itraconazole)\nPublic PK data for IV + PO routes\nReal-world target for an M&S submission package\n\n\n\nUse case for the rest of the day: assemble a reproducible Midazolam M&S project that survives a quality audit."
   },
   {
     "objectID": "agendas/PAGE_2026.html#why-esqlabsr",
@@ -1712,7 +1719,7 @@
     "href": "agendas/PAGE_2026.html#project-structure",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Project structure",
-    "text": "Project structure\nMidazolam-PAGE/\n├── ProjectConfiguration.xlsx       ← master file\n├── Models/\n│   └── Simulations/\n│       ├── Midazolam_PO_7.5mg.pkml\n│       ├── Midazolam_PO_15mg.pkml\n│       └── Midazolam_IV_2mg.pkml\n├── Configurations/\n│   ├── Scenarios.xlsx\n│   ├── ModelParameters.xlsx\n│   ├── Applications.xlsx\n│   └── Plots.xlsx\n├── Data/\n│   └── Midazolam_obs.xlsx\n├── Results/\n└── Reports/\n    └── Midazolam-report.qmd"
+    "text": "Project structure\nMidazolam-PAGE/\n├── ProjectConfiguration.xlsx       ← master file\n├── Models/\n│   └── Simulations/\n│       ├── Midazolam_PO_7.5mg.pkml\n│       ├── Midazolam_PO_15mg.pkml\n│       └── Midazolam_IV_2mg.pkml\n├── Configurations/\n│   ├── Scenarios.xlsx\n│   ├── ModelParameters.xlsx\n│   ├── Applications.xlsx\n│   ├── Individuals.xlsx\n│   ├── Populations.xlsx\n│   ├── PopulationsCSV/\n│   ├── ParameterIdentification.xlsx\n│   └── Plots.xlsx\n├── Data/\n│   └── Midazolam_obs.xlsx\n├── Results/\n├── Reports/\n│   └── Midazolam-report.qmd\n└── exercises/\n    └── PAGE_2026/\n        └── block*.R"
   },
   {
     "objectID": "agendas/PAGE_2026.html#initializing-a-project",
@@ -1796,7 +1803,7 @@
     "href": "agendas/PAGE_2026.html#break-15-min-1",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "☕ Break — 15 min",
-    "text": "☕ Break — 15 min"
+    "text": "☕ Break — 15 min\n\nSee you at 15:15 for Advanced SA + Param ID demo."
   },
   {
     "objectID": "agendas/PAGE_2026.html#goal-of-block-5",
@@ -1894,28 +1901,28 @@
     "href": "agendas/PAGE_2026.html#what-you-can-do-now",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "What you can do now",
-    "text": "What you can do now\n\nLoad + manipulate any PK-Sim model in R\nRun batches of simulations with traceable parameter overrides\nCompute PK + sensitivity, generate publication figures\nStructure a regulatory-grade M&S project\nRe-render a Quarto report end-to-end from raw inputs"
+    "text": "What you can do now\n\nLoad + manipulate any PK-Sim/MoBi model in R\nRun batches of simulations with traceable parameter overrides\nCompute PK + sensitivity, generate publication figures\nStructure a regulatory-grade M&S project\nRe-render a Quarto report end-to-end from raw inputs"
   },
   {
     "objectID": "agendas/PAGE_2026.html#take-home",
     "href": "agendas/PAGE_2026.html#take-home",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Take-home",
-    "text": "Take-home\n\n📦 GitHub repo — github.com/esqLABS/r-packages-training\n\nAll slides, exercises, solutions\nThe Aciclovir + Midazolam projects\n\n📄 Cheatsheet (in your folder)\n🎓 Certificate of completion (PDF — emailed tonight)"
+    "text": "Take-home\n\n📦 Training materials — https://esqlabs.github.io/PAGE2026-R-WORKSHOP/\n\nAll slides, exercises, solutions\nThe Aciclovir + Midazolam projects\n\n📄 Cheatsheet (in your folder)\n🎓 Certificate of completion (PDF — emailed after the workshop)"
   },
   {
     "objectID": "agendas/PAGE_2026.html#what-we-did-not-cover-and-where-to-find-it",
     "href": "agendas/PAGE_2026.html#what-we-did-not-cover-and-where-to-find-it",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "What we did NOT cover (and where to find it)",
-    "text": "What we did NOT cover (and where to find it)\n\n\n\n\n\n\n\nTopic\nSee\n\n\n\n\nPopulation simulations (full hands-on)\nworkshops/A12.qmd, A13.qmd\n\n\nParameter identification (full hands-on)\nworkshops/C1.qmd\n\n\n{ospsuite.reportingengine} qualification\nOSPS docs"
+    "text": "What we did NOT cover (and where to find it)\n\n\n\n\n\n\n\nTopic\nSee\n\n\n\n\nPopulation simulations (full hands-on)\nworkshops/A12.qmd, A13.qmd\n\n\nParameter identification (full hands-on)\nworkshops/C1.qmd"
   },
   {
     "objectID": "agendas/PAGE_2026.html#final-feedback-show-of-hands",
     "href": "agendas/PAGE_2026.html#final-feedback-show-of-hands",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🖐️ Final feedback — show of hands",
-    "text": "🖐️ Final feedback — show of hands\nWould you recommend this workshop to a colleague?\n\n👍 Yes, definitely\n🤔 Maybe — with changes\n👎 No\n\n\nOne thing to add / change next year? — call out a word, we will write it on the board.\n\nINSTRUCTOR: count hands per option, then go around the room for one-word suggestions. Capture on flipchart for post-workshop notes. Email follow-up survey to attendees within 1 week."
+    "text": "🖐️ Final feedback — show of hands\nWould you recommend this workshop to a colleague?\n\n👍 Yes, definitely\n🤔 Maybe — with changes\n👎 No\n\n\nOne thing to add / change next year? — email us!\n\nINSTRUCTOR: count hands per option, then go around the room for one-word suggestions. Capture on flipchart for post-workshop notes. Email follow-up survey to attendees within 1 week."
   },
   {
     "objectID": "agendas/PAGE_2026.html#farewell",
