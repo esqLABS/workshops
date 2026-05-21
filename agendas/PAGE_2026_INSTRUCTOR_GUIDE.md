@@ -14,7 +14,7 @@ workshops/A1-…-A13.qmd         ← Full reference modules. Hosted on the websi
 workshops/B1-…-B5.qmd            Not shown live — attendees use post-workshop.
 workshops/C1-Parameter-Identification.qmd
 
-exercises/PAGE_2026/block*.R   ← Hands-on scripts. Attendees open in RStudio.
+workshops/resources/projects/Midazolam-PAGE/exercises/PAGE_2026/block*.R   ← Hands-on scripts. Ships inside the Midazolam-PAGE project; attendees open `exercises/PAGE_2026/block*.R` relative to the project they open in RStudio.
 agendas/PAGE_2026_cheatsheet.qmd       ← Printed 2-page handout
 agendas/PAGE_2026_certificate_*        ← Generated after the workshop
 agendas/PAGE_2026_pre-workshop-email.md ← Sent T-1 week
@@ -43,7 +43,7 @@ Auto-reloads on save.
 3. Press `F` — fullscreen on the projector display.
 4. Press `S` — speaker-notes window opens. Drag to your laptop screen.
 5. Open RStudio on laptop screen (project: `r-packages-training`).
-6. Open `exercises/PAGE_2026/block1.R` in RStudio — ready for first hands-on.
+6. Open `exercises/PAGE_2026/block1.R` in RStudio (path is relative to the Midazolam-PAGE project) — ready for first hands-on.
 7. Smoke test: advance 3 slides forward + back. Speaker notes follow.
 8. Offline backup: USB stick has `_site/agendas/PAGE_2026.html` + `_site/agendas/PAGE_2026_files/` (in case venue Wi-Fi flakes).
 
@@ -143,7 +143,7 @@ quarto render
 | Rendered deck | `_site/agendas/PAGE_2026.html` |
 | Cheatsheet source | `agendas/PAGE_2026_cheatsheet.qmd` |
 | Rendered cheatsheet PDF | `_site/agendas/PAGE_2026_cheatsheet.pdf` |
-| Hands-on scripts | `exercises/PAGE_2026/block*.R` |
+| Hands-on scripts | `workshops/resources/projects/Midazolam-PAGE/exercises/PAGE_2026/block*.R` |
 | Midazolam project (PM) | `workshops/resources/projects/Midazolam-PAGE/` |
 | Sourced OSP models + obs | `workshops/resources/projects/Midazolam-PAGE/_source/` |
 | Certificate template | `agendas/PAGE_2026_certificate_template.qmd` |

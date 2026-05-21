@@ -79,7 +79,7 @@ We will not teach R basics in the workshop, but we will spend 10–15 minutes at
 ## 📍 Logistics
 
 - **Location:** Valamar Lacroma Hotel, Dubrovnik — room TBC at registration
-- **Time:** 09:00 – 17:00 (lunch 12:15 – 13:15 included; coffee breaks at 10:30 and 15:30)
+- **Time:** 09:00 – 17:00 (lunch 12:30 – 13:30 included; coffee breaks at 10:30 and 15:00)
 - **Dress code:** business casual, but Dubrovnik is warm — wear what you'd wear to a poster session
 
 ## ✋ Pre-workshop questions
