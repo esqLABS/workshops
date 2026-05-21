@@ -124,23 +124,19 @@ exportSensitivityAnalysisResultsToCSV(saResult, "mySA.csv")
 ## Units
 
 ```r
-toUnit("Concentration", 1, "mg/L")
-toBaseUnit("Volume", 70, "kg")
+toUnit("Concentration (mass)", 1, "mg/L")
+toBaseUnit("Volume", 70, "ml")
 toDisplayUnit(p, p$value)
 ```
 
 ## Path conventions
 
-`Aciclovir|Organism|Liver|Volume`
+`Organism|Liver|Volume`
 
 Levels: `organ` → `compartment` → `parameter`.
 `|` separates levels. `**` = recursive wildcard.
 
 ## Parameter identification
-
-```r
-library(ospsuite.parameteridentification)
-```
 
 ### Optimization parameter
 
@@ -156,7 +152,9 @@ piPar$startValue <- 2          # optional
 
 ```r
 obs <- loadDataSetsFromExcel(
-  "Data/Obs.xlsx", projectConfiguration = project)
+  "Data/Obs.xlsx", createImporterConfigurationForFile(
+  filePath = "Data/Obs.xlsx"
+))
 
 simPath <- "Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)"
 mapping <- PIOutputMapping$new(
@@ -198,6 +196,10 @@ MyProject/
 │   ├── Scenarios.xlsx
 │   ├── ModelParameters.xlsx
 │   ├── Applications.xlsx
+│   ├── Individuals.xlsx
+│   ├── Populations.xlsx
+│   ├── PopulationsCSV/
+│   ├── ParameterIdentification.xlsx
 │   └── Plots.xlsx
 ├── Data/           *.xlsx
 ├── Results/
@@ -214,9 +216,19 @@ initProject(path = "~/MyProject")
 ## Project object
 
 ```r
-project <- createProjectConfiguration("ProjectConfiguration.xlsx")
-project$paths$ModelsFolder
-project$paths$ConfigurationsFolder
+projectConfig <- esqlabsR::createProjectConfiguration(
+  "workshops/resources/projects/Midazolam-PAGE/ProjectConfiguration.xlsx")
+print(projectConfig)                       # full summary
+
+projectConfig$modelFolder                  # Models/Simulations
+projectConfig$configurationsFolder         # Configurations/
+projectConfig$scenariosFile                # Configurations/Scenarios.xlsx
+projectConfig$individualsFile              # Configurations/Individuals.xlsx
+projectConfig$populationsFile              # Configurations/Populations.xlsx
+projectConfig$parameterIdentificationFile  # Configurations/ParameterIdentification.xlsx
+projectConfig$plotsFile                    # Configurations/Plots.xlsx
+projectConfig$outputFolder                 # Results/
+projectConfig$dataFile                     # Data/Midazolam_obs.xlsx
 ```
 
 ## Load + run scenarios
