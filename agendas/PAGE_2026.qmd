@@ -1605,8 +1605,6 @@ Tasks:
 |---|---|
 | Population simulations (full hands-on) | `workshops/A12.qmd`, `A13.qmd` |
 | Parameter identification (full hands-on) | `workshops/C1.qmd` |
-| Parallel / batch simulations | `workshops/A8.qmd` |
-| Table parameters | `workshops/A11.qmd` |
 | `{ospsuite.reportingengine}` qualification | OSPS docs |
 
 ## 🖐️ Final feedback — show of hands
