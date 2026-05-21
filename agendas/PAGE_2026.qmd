@@ -56,7 +56,9 @@ Pavel Balazki · Dr. Wilbert de Witte
 ::: {.column width="50%"}
 **Wilbert de Witte**
 
-- _[bio placeholder — Wilbert to fill]_
+- Platform Lead Large Molecule PBPK, ESQlabs
+- Principal Scientist, focus on biologics and project workflows
+- Likes log scales and reproducible code
 - Will roam the room, debug your hands-on, and answer your questions
 :::
 ::::
@@ -1601,7 +1603,7 @@ Tasks:
 ## What you can do now
 
 ::: {.incremental}
-- Load + manipulate any PK-Sim model in R
+- Load + manipulate any PK-Sim/MoBi model in R
 - Run batches of simulations with traceable parameter overrides
 - Compute PK + sensitivity, generate publication figures
 - Structure a regulatory-grade M&S project
@@ -1610,11 +1612,11 @@ Tasks:
 
 ## Take-home
 
-- 📦 **GitHub repo** — `github.com/esqLABS/r-packages-training`
+- 📦 **Training materials** — `https://esqlabs.github.io/PAGE2026-R-WORKSHOP/`
   - All slides, exercises, solutions
   - The Aciclovir + Midazolam projects
 - 📄 **Cheatsheet** (in your folder)
-- 🎓 **Certificate of completion** (PDF — emailed tonight)
+- 🎓 **Certificate of completion** (PDF — emailed after the workshop)
 
 ## What we did NOT cover (and where to find it)
 
@@ -1622,7 +1624,6 @@ Tasks:
 |---|---|
 | Population simulations (full hands-on) | `workshops/A12.qmd`, `A13.qmd` |
 | Parameter identification (full hands-on) | `workshops/C1.qmd` |
-| `{ospsuite.reportingengine}` qualification | OSPS docs |
 
 ## 🖐️ Final feedback — show of hands
 
@@ -1636,7 +1637,7 @@ Tasks:
 
 . . .
 
-**One thing to add / change next year?** — call out a word, we will write it on the board.
+**One thing to add / change next year?** — email us!
 
 ::: {.notes}
 INSTRUCTOR: count hands per option, then go around the room for one-word suggestions. Capture on flipchart for post-workshop notes. Email follow-up survey to attendees within 1 week.
