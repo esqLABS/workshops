@@ -47,8 +47,7 @@ format:
 ```r
 sim <- loadSimulation("path/Model.pkml")
 saveSimulation(sim, "path/Model_v2.pkml")
-# Independent copy? Reload — sim$clone() is broken
-# for ospsuite (.NET-backed R6).
+# Independent copy? Reload
 sim_copy <- loadSimulation("path/Model.pkml")
 ```
 
@@ -73,7 +72,7 @@ setParameterValuesByPath("Organism|Weight", 75, sim, units = "kg")
 
 ```r
 res <- runSimulations(sim)[[1]]              # single
-res_list <- runSimulations(list(sim1, sim2)) # batch
+res_list <- runSimulations(list(sim1, sim2)) # multiple
 ```
 
 ## Extract
@@ -89,9 +88,9 @@ out$data  # → data.frame: Time, paths, values
 dc <- DataCombined$new()
 dc$addSimulationResults(res)
 dc$addObservedData(loadDataSetFromPKML("obs.pkml"))
-plotIndividualTimeProfile(dc)        # time profile
-plotObservedVsSimulated(dc)          # GoF
-plotResidualsVsTime(dc)              # residuals
+plotTimeProfile(dc)        # time profile
+plotPredictedVsObserved(dc)          # GoF
+plotResidualsVsCovariate(dc, xAxis = "time")              # residuals
 ```
 
 ## PK params
