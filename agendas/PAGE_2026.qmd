@@ -531,7 +531,6 @@ Solutions in `exercises/PAGE_2026/solutions/block1.R`. Common gotchas: forgettin
 ::: {.center-x .r-fit-text}
 **See you at 10:45** for Parameterize · Run · Plot.
 
-_(replace this slide with the right time on the day)_
 :::
 
 # Block 2 — Parameterize · Run · Plot {background-color="#2d6e3a"}
@@ -978,7 +977,6 @@ Talking point: removing renal clearance ≈ doubling AUC for Aciclovir (drug is 
 ::: {.center-x .r-fit-text}
 **See you at 13:30** for PK params + sensitivity.
 
-_(replace this slide with the right time on the day)_
 :::
 
 # Block 3 — PK · Sensitivity · Populations {background-color="#2d6e3a"}
@@ -1085,7 +1083,7 @@ Full hands-on in modules **A12** + **A13** of the repo.
 ## Goal of Block 4
 
 ::: {.r-fit-text}
-**Move from "scripts in a folder" to a regulatory-grade, Excel-driven project.**
+**Move from "scripts in a folder" to a regulatory-grade, Snapshot-driven project.**
 :::
 
 ## Switch compound — Midazolam
@@ -1100,7 +1098,7 @@ Full hands-on in modules **A12** + **A13** of the repo.
 . . .
 
 ::: {.center-x}
-**Use case for the rest of the day:** assemble a Midazolam M&S project that survives a regulatory audit.
+**Use case for the rest of the day:** assemble a reproducible Midazolam M&S project that survives a quality audit.
 :::
 
 ## Why `{esqlabsR}`
@@ -1147,12 +1145,19 @@ Midazolam-PAGE/
 │   ├── Scenarios.xlsx
 │   ├── ModelParameters.xlsx
 │   ├── Applications.xlsx
+│   ├── Individuals.xlsx
+│   ├── Populations.xlsx
+│   ├── PopulationsCSV/
+│   ├── ParameterIdentification.xlsx
 │   └── Plots.xlsx
 ├── Data/
 │   └── Midazolam_obs.xlsx
 ├── Results/
-└── Reports/
-    └── Midazolam-report.qmd
+├── Reports/
+│   └── Midazolam-report.qmd
+└── exercises/
+    └── PAGE_2026/
+        └── block*.R
 ```
 
 ## Initializing a project
@@ -1391,7 +1396,6 @@ Stay in **ESQapp**. Tasks:
 ::: {.center-x .r-fit-text}
 **See you at 15:15** for Advanced SA + Param ID demo.
 
-_(replace this slide with the right time on the day)_
 :::
 
 # Block 5 — Advanced SA + Param ID demo {background-color="#8f4d1a"}
