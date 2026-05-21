@@ -138,12 +138,12 @@ One-click rendering. Re-runnable. Version-controlled. Auditable.
 | 09:00–09:30 | 0 | Welcome + setup + skill poll |
 | 09:30–10:30 | 1 | `{ospsuite}` foundations — load + inspect |
 | 10:30–10:45 | ☕ | Break |
-| 10:45–12:15 | 2 | Parameterize · Run · Plot |
-| 12:15–13:15 | 🍽 | Lunch |
-| 13:15–14:00 | 3 | PK params · Sensitivity · Populations |
-| 14:00–15:30 | 4 | `{esqlabsR}` project workflow |
-| 15:30–15:45 | ☕ | Break |
-| 15:45–16:30 | 5 | Advanced SA · Param ID demo |
+| 10:45–12:30 | 2 | Parameterize · Run · Plot |
+| 12:30–13:30 | 🍽 | Lunch |
+| 13:30–14:00 | 3 | PK params · Sensitivity · Populations |
+| 14:00–15:00 | 4 | `{esqlabsR}` project workflow |
+| 15:00–15:15 | ☕ | Break |
+| 15:15–16:30 | 5 | Advanced SA · Param ID demo |
 | 16:30–17:00 | 6 | Quarto reporting + close |
 
 ## Format
@@ -152,8 +152,7 @@ One-click rendering. Re-runnable. Version-controlled. Auditable.
 - Two compounds:
   - **Aciclovir** (morning, simple PK)
   - **Midazolam–CYP3A** (afternoon, regulatory-style project)
-- Show-of-hands polls at start + key transitions
-- All materials online: `r-training.esqlabs.com` / `github.com/esqLABS/r-packages-training`
+- All materials online: `https://esqlabs.github.io/PAGE2026-R-WORKSHOP/`
 
 ## 🎯 Learning objectives
 
@@ -161,7 +160,7 @@ One-click rendering. Re-runnable. Version-controlled. Auditable.
 1. **Load & manipulate** PK-Sim models from R using `{ospsuite}`
 2. **Run & plot** simulations programmatically
 3. **Compute** PK parameters and **sensitivity** indices
-4. **Structure** a regulatory-grade project with `{esqlabsR}`
+4. **Structure** a reproducible project with `{esqlabsR}`
 5. **Generate** publication-/submission-ready Quarto reports
 6. Know **which package** to reach for and **why**
 :::
@@ -199,8 +198,14 @@ INSTRUCTOR: count hands per level. If mean ≥ 3, skip the optional R refresher 
 1. Open the email "PAGE 2026 — your VM credentials"
 2. Click the link → browser RDP
 3. Username + password from the email
-4. Once logged in, double-click **"Workshop Materials"** desktop shortcut
-5. RStudio opens with the `r-packages-training` project pre-loaded
+
+. . .
+
+## Open the project in RStudio
+
+1. Open **RStudio** (link on the desktop)
+2. **File → New Project → Existing Directory**
+3. Select the **Midazolam-PAGE** folder on the Desktop
 
 . . .
 
@@ -254,7 +259,7 @@ If you see a simulation summary → ✅ ready for the day.
 ## Goal of Block 1
 
 ::: {.r-fit-text}
-**Load a PK-Sim model in R · inspect its structure · save it back.**
+**Load an OSP model in R · inspect its structure · save it back.**
 :::
 
 ## The OSP R-package ecosystem
@@ -519,6 +524,14 @@ Open `exercises/PAGE_2026/block1.R` in RStudio. Tasks:
 
 ::: {.notes}
 Solutions in `exercises/PAGE_2026/solutions/block1.R`. Common gotchas: forgetting `system.file`, escaping `|` in regex (don't — these are not regex), confusing `*` and `**` wildcards.
+:::
+
+## ☕ Break — 15 min
+
+::: {.center-x .r-fit-text}
+**See you at 10:45** for Parameterize · Run · Plot.
+
+_(replace this slide with the right time on the day)_
 :::
 
 # Block 2 — Parameterize · Run · Plot {background-color="#2d6e3a"}
@@ -960,10 +973,10 @@ Compare default Aciclovir vs. a "no GFR" variant. Open `exercises/PAGE_2026/bloc
 Talking point: removing renal clearance ≈ doubling AUC for Aciclovir (drug is ~80% renally cleared). Mechanistic demo of clearance-pathway knock-out — bridge to Block 5 SA story.
 :::
 
-## ☕ Break — 15 min
+## 🍽️ Lunch — 60 min
 
 ::: {.center-x .r-fit-text}
-**See you at 12:15 sharp** for PK params + sensitivity.
+**See you at 13:30** for PK params + sensitivity.
 
 _(replace this slide with the right time on the day)_
 :::
@@ -1065,12 +1078,6 @@ results_pop <- runSimulations(sim, population = pop)[[1]]
 
 ::: {.center-x}
 Full hands-on in modules **A12** + **A13** of the repo.
-:::
-
-## 🍽️ Lunch — 60 min
-
-::: {.center-x .r-fit-text}
-**See you at 14:00**
 :::
 
 # Block 4 — `{esqlabsR}` project workflow {background-color="#8f4d1a"}
@@ -1380,6 +1387,12 @@ Stay in **ESQapp**. Tasks:
 :::
 
 ## ☕ Break — 15 min
+
+::: {.center-x .r-fit-text}
+**See you at 15:15** for Advanced SA + Param ID demo.
+
+_(replace this slide with the right time on the day)_
+:::
 
 # Block 5 — Advanced SA + Param ID demo {background-color="#8f4d1a"}
 
