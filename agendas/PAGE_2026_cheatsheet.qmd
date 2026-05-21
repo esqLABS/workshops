@@ -105,12 +105,21 @@ addUserDefinedPKParameter(...)
 ## Local sensitivity
 
 ```r
-sa <- sensitivityCalculation(
-  simulation = sim,
-  variableParameterPaths = c("...|Lipophilicity",
-                             "...|GFR_filtration_fraction"),
-  variationRange = 0.1)
-mostSensitiveParameters(sa, totalSensitivityThreshold = 0.9)
+sa <- SensitivityAnalysis$new(
+  simulation     = sim,
+  parameterPaths = c("Aciclovir|Lipophilicity",
+                     "Aciclovir|Fraction unbound (plasma, reference value)"))
+sa$addParameterPaths("Organism|Liver|Volume")
+sa$numberOfSteps  <- 1     # default 2
+sa$variationRange <- 0.2   # default 0.1 (symmetric)
+
+saResult <- runSensitivityAnalysis(sa)
+saResult$allPKParameterSensitivitiesFor(
+  pkParameterName = "C_max",
+  outputPath      = saResult$allQuantityPaths[[1]],
+  totalSensitivityThreshold = 0.9)
+
+exportSensitivityAnalysisResultsToCSV(saResult, "mySA.csv")
 ```
 
 ## Units
