@@ -19,17 +19,12 @@ listing:
 
 # ESQlabs R Trainings
 
-This website hosts all the quarto-based presentations and training courses on
-Open System Pharmacology related R packages.
-
-The source files for the material are hosted on [GitHub](https://github.com/esqLABS/r-packages-training).
-
 ::: {.callout-tip appearance="simple" icon="false"}
-## 🇭🇷 PAGE 2026 — Pre-conference Workshop · 1 June 2026 · Dubrovnik
+## PAGE 2026 — Pre-conference Workshop · 1 June 2026 · Dubrovnik
 
 **R Workflows for advanced PB-QSP Modeling with `{ospsuite}` and `{esqlabsR}`**
 
-Full-day instructor-led workshop. See the [agenda + day-of deck](agendas/PAGE_2026.qmd), the [cheatsheet](agendas/PAGE_2026_cheatsheet.qmd), and [pre-workshop instructions](agendas/PAGE_2026_pre-workshop-email.md).
+Full-day instructor-led workshop. See the [agenda + day-of deck](agendas/PAGE_2026.qmd) and the [cheatsheet](agendas/PAGE_2026_cheatsheet.qmd).
 :::
 
 
