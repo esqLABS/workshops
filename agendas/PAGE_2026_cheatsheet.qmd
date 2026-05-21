@@ -244,9 +244,9 @@ res <- runScenarios(scenarios = sc)
 ## Snapshot / restore
 
 ```r
-snapshot(project)        # Excel → JSON snapshot
-restore(project)         # JSON → Excel
-status(project)          # diff
+snapshotProjectConfiguration(project)        # Excel → JSON snapshot
+restoreProjectConfiguration(project)         # JSON → Excel
+projectConfigurationStatus(project)          # diff
 ```
 
 ## Plots from Excel
@@ -312,11 +312,6 @@ plots <- createPlotsFromExcel(plotGridNames = "MyPlot",
                               simulatedScenarios = res,
                               projectConfiguration = project)
 ```
-
-## Repo
-
-🌐 `r-training.esqlabs.com`
-🐙 `github.com/esqLABS/r-packages-training`
 
 ```{=latex}
 \end{multicols}
