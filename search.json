@@ -1467,7 +1467,7 @@
     "href": "agendas/PAGE_2026.html#runsimulations",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "runSimulations",
-    "text": "runSimulations\nRuns one or many simulations and returns a named list of SimulationResults, keyed by each simulation’s ID (sim$id).\n\nres_list &lt;- runSimulations(sim)\nnames(res_list) # the simulation IDs\n\n[1] \"GFtOCrvfG0CHzCBF4t5n8g\"\n\nres &lt;- res_list[[1]] # or: res_list[[sim$id]]\nres\n\n&lt;SimulationResults&gt;\n  • Number of individuals: 1\nFor paths:\n  • Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)\n  • Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous\n  Blood)\n  • Organism|VenousBlood|Plasma|Aciclovir|Plasma Unbound\n\n\n\n\n\n\n\n\n\nNote\n\n\nAlways a list, even for one simulation. Don’t forget [[1]] (or look up by sim$id) to get the actual SimulationResults object."
+    "text": "runSimulations\nRuns one or many simulations and returns a named list of SimulationResults, keyed by each simulation’s ID (sim$id).\n\nres_list &lt;- runSimulations(sim)\nnames(res_list) # the simulation IDs\n\n[1] \"hMax3yNzqkSbriCuTLlJ4Q\"\n\nres &lt;- res_list[[1]] # or: res_list[[sim$id]]\nres\n\n&lt;SimulationResults&gt;\n  • Number of individuals: 1\nFor paths:\n  • Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)\n  • Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous\n  Blood)\n  • Organism|VenousBlood|Plasma|Aciclovir|Plasma Unbound\n\n\n\n\n\n\n\n\n\nNote\n\n\nAlways a list, even for one simulation. Don’t forget [[1]] (or look up by sim$id) to get the actual SimulationResults object."
   },
   {
     "objectID": "agendas/PAGE_2026.html#running-many-simulations",
