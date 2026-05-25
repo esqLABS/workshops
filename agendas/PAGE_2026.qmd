@@ -198,8 +198,8 @@ INSTRUCTOR: count hands per level. If mean ≥ 3, skip the optional R refresher 
 ## Azure VM login
 
 1. Open the email "PAGE 2026 — your VM credentials"
-2. Click the link → browser RDP
-3. Username + password from the email
+2. Launch **Remote Desktop Connection** (Windows: `mstsc.exe` · macOS: *Windows App* · Linux: Remmina / FreeRDP)
+3. Connect using the **VM address, username, and password** from the email
 
 . . .
 
@@ -261,7 +261,7 @@ If you see a simulation summary → ✅ ready for the day.
 ## Goal of Block 1
 
 ::: {.r-fit-text}
-**Load an OSP model in R · inspect its structure · save it back.**
+**Load an OSP model in R · inspect it's structure · save it back.**
 :::
 
 ## The OSP R-package ecosystem
