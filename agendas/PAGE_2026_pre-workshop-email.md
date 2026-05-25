@@ -20,24 +20,17 @@ Looking forward to seeing you at the **R Workflows for advanced PB-QSP Modeling*
 
 You will run the entire workshop on a pre-configured Windows VM with R, RStudio, `{ospsuite}`, `{esqlabsR}`, ESQapp, PK-Sim and MoBi already installed.
 
-- **VM URL:** `{{ vm_url }}`
-- **Username:** `{{ vm_user }}`
-- **Password:** `{{ vm_password }}` _(please change on first login)_
-- **Smoke test (please do this before the workshop):**
-  1. Log in via the link above (Chrome / Edge recommended)
-  2. Double-click "**Workshop Materials**" on the desktop
-  3. RStudio opens with the project loaded
-  4. In the console, run:
-     ```r
-     library(ospsuite)
-     library(esqlabsR)
-     sim <- loadSimulation(system.file("extdata", "Aciclovir.pkml",
-                                        package = "ospsuite"))
-     sim
-     ```
-  5. If you see a simulation summary printed → you're ready.
+You will receive your **VM address, username and password in a separate email by the end of this week.**
 
-If anything fails, **email me a screenshot by Friday May 29** so we can fix it before the workshop starts.
+### How to connect
+
+You will connect to the VM via a **Remote Desktop Connection** client (not a browser). Please install / locate the appropriate client on your machine before the workshop:
+
+- **Windows** — built-in. Search the Start menu for **"Remote Desktop Connection"** (or run `mstsc.exe`).
+- **macOS** — install **Windows App** (formerly *Microsoft Remote Desktop*) from the Mac App Store: <https://apps.apple.com/app/windows-app/id1295203466>.
+- **Linux** — install **Remmina** (`sudo apt install remmina remmina-plugin-rdp` on Debian/Ubuntu) or **FreeRDP** (`xfreerdp`).
+
+If you cannot install or run a Remote Desktop client on your machine for any reason, **please reply to this email** so we can arrange an alternative before the workshop.
 
 ## 🧪 Skill self-check (60 seconds)
 
@@ -61,18 +54,18 @@ We will not teach R basics in the workshop, but we will spend 10–15 minutes at
 
 - Morning: `{ospsuite}` foundations — load, parameterize, run, plot a PK-Sim model
 - Afternoon: `{esqlabsR}` — Excel-driven scenario design, advanced sensitivity, Quarto reports
-- Two compounds: **Aciclovir** (AM) and **Midazolam–CYP3A** (PM)
+- Two compounds: **Aciclovir** (AM) and **Midazolam** (PM)
 - Format: ~60% live demo, ~40% hands-on
 
 ## 📦 What you'll get
 
-- Public GitHub repo with all slides, exercises, project templates: <https://github.com/esqLABS/r-packages-training>
+- Access to workshop materials, exercises, project templates: <https://esqlabs.github.io/PAGE2026-R-WORKSHOP/>
 - Printed 2-page cheatsheet (`{ospsuite}` + `{esqlabsR}` essentials)
 - Certificate of completion (PDF emailed after the workshop)
 
 ## 🧳 What to bring
 
-- Your laptop (any OS — VM runs in the browser)
+- Your laptop (any OS — connects to the VM via a Remote Desktop client; see above)
 - Stable internet (the venue offers Wi-Fi but a personal hotspot is a good backup)
 - Curiosity + questions — Wilbert and I will roam the room throughout
 
@@ -80,11 +73,6 @@ We will not teach R basics in the workshop, but we will spend 10–15 minutes at
 
 - **Location:** Valamar Lacroma Hotel, Dubrovnik — room TBC at registration
 - **Time:** 09:00 – 17:00 (lunch 12:30 – 13:30 included; coffee breaks at 10:30 and 15:00)
-- **Dress code:** business casual, but Dubrovnik is warm — wear what you'd wear to a poster session
-
-## ✋ Pre-workshop questions
-
-If you have a specific PBPK/M&S use case you'd like us to cover, **reply to this email** by **Friday May 29**. We'll try to weave it in.
 
 See you in Dubrovnik!
 
@@ -93,9 +81,7 @@ Pavel & Wilbert
 ---
 
 Pavel Balazki
-Senior Scientist, ESQlabs
 pavel.balazki@esqlabs.com
 
 Wilbert de Witte, PhD
-Senior Scientist, ESQlabs
 wilbert.dewitte@esqlabs.com
