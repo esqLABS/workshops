@@ -1627,6 +1627,8 @@ Tasks:
 
 ## 🖐️ Final feedback — show of hands
 
+:::: {.columns}
+::: {.column width="60%"}
 **Would you recommend this workshop to a colleague?**
 
 ::: {.incremental}
@@ -1637,10 +1639,20 @@ Tasks:
 
 . . .
 
-**One thing to add / change next year?** — email us!
+**One thing to add / change next year?** — scan the QR or email us!
+:::
+
+::: {.column width="40%"}
+::: {.center-x}
+![](../resources/feedback-qr.png){height=320 fig-align="center"}
+
+_Scan to leave us feedback_
+:::
+:::
+::::
 
 ::: {.notes}
-INSTRUCTOR: count hands per option, then go around the room for one-word suggestions. Capture on flipchart for post-workshop notes. Email follow-up survey to attendees within 1 week.
+INSTRUCTOR: count hands per option, then go around the room for one-word suggestions. Encourage everyone to scan the QR for written feedback. Capture flipchart photos for post-workshop notes.
 :::
 
 ## Farewell
