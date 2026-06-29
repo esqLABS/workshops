@@ -24,7 +24,7 @@ listing:
 
 **R Workflows for advanced PB-QSP Modeling with `{ospsuite}` and `{esqlabsR}`**
 
-Full-day instructor-led workshop. See the [agenda + day-of deck](agendas/PAGE_2026.qmd) and the [cheatsheet](agendas/PAGE_2026_cheatsheet.qmd).
+Full-day instructor-led workshop. See the [agenda + day-of deck](agendas/R_Workshop.qmd) and the [cheatsheet](agendas/R_Workshop_cheatsheet.qmd).
 :::
 
 

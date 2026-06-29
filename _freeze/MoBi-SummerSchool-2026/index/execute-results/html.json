@@ -1,0 +1,15 @@
+{
+  "hash": "b00f5025223a1d908d873c83d73e4f11",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nformat:\n  html\ntitle-block-banner-color: \"#ffffff\"\nlisting:\n  - id: workshops-listing\n    type: table\n    contents: ../workshops\n    fields: [ID, module, title , file-modified]\n    sort:\n      - ID\n    date-format: \"YYYY-MM-DD\"\n    sort-ui: false\n    filter-ui: [Module, Number, title]\n\n---\n\n<a href='https://esqlabs.com/'><img src='../resources/esqlabs.png' style='max-width:100%'></a>\n\n# ESQlabs R Trainings\n\n::: {.callout-tip appearance=\"simple\" icon=\"false\"}\n## MoBi Summer School 2026\n\n**R Workflows for advanced PB-QSP Modeling with `{ospsuite}` and `{esqlabsR}`**\n\nFull-day instructor-led workshop. See the [agenda + day-of deck](../agendas/R_Workshop.qmd) and the [cheatsheet](../agendas/R_Workshop_cheatsheet.qmd).\n:::\n\n\n# 📊 Workshops\n\n::: {#workshops-listing}\n:::\n\n# 📦 Environment\n\nSlides on this site were rendered with the following versions:\n\n\n::: {.cell}\n::: {.cell-output-display}\n\n\n|                                 |Component                            |Version     |\n|:--------------------------------|:------------------------------------|:-----------|\n|                                 |R (Because it was There)             |4.6.0       |\n|ospsuite                         |`{ospsuite}`                         |12.4.3.9011 |\n|ospsuite.parameteridentification |`{ospsuite.parameteridentification}` |2.1.1.9013  |\n|esqlabsR                         |`{esqlabsR}`                         |5.7.0.9003  |\n\n\n:::\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
