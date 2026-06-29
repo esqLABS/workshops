@@ -44,12 +44,13 @@ jobs:
         with:
           node-version: "20"
 
-      # Each event landing page under _site/events/<event>/ is encrypted with its
-      # own password, read by key from the committed .passwords file (lines of
-      # the form <event>=<password>). Everything else (the public splash, the
-      # shared workshops/, agendas/ and resources/) is left unencrypted. The repo
-      # is private; rotate passwords (and rewrite history if needed) before any
-      # visibility change.
+      # Each event landing page under _site/<event>/ is encrypted with its own
+      # password. The committed .passwords file (lines of the form
+      # <event>=<password>) is the single source of truth: it lists exactly the
+      # event folders to encrypt and the password for each. Everything else (the
+      # public splash, the shared workshops/, agendas/ and resources/) is left
+      # unencrypted. The repo is private; rotate passwords (and rewrite history
+      # if needed) before any visibility change.
       #
       # The salt is pinned so staticrypt's "remember me" sessions survive across
       # builds and stay consistent across the separately encrypted event folders.
@@ -58,17 +59,26 @@ jobs:
         run: |
           set -euo pipefail
           SALT="b48ca499be7985fe67d68b82074a1355"
-          for event_dir in _site/events/*/; do
-            event="$(basename "$event_dir")"
-            password="$(grep "^${event}=" .passwords | head -n1 | cut -d= -f2-)"
+          # `|| [ -n "$event" ]` ensures a final line with no trailing newline
+          # is still processed (read returns non-zero at EOF but still fills the
+          # variables).
+          while IFS='=' read -r event password || [ -n "$event" ]; do
+            # Skip blank lines and comments in .passwords.
+            [ -z "$event" ] && continue
+            case "$event" in \#*) continue ;; esac
             if [ -z "$password" ]; then
               echo "::error::No password for event '${event}' in .passwords"
+              exit 1
+            fi
+            event_dir="_site/${event}"
+            if [ ! -d "$event_dir" ]; then
+              echo "::error::Event folder '${event_dir}' not found in rendered site"
               exit 1
             fi
             # Pass <dir>/* (not <dir>) with --directory <dir> so staticrypt
             # overwrites files in place instead of nesting under <dir>/<dir>/.
             shopt -s nullglob
-            npx --yes staticrypt "${event_dir}"* \
+            npx --yes staticrypt "${event_dir}"/* \
               --recursive \
               --short \
               --remember 7 \
@@ -82,7 +92,7 @@ jobs:
               --template-remember "Remember me on this device for 7 days" \
               --template-error "Incorrect password, please try again." \
               -p "$password"
-          done
+          done < .passwords
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
