@@ -1,0 +1,58 @@
+---
+format:
+  html
+title-block-banner-color: "#ffffff"
+listing:
+  - id: workshops-listing
+    type: table
+    contents: "../workshops/*.qmd"
+    fields: [ID, module, title , file-modified]
+    sort:
+      - ID
+    date-format: "YYYY-MM-DD"
+    sort-ui: false
+    filter-ui: [Module, Number, title]
+
+---
+
+<a href='https://esqlabs.com/'><img src='../resources/esqlabs.png' style='max-width:100%'></a>
+
+# ESQlabs R Trainings
+
+::: {.callout-tip appearance="simple" icon="false"}
+## MoBi Summer School 2026
+
+**R Workflows for advanced PB-QSP Modeling with `{ospsuite}` and `{esqlabsR}`**
+
+Full-day instructor-led workshop. See the [agenda + day-of deck](../agendas/R_Workshop.qmd) and the [cheatsheet](../agendas/R_Workshop_cheatsheet.qmd).
+:::
+
+
+# 📊 Workshops
+
+::: {#workshops-listing}
+:::
+
+# 📦 Environment
+
+Slides on this site were rendered with the following versions:
+
+```{r versions, echo=FALSE}
+pkgs <- c("ospsuite", "ospsuite.parameteridentification", "esqlabsR")
+knitr::kable(
+  data.frame(
+    Component = c(
+      paste0("R (", R.version$nickname, ")"),
+      paste0("`{", pkgs, "}`")
+    ),
+    Version = c(
+      as.character(getRversion()),
+      vapply(
+        pkgs,
+        function(p) as.character(utils::packageVersion(p)),
+        character(1)
+      )
+    )
+  )
+)
+```

@@ -2,57 +2,26 @@
 format:
   html
 title-block-banner-color: "#ffffff"
-listing:
-  - id: workshops-listing
-    type: table
-    contents: workshops
-    fields: [ID, module, title , file-modified]
-    sort:
-      - ID
-    date-format: "YYYY-MM-DD"
-    sort-ui: false
-    filter-ui: [Module, Number, title]
-
 ---
 
 <a href='https://esqlabs.com/'><img src='resources/esqlabs.png' style='max-width:100%'></a>
 
 # ESQlabs R Trainings
 
+Welcome. This site hosts the materials for ESQlabs R training events. Each event has its own page, protected by the password shared with its registered participants.
+
 ::: {.callout-tip appearance="simple" icon="false"}
 ## PAGE 2026 — Pre-conference Workshop · 1 June 2026 · Dubrovnik
 
-**R Workflows for advanced PB-QSP Modeling with `{ospsuite}` and `{esqlabsR}`**
+R Workflows for advanced PB-QSP Modeling with `{ospsuite}` and `{esqlabsR}`.
 
-Full-day instructor-led workshop. See the [agenda + day-of deck](agendas/PAGE_2026.qmd) and the [cheatsheet](agendas/PAGE_2026_cheatsheet.qmd).
+[Open the PAGE 2026 workshop →](page2026/index.qmd)
 :::
 
+::: {.callout-tip appearance="simple" icon="false"}
+## MoBi Summer School 2026
 
-# 📊 Workshops
+R Workflows for advanced PB-QSP Modeling with `{ospsuite}` and `{esqlabsR}`.
 
-::: {#workshops-listing}
+[Open the MoBi Summer School workshop →](mobi2026/index.qmd)
 :::
-
-# 📦 Environment
-
-Slides on this site were rendered with the following versions:
-
-```{r versions, echo=FALSE}
-pkgs <- c("ospsuite", "ospsuite.parameteridentification", "esqlabsR")
-knitr::kable(
-  data.frame(
-    Component = c(
-      paste0("R (", R.version$nickname, ")"),
-      paste0("`{", pkgs, "}`")
-    ),
-    Version = c(
-      as.character(getRversion()),
-      vapply(
-        pkgs,
-        function(p) as.character(utils::packageVersion(p)),
-        character(1)
-      )
-    )
-  )
-)
-```

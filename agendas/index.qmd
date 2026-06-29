@@ -16,7 +16,7 @@ listing:
 
 ## 🇭🇷 Featured: PAGE 2026 Workshop
 
-- 📋 [PAGE 2026 — Day-of agenda + deck](PAGE_2026.qmd)
+- 📋 [PAGE 2026 — Day-of agenda + deck](R_Workshop.qmd)
 - 📩 [Pre-workshop email + setup instructions](PAGE_2026_pre-workshop-email.md)
 - 🧾 [2-page cheatsheet](PAGE_2026_cheatsheet.qmd) (`{ospsuite}` + `{esqlabsR}`)
 - 🎓 [Certificate template](PAGE_2026_certificate_template.qmd) — batch via `PAGE_2026_certificate_batch.R`

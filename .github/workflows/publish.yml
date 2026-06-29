@@ -44,28 +44,45 @@ jobs:
         with:
           node-version: "20"
 
-      # Password is read from the committed .workshop-password file. The repo
-      # is private; rotate the password (and rewrite history if needed) before
-      # any visibility change.
-      - name: Encrypt site with staticrypt
+      # Each event landing page under _site/events/<event>/ is encrypted with its
+      # own password, read by key from the committed .passwords file (lines of
+      # the form <event>=<password>). Everything else (the public splash, the
+      # shared workshops/, agendas/ and resources/) is left unencrypted. The repo
+      # is private; rotate passwords (and rewrite history if needed) before any
+      # visibility change.
+      #
+      # The salt is pinned so staticrypt's "remember me" sessions survive across
+      # builds and stay consistent across the separately encrypted event folders.
+      # It is not secret (it ships inside every encrypted file).
+      - name: Encrypt event pages with staticrypt
         run: |
-          PASSWORD="$(tr -d '\n' < .workshop-password)"
-          # Pass _site/* (not _site) so staticrypt overwrites files in place
-          # instead of nesting encrypted output under _site/_site/.
-          shopt -s nullglob
-          npx --yes staticrypt _site/* \
-            --recursive \
-            --short \
-            --remember 7 \
-            --directory _site \
-            --template .staticrypt/template.html \
-            --template-title "PAGE 2026 R Workshop" \
-            --template-instructions "This site hosts the materials for the PAGE 2026 pre-conference workshop. Enter the password shared with registered participants to continue." \
-            --template-button "Unlock workshop" \
-            --template-placeholder "Workshop password" \
-            --template-remember "Remember me on this device for 7 days" \
-            --template-error "Incorrect password, please try again." \
-            -p "$PASSWORD"
+          set -euo pipefail
+          SALT="b48ca499be7985fe67d68b82074a1355"
+          for event_dir in _site/events/*/; do
+            event="$(basename "$event_dir")"
+            password="$(grep "^${event}=" .passwords | head -n1 | cut -d= -f2-)"
+            if [ -z "$password" ]; then
+              echo "::error::No password for event '${event}' in .passwords"
+              exit 1
+            fi
+            # Pass <dir>/* (not <dir>) with --directory <dir> so staticrypt
+            # overwrites files in place instead of nesting under <dir>/<dir>/.
+            shopt -s nullglob
+            npx --yes staticrypt "${event_dir}"* \
+              --recursive \
+              --short \
+              --remember 7 \
+              --salt "$SALT" \
+              --directory "$event_dir" \
+              --template .staticrypt/template.html \
+              --template-title "ESQlabs R Workshop — ${event}" \
+              --template-instructions "Enter the password shared with registered participants for this event to continue." \
+              --template-button "Unlock workshop" \
+              --template-placeholder "Workshop password" \
+              --template-remember "Remember me on this device for 7 days" \
+              --template-error "Incorrect password, please try again." \
+              -p "$password"
+          done
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
