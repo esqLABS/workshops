@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/page2026/index.html",
     "items": [
       "/workshops/A1-introduction.html",
       "/workshops/A2-ospsuiteR.html",
@@ -23,9 +23,30 @@
   {
     "listing": "/agendas/index.html",
     "items": [
-      "/agendas/PAGE_2026.html",
+      "/agendas/R_Workshop.html",
       "/agendas/PAGE_2026_certificate_template.pdf",
-      "/agendas/PAGE_2026_cheatsheet.pdf"
+      "/agendas/R_Workshop_cheatsheet.pdf"
+    ]
+  },
+  {
+    "listing": "/mobi2026/index.html",
+    "items": [
+      "/workshops/A1-introduction.html",
+      "/workshops/A2-ospsuiteR.html",
+      "/workshops/A3-ospsuiteR-load.html",
+      "/workshops/A4-ospsuiteR-parameterize.html",
+      "/workshops/A5-ospsuiteR-run.html",
+      "/workshops/A6-ospsuiteR-plot.html",
+      "/workshops/A9-PK-parameters.html",
+      "/workshops/A10-Sensitivity-Analysis.html",
+      "/workshops/A12-Creating-Individuals.html",
+      "/workshops/A13-Population-Simulations.html",
+      "/workshops/B1-esqlabsR.html",
+      "/workshops/B2-esqlabsR-project_initialization.html",
+      "/workshops/B3-esqlabsR-scenario-design.html",
+      "/workshops/B4-esqlabsR-plot-generation.html",
+      "/workshops/B5-esqlabsR-sensitivity-analysis.html",
+      "/workshops/C1-Parameter-Identification.html"
     ]
   }
 ]

@@ -1155,781 +1155,767 @@
     "text": "Resources\n\nPK Sim section about Sensitivity Analysis\n{ospsuite} vignette"
   },
   {
+    "objectID": "page2026/index.html",
+    "href": "page2026/index.html",
+    "title": "ESQlabs R Trainings",
+    "section": "",
+    "text": "ESQlabs R Trainings\n\n\n\n\n\n\nTipPAGE 2026 — Pre-conference Workshop · 1 June 2026 · Dubrovnik\n\n\n\nR Workflows for advanced PB-QSP Modeling with {ospsuite} and {esqlabsR}\nFull-day instructor-led workshop. See the agenda + day-of deck and the cheatsheet.\n\n\n\n\n📊 Workshops\n\n\n    \n      \n      \n    \n\n\n\n\n\n\nID\n\n\n\nmodule\n\n\n\nTitle\n\n\n\nModified\n\n\n\n\n\n\n\n\nA01\n\n\nIntroduction to {ospsuite}\n\n\nOpen System Pharmacology R packages Ecosystem\n\n\n2026-06-29\n\n\n\n\n\n\nA02\n\n\nIntroduction to {ospsuite}\n\n\n{ospsuite} Workflow\n\n\n2026-06-29\n\n\n\n\n\n\nA03\n\n\nIntroduction to {ospsuite}\n\n\nLoad Models\n\n\n2026-06-29\n\n\n\n\n\n\nA04\n\n\nIntroduction to {ospsuite}\n\n\nParameterize Simulations\n\n\n2026-06-29\n\n\n\n\n\n\nA05\n\n\nIntroduction to {ospsuite}\n\n\nRun Simulations\n\n\n2026-06-29\n\n\n\n\n\n\nA06\n\n\nIntroduction to {ospsuite}\n\n\nPlot Simulation Results\n\n\n2026-06-29\n\n\n\n\n\n\nA09\n\n\nIntroduction to {ospsuite}\n\n\nPK Analysis\n\n\n2026-06-29\n\n\n\n\n\n\nA10\n\n\nIntroduction to {ospsuite}\n\n\nLocal Sensitivity Analysis\n\n\n2026-06-29\n\n\n\n\n\n\nA12\n\n\nIntroduction to {ospsuite}\n\n\nCreating Individuals\n\n\n2026-06-29\n\n\n\n\n\n\nA13\n\n\nIntroduction to {ospsuite}\n\n\nPopulation Simulations\n\n\n2026-06-29\n\n\n\n\n\n\nB1\n\n\nIntroduction to {esqlabsR}\n\n\n{esqlabsR} Workflow\n\n\n2026-06-29\n\n\n\n\n\n\nB2\n\n\nIntroduction to {esqlabsR}\n\n\nProject Initialization\n\n\n2026-06-29\n\n\n\n\n\n\nB3\n\n\nIntroduction to {esqlabsR}\n\n\nScenario Design\n\n\n2026-06-29\n\n\n\n\n\n\nB4\n\n\nIntroduction to {esqlabsR}\n\n\nPlot Generation\n\n\n2026-06-29\n\n\n\n\n\n\nB5\n\n\nIntroduction to {esqlabsR}\n\n\nSensitivity Analysis\n\n\n2026-06-29\n\n\n\n\n\n\nC1\n\n\nIntroduction to {ospsuite.parameteridentification}\n\n\nParameter Identification\n\n\n2026-06-29\n\n\n\n\n\n\nNo matching items\n\n\n\n📦 Environment\nSlides on this site were rendered with the following versions:\n\n\n\n\n\n\n\n\n\n\n\nComponent\nVersion\n\n\n\n\n\nR (Because it was There)\n4.6.0\n\n\nospsuite\n{ospsuite}\n12.4.3.9011\n\n\nospsuite.parameteridentification\n{ospsuite.parameteridentification}\n2.1.1.9013\n\n\nesqlabsR\n{esqlabsR}\n5.7.0.9003"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "ESQlabs R Trainings",
     "section": "",
-    "text": "ESQlabs R Trainings\n\n\n\n\n\n\nTipPAGE 2026 — Pre-conference Workshop · 1 June 2026 · Dubrovnik\n\n\n\nR Workflows for advanced PB-QSP Modeling with {ospsuite} and {esqlabsR}\nFull-day instructor-led workshop. See the agenda + day-of deck and the cheatsheet.\n\n\n\n\n📊 Workshops\n\n\n    \n      \n      \n    \n\n\n\n\n\n\nID\n\n\n\nmodule\n\n\n\nTitle\n\n\n\nModified\n\n\n\n\n\n\n\n\nA01\n\n\nIntroduction to {ospsuite}\n\n\nOpen System Pharmacology R packages Ecosystem\n\n\n2026-05-28\n\n\n\n\n\n\nA02\n\n\nIntroduction to {ospsuite}\n\n\n{ospsuite} Workflow\n\n\n2026-05-28\n\n\n\n\n\n\nA03\n\n\nIntroduction to {ospsuite}\n\n\nLoad Models\n\n\n2026-05-28\n\n\n\n\n\n\nA04\n\n\nIntroduction to {ospsuite}\n\n\nParameterize Simulations\n\n\n2026-05-28\n\n\n\n\n\n\nA05\n\n\nIntroduction to {ospsuite}\n\n\nRun Simulations\n\n\n2026-05-28\n\n\n\n\n\n\nA06\n\n\nIntroduction to {ospsuite}\n\n\nPlot Simulation Results\n\n\n2026-05-28\n\n\n\n\n\n\nA09\n\n\nIntroduction to {ospsuite}\n\n\nPK Analysis\n\n\n2026-05-28\n\n\n\n\n\n\nA10\n\n\nIntroduction to {ospsuite}\n\n\nLocal Sensitivity Analysis\n\n\n2026-05-28\n\n\n\n\n\n\nA12\n\n\nIntroduction to {ospsuite}\n\n\nCreating Individuals\n\n\n2026-05-28\n\n\n\n\n\n\nA13\n\n\nIntroduction to {ospsuite}\n\n\nPopulation Simulations\n\n\n2026-05-28\n\n\n\n\n\n\nB1\n\n\nIntroduction to {esqlabsR}\n\n\n{esqlabsR} Workflow\n\n\n2026-05-28\n\n\n\n\n\n\nB2\n\n\nIntroduction to {esqlabsR}\n\n\nProject Initialization\n\n\n2026-05-28\n\n\n\n\n\n\nB3\n\n\nIntroduction to {esqlabsR}\n\n\nScenario Design\n\n\n2026-05-28\n\n\n\n\n\n\nB4\n\n\nIntroduction to {esqlabsR}\n\n\nPlot Generation\n\n\n2026-05-28\n\n\n\n\n\n\nB5\n\n\nIntroduction to {esqlabsR}\n\n\nSensitivity Analysis\n\n\n2026-05-28\n\n\n\n\n\n\nC1\n\n\nIntroduction to {ospsuite.parameteridentification}\n\n\nParameter Identification\n\n\n2026-05-28\n\n\n\n\n\n\nNo matching items\n\n\n\n📦 Environment\nSlides on this site were rendered with the following versions:\n\n\n\n\n\n\n\n\n\n\n\nComponent\nVersion\n\n\n\n\n\nR (Because it was There)\n4.6.0\n\n\nospsuite\n{ospsuite}\n12.4.2.9024\n\n\nospsuite.parameteridentification\n{ospsuite.parameteridentification}\n2.1.1.9013\n\n\nesqlabsR\n{esqlabsR}\n5.6.0.9008"
+    "text": "ESQlabs R Trainings\nWelcome. This site hosts the materials for ESQlabs R training events. Each event has its own page, protected by the password shared with its registered participants.\n\n\n\n\n\n\nTipPAGE 2026 — Pre-conference Workshop · 1 June 2026 · Dubrovnik\n\n\n\nR Workflows for advanced PB-QSP Modeling with {ospsuite} and {esqlabsR}.\nOpen the PAGE 2026 workshop →\n\n\n\n\n\n\n\n\nTipMoBi Summer School 2026\n\n\n\nR Workflows for advanced PB-QSP Modeling with {ospsuite} and {esqlabsR}.\nOpen the MoBi Summer School workshop →"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#page-2026-workshop-day-1",
-    "href": "agendas/PAGE_2026.html#page-2026-workshop-day-1",
+    "objectID": "agendas/R_Workshop.html#workshop-day-1",
+    "href": "agendas/R_Workshop.html#workshop-day-1",
     "title": "R Workflows for advanced PB-QSP Modeling",
-    "section": "PAGE 2026 — Workshop Day 1",
-    "text": "PAGE 2026 — Workshop Day 1\n\nR Workflows for advanced PB-QSP Modeling\nwith {ospsuite} and {esqlabsR}\n\n\n\n\n\n\n\n2026-06-01 · Valamar Lacroma, Dubrovnik · 09:00 – 17:00\nPavel Balazki · Dr. Wilbert de Witte"
+    "section": "Workshop Day 1",
+    "text": "Workshop Day 1\n\nR Workflows for advanced PB-QSP Modeling\nwith {ospsuite} and {esqlabsR}\n\n\n\n\n\n\n\nPavel Balazki · Dr. Wilbert de Witte"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#who-we-are",
-    "href": "agendas/PAGE_2026.html#who-we-are",
-    "title": "R Workflows for advanced PB-QSP Modeling",
-    "section": "Who we are",
-    "text": "Who we are\n\n\nPavel Balazki\n\nTeamlead Software Development, ESQlabs\nSenior Scientist, focus on QSP disease modeling\n10+ years PBPK in OSPS\n\n\nWilbert de Witte\n\nPlatform Lead Large Molecule PBPK, ESQlabs\nPrincipal Scientist, focus on biologics and project workflows\nLikes log scales and reproducible code\nWill roam the room, debug your hands-on, and answer your questions"
-  },
-  {
-    "objectID": "agendas/PAGE_2026.html#why-are-you-here",
-    "href": "agendas/PAGE_2026.html#why-are-you-here",
+    "objectID": "agendas/R_Workshop.html#why-are-you-here",
+    "href": "agendas/R_Workshop.html#why-are-you-here",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Why are you here?",
     "text": "Why are you here?\n\nYou know PK-Sim / MoBi. You can build a model, run a simulation, analyze the results.\nBut your project requires:\n\nReproducibility for QC/audit\nDozens of simulation scenarios + parameter sweeps\nSensitivity analyses at scale\nReports a regulator can re-run from raw inputs\n\nThe GUI alone won’t get you there.\n\n\n\nToday: bridge from GUI click to reproducible Quarto report."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#the-problem-we-solve-today",
-    "href": "agendas/PAGE_2026.html#the-problem-we-solve-today",
+    "objectID": "agendas/R_Workshop.html#the-problem-we-solve-today",
+    "href": "agendas/R_Workshop.html#the-problem-we-solve-today",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "The problem we solve today",
     "text": "The problem we solve today\n\n\n\nModel (GUI click)\n\n\n\n\n\n\n\n\n\n\n\n\n\n→\n\n\n\nR workflow (code)\n\n\n\n\n\n\n\n\n\n\n\n\n\n→\n\n\n\nRegulatory report (re-render)\n\n\n\n\n\n\n\n\n\n\nOne-click rendering. Re-runnable. Version-controlled. Auditable."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#agenda-at-a-glance",
-    "href": "agendas/PAGE_2026.html#agenda-at-a-glance",
+    "objectID": "agendas/R_Workshop.html#agenda-at-a-glance",
+    "href": "agendas/R_Workshop.html#agenda-at-a-glance",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Agenda — at a glance",
     "text": "Agenda — at a glance\n\n\n\nTime\nBlock\nTopic\n\n\n\n\n09:00–09:30\n0\nWelcome + setup + skill poll\n\n\n09:30–10:30\n1\n{ospsuite} foundations — load + inspect\n\n\n10:30–10:45\n☕\nBreak\n\n\n10:45–12:30\n2\nParameterize · Run · Plot\n\n\n12:30–13:30\n🍽\nLunch\n\n\n13:30–14:00\n3\nPK params · Sensitivity · Populations\n\n\n14:00–15:00\n4\n{esqlabsR} project workflow\n\n\n15:00–15:15\n☕\nBreak\n\n\n15:15–16:30\n5\nAdvanced SA · Param ID demo\n\n\n16:30–17:00\n6\nQuarto reporting + close"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#format",
-    "href": "agendas/PAGE_2026.html#format",
+    "objectID": "agendas/R_Workshop.html#get-the-materials",
+    "href": "agendas/R_Workshop.html#get-the-materials",
     "title": "R Workflows for advanced PB-QSP Modeling",
-    "section": "Format",
-    "text": "Format\n\n~60% demo / ~40% hands-on\nTwo compounds:\n\nAciclovir (morning, simple PK)\nMidazolam–CYP3A (afternoon, regulatory-style project)\n\nAll materials online: https://esqlabs.github.io/PAGE2026-R-WORKSHOP/"
+    "section": "📥 Get the materials",
+    "text": "📥 Get the materials\nDownload both files and unzip them on your machine:\n\n\n\n\n\n\n\n\nWorkshop project\n⬇ Midazolam-Workshop.zip\n\n\n\n\n\n\n\n\nESQapp\n⬇ ESQApp_1.0.0_x64-setup.zip"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#learning-objectives",
-    "href": "agendas/PAGE_2026.html#learning-objectives",
+    "objectID": "agendas/R_Workshop.html#format",
+    "href": "agendas/R_Workshop.html#format",
+    "title": "R Workflows for advanced PB-QSP Modeling",
+    "section": "Format",
+    "text": "Format\n\n~60% demo / ~40% hands-on\nTwo compounds:\n\nAciclovir (morning, simple PK)\nMidazolam–CYP3A (afternoon, regulatory-style project)"
+  },
+  {
+    "objectID": "agendas/R_Workshop.html#learning-objectives",
+    "href": "agendas/R_Workshop.html#learning-objectives",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🎯 Learning objectives",
     "text": "🎯 Learning objectives\n\nLoad & manipulate PK-Sim models from R using {ospsuite}\nRun & plot simulations programmatically\nCompute PK parameters and sensitivity indices\nStructure a reproducible project with {esqlabsR}\nGenerate publication-/submission-ready Quarto reports\nKnow which package to reach for and why"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#prerequisites-lets-check",
-    "href": "agendas/PAGE_2026.html#prerequisites-lets-check",
+    "objectID": "agendas/R_Workshop.html#prerequisites-lets-check",
+    "href": "agendas/R_Workshop.html#prerequisites-lets-check",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Prerequisites — let’s check",
     "text": "Prerequisites — let’s check\n\nBasic R (you have written a script before)\nFamiliar with PK-Sim / MoBi (built or used a PBPK model)\nToday we will NOT cover PBPK fundamentals"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#show-of-hands-your-r-level",
-    "href": "agendas/PAGE_2026.html#show-of-hands-your-r-level",
+    "objectID": "agendas/R_Workshop.html#show-of-hands-your-r-level",
+    "href": "agendas/R_Workshop.html#show-of-hands-your-r-level",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🖐️ Show of hands — your R level",
     "text": "🖐️ Show of hands — your R level\nPick the line that best describes you:\n\nNever used R\nFollowed a tutorial\nWrite scripts for my work\nComfortable with tidyverse + debugging\nI write R packages\n\n\nINSTRUCTOR: count hands per level. If mean ≥ 3, skip the optional R refresher (next 2 slides). Otherwise spend 15–20 min on the refresher and on RStudio orientation."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#azure-vm-login",
-    "href": "agendas/PAGE_2026.html#azure-vm-login",
-    "title": "R Workflows for advanced PB-QSP Modeling",
-    "section": "Azure VM login",
-    "text": "Azure VM login\n\nOpen the email “PAGE 2026 — your VM credentials”\nLaunch Remote Desktop Connection (Windows: mstsc.exe · macOS: Windows App · Linux: Remmina / FreeRDP)\nConnect using the VM address, username, and password from the email"
-  },
-  {
-    "objectID": "agendas/PAGE_2026.html#open-the-project-in-rstudio",
-    "href": "agendas/PAGE_2026.html#open-the-project-in-rstudio",
+    "objectID": "agendas/R_Workshop.html#open-the-project-in-rstudio",
+    "href": "agendas/R_Workshop.html#open-the-project-in-rstudio",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Open the project in RStudio",
-    "text": "Open the project in RStudio\n\nOpen RStudio (link on the desktop)\nFile → New Project → Existing Directory\nSelect the Midazolam-PAGE folder on the Desktop"
+    "text": "Open the project in RStudio\n\nOpen RStudio (link on the desktop)\nFile → New Project → Existing Directory\nSelect the Midazolam-Workshop folder on the Desktop"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#sanity-check-run-in-rstudio-console",
-    "href": "agendas/PAGE_2026.html#sanity-check-run-in-rstudio-console",
+    "objectID": "agendas/R_Workshop.html#sanity-check-run-in-rstudio-console",
+    "href": "agendas/R_Workshop.html#sanity-check-run-in-rstudio-console",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Sanity check (run in RStudio console)",
     "text": "Sanity check (run in RStudio console)\n\nlibrary(ospsuite)\nlibrary(esqlabsR)\nsim &lt;- loadSimulation(system.file(\n  \"extdata\",\n  \"Aciclovir.pkml\",\n  package = \"ospsuite\"\n))\nsim\n\n&lt;Simulation&gt;\n  • Name: Vergin 1995 IV\n  • Source file: D:/GitHub\n  repositories/ESQlabs/PAGE2026-R-WORKSHOP/renv/library/windows/R-4.6/x86_64-w64-mingw32/ospsuite/extdata/Aciclovir.pkml\n\n\nIf you see a simulation summary → ✅ ready for the day."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#optional-20-min-r-refresher",
-    "href": "agendas/PAGE_2026.html#optional-20-min-r-refresher",
+    "objectID": "agendas/R_Workshop.html#optional-20-min-r-refresher",
+    "href": "agendas/R_Workshop.html#optional-20-min-r-refresher",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Optional: 20-min R refresher",
     "text": "Optional: 20-min R refresher\n\nRStudio panes: editor / console / environment / files-plots-help\nRun a line: Ctrl+Enter · Run a script: source button\n&lt;- is assignment; %&gt;% / |&gt; is the pipe\nInstall/load: install.packages() / library()\nGet help: ?function_name\nhere::here() for portable paths"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#r-concepts-in-60-seconds",
-    "href": "agendas/PAGE_2026.html#r-concepts-in-60-seconds",
+    "objectID": "agendas/R_Workshop.html#r-concepts-in-60-seconds",
+    "href": "agendas/R_Workshop.html#r-concepts-in-60-seconds",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "R concepts in 60 seconds",
     "text": "R concepts in 60 seconds\n\nVariable — named container for a value; created with x &lt;- 5 (read “x gets 5”).\nFunction — reusable operation; called with name(args), returns a value.\nArgument — input to a function; passed by position mean(c(1,2)) or by name mean(x = c(1,2), na.rm = TRUE).\nPackage — bundle of functions + data; loaded with library(pkg), called as pkg::fn()."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#tidyverse-highlights",
-    "href": "agendas/PAGE_2026.html#tidyverse-highlights",
+    "objectID": "agendas/R_Workshop.html#tidyverse-highlights",
+    "href": "agendas/R_Workshop.html#tidyverse-highlights",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Tidyverse highlights",
     "text": "Tidyverse highlights\n\ndplyr::filter(df, x &gt; 0) — keep rows where the condition is true.\ndplyr::mutate(df, new = old * 2) — add or overwrite columns.\ndplyr::select(df, a, b) — pick columns by name.\ndplyr::summarise(df, m = mean(x)) — collapse rows into one summary row (use with group_by).\nggplot2::ggplot(df, aes(x, y)) + geom_point() — build a plot layer by layer."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#goal-of-block-1",
-    "href": "agendas/PAGE_2026.html#goal-of-block-1",
+    "objectID": "agendas/R_Workshop.html#goal-of-block-1",
+    "href": "agendas/R_Workshop.html#goal-of-block-1",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Goal of Block 1",
     "text": "Goal of Block 1\n\nLoad an OSP model in R · inspect it’s structure · save it back."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#the-osp-r-package-ecosystem",
-    "href": "agendas/PAGE_2026.html#the-osp-r-package-ecosystem",
+    "objectID": "agendas/R_Workshop.html#the-osp-r-package-ecosystem",
+    "href": "agendas/R_Workshop.html#the-osp-r-package-ecosystem",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "The OSP R-package ecosystem",
     "text": "The OSP R-package ecosystem\n\n\n\n\n\n\nWalk through the diagram: ospsuite for model manipulation, esqlabsR for project structure, ospsuite.parameteridentification for fitting, ospsuite.reportingengine for qualification reports."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#user-oriented-packages-1",
-    "href": "agendas/PAGE_2026.html#user-oriented-packages-1",
+    "objectID": "agendas/R_Workshop.html#user-oriented-packages-1",
+    "href": "agendas/R_Workshop.html#user-oriented-packages-1",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "User-Oriented Packages",
     "text": "User-Oriented Packages"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#ospsuite",
-    "href": "agendas/PAGE_2026.html#ospsuite",
+    "objectID": "agendas/R_Workshop.html#ospsuite",
+    "href": "agendas/R_Workshop.html#ospsuite",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "{ospsuite}",
     "text": "{ospsuite}\n\n\n\n\n\n\n\n\nMain R interface with OSP Suite\n\nLoad, Manipulate and Run Simulations\nShares the same simulation “Core” as PK-Sim and MoBi\nPerform PK parameter calculations\nPerform sensitivity analysis\nCreate standard plots"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#esqlabsr",
-    "href": "agendas/PAGE_2026.html#esqlabsr",
+    "objectID": "agendas/R_Workshop.html#esqlabsr",
+    "href": "agendas/R_Workshop.html#esqlabsr",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "{esqlabsR}",
     "text": "{esqlabsR}\n\n\n\n\n\n\n\n\nTailor-Made Interface to OSPSuite R\n\nExcel-Driven Simulation Design — from scenario creation to automated reporting\nEnforced Reproducibility — scenario-based workflow\nStandardized Visualization\nAdvanced Sensitivity Analysis\nParameter Identification\nGUI for interactive use (ESQapp)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#ospsuite.parameteridentification",
-    "href": "agendas/PAGE_2026.html#ospsuite.parameteridentification",
+    "objectID": "agendas/R_Workshop.html#ospsuite.parameteridentification",
+    "href": "agendas/R_Workshop.html#ospsuite.parameteridentification",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "{ospsuite.parameteridentification}",
     "text": "{ospsuite.parameteridentification}\n\n\n\n\n\n\n\n\nEstimate model parameters from observed data\n\nParameter estimation with different optimization algorithms\nConfidence-interval estimation\nCustom cost functions\nStandardized visualization of results"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#ospsuite.plots",
-    "href": "agendas/PAGE_2026.html#ospsuite.plots",
+    "objectID": "agendas/R_Workshop.html#ospsuite.plots",
+    "href": "agendas/R_Workshop.html#ospsuite.plots",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "{ospsuite.plots}",
     "text": "{ospsuite.plots}\n\n\n\n\n\n\n\n\nFigures and tables generation\n\nGeneration of standard figures\n{ggplot2}-based plotting functions"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#ospsuite-what-it-does",
-    "href": "agendas/PAGE_2026.html#ospsuite-what-it-does",
+    "objectID": "agendas/R_Workshop.html#ospsuite-what-it-does",
+    "href": "agendas/R_Workshop.html#ospsuite-what-it-does",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "{ospsuite} — what it does",
     "text": "{ospsuite} — what it does\n\nLoads .pkml simulation files into memory\nExposes parameters, molecules, compartments as R objects\nRuns simulations (single or batch, parallel)\nReturns time–concentration (or other model outputs) arrays\nComputes PK parameters and sensitivity indices\nPlots (ggplot2-based)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#r6-reference-semantics",
-    "href": "agendas/PAGE_2026.html#r6-reference-semantics",
+    "objectID": "agendas/R_Workshop.html#r6-reference-semantics",
+    "href": "agendas/R_Workshop.html#r6-reference-semantics",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "R6 reference semantics",
     "text": "R6 reference semantics\n{ospsuite} uses R6 classes. Reference semantics mean:\nsim2 &lt;- sim         # NOT a copy — same object\nsetParameterValuesByPath(\"Liver|Volume\", 2, sim)\nsim2  # also changed!"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#working-with-r6-objects",
-    "href": "agendas/PAGE_2026.html#working-with-r6-objects",
+    "objectID": "agendas/R_Workshop.html#working-with-r6-objects",
+    "href": "agendas/R_Workshop.html#working-with-r6-objects",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Working With R6 Objects",
     "text": "Working With R6 Objects\nAccess fields/methods with $; construct with ClassName$new():\nsim$solver\nsim$outputSelections\n\ndc &lt;- DataCombined$new()\ndc$addSimulationResults(\n  simulationResults = simulationResults,\n  quantitiesOrPaths = outputPath\n)\nPractical rules:\n\nsetParameterValues(), addOutputs(), clearOutputs(), addOutputInterval() mutate their argument — no reassignment\nreset() on a parameter restores its pkml default without reloading\nFresh independent state: call loadSimulation(path) again"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#the-7-step-ospsuite-workflow",
-    "href": "agendas/PAGE_2026.html#the-7-step-ospsuite-workflow",
+    "objectID": "agendas/R_Workshop.html#the-7-step-ospsuite-workflow",
+    "href": "agendas/R_Workshop.html#the-7-step-ospsuite-workflow",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "The 7-step {ospsuite} workflow",
     "text": "The 7-step {ospsuite} workflow\n\nLoad simulation\nInspect parameters / molecules / outputs\nModify parameters\nRun simulation\nExtract results\nAnalyze (PK, SA)\nPlot\n\n\nToday we walk all 7 steps with an example of Aciclovir PBPK model."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#loading-a-simulation",
-    "href": "agendas/PAGE_2026.html#loading-a-simulation",
+    "objectID": "agendas/R_Workshop.html#loading-a-simulation",
+    "href": "agendas/R_Workshop.html#loading-a-simulation",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Loading a simulation",
     "text": "Loading a simulation\n\nlibrary(ospsuite)\n\n# bundled with the package\nsim_path &lt;- system.file(\"extdata\", \"Aciclovir.pkml\", package = \"ospsuite\")\nsim &lt;- loadSimulation(sim_path)\n\nprint(sim)\n\n&lt;Simulation&gt;\n  • Name: Vergin 1995 IV\n  • Source file: D:/GitHub\n  repositories/ESQlabs/PAGE2026-R-WORKSHOP/renv/library/windows/R-4.6/x86_64-w64-mingw32/ospsuite/extdata/Aciclovir.pkml"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#inspect-the-simulation",
-    "href": "agendas/PAGE_2026.html#inspect-the-simulation",
+    "objectID": "agendas/R_Workshop.html#inspect-the-simulation",
+    "href": "agendas/R_Workshop.html#inspect-the-simulation",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Inspect the simulation",
     "text": "Inspect the simulation\nOnce loaded, the sim object exposes its configuration as fields:\n\nsim$solver # solver tolerances + step bounds\n\n&lt;SolverSettings&gt;\n  • useJacobian: TRUE\n  • h0: 1e-10\n  • hMin: 0\n  • hMax: 60\n  • mxStep: 100000\n  • relTol: 1e-05\n  • absTol: 1e-10\n\nsim$outputSelections # which quantities are recorded\n\n&lt;OutputSelections&gt;\n  • Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood):\n  Drug, Observer\n  • Organism|VenousBlood|Plasma|Aciclovir|Plasma Unbound: Drug, Observer\n\nsim$outputSchema # simulation time + output intervals\n\n&lt;OutputSchema&gt;\n\n── Output intervals ──\n\n&lt;Interval&gt;\n  • Name: Simulation Interval 1\n  • Start time: 0.00e+00 [min]\n  • End time: 15.00 [min]\n  • Resolution: 1.00 [pts/min]\n&lt;Interval&gt;\n  • Name: Simulation Interval 2\n  • Start time: 15.00 [min]\n  • End time: 1440.00 [min]\n  • Resolution: 0.33 [pts/min]\n&lt;Interval&gt;\n  • Name: Simulation Interval 3\n  • Start time: 120.00 [min]\n  • End time: 1440.00 [min]\n  • Resolution: 0.07 [pts/min]\n\n\n\nWalk through each field on screen — point out absTol, relTol, mxStep in solver; show which compartments will be in the result; show start/end time + resolution."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#parameter-paths-the-addressing-system",
-    "href": "agendas/PAGE_2026.html#parameter-paths-the-addressing-system",
+    "objectID": "agendas/R_Workshop.html#parameter-paths-the-addressing-system",
+    "href": "agendas/R_Workshop.html#parameter-paths-the-addressing-system",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Parameter paths — the addressing system",
     "text": "Parameter paths — the addressing system\nEvery parameter, molecule, container in the simulation is addressed by a path:\nOrganism | Liver | Interstitial | Volume\n^         ^       ^              ^\ncontainer container container    parameter\n\nHierarchical, |-delimited\nEach layer = a container; last element = parameter / molecule amount / observer\nSame syntax for molecules: Organism|VenousBlood|Plasma|Aciclovir"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#simulation-tree-explore-interactively",
-    "href": "agendas/PAGE_2026.html#simulation-tree-explore-interactively",
+    "objectID": "agendas/R_Workshop.html#simulation-tree-explore-interactively",
+    "href": "agendas/R_Workshop.html#simulation-tree-explore-interactively",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Simulation tree — explore interactively",
     "text": "Simulation tree — explore interactively\ngetSimulationTree(sim) returns a navigable list tree of every path in the model. Best way to discover what’s in a model.\n\ntree &lt;- getSimulationTree(sim)\n\n# tab-complete from RStudio: tree$Organism$Liver$Interstitial$Volume\ntree$Organism$PeripheralVenousBlood$Aciclovir$`Plasma (Peripheral Venous Blood)`\n\n$path\n[1] \"Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)\"\n\n\n\nDemo live in RStudio: tab-complete from tree$ and watch the model unfold."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#get-one-parameter-getparameter",
-    "href": "agendas/PAGE_2026.html#get-one-parameter-getparameter",
+    "objectID": "agendas/R_Workshop.html#get-one-parameter-getparameter",
+    "href": "agendas/R_Workshop.html#get-one-parameter-getparameter",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Get one parameter — getParameter()",
     "text": "Get one parameter — getParameter()\n\np &lt;- getParameter(\"Organism|Liver|Interstitial|Volume\", sim)\np$value # numeric value in base unit\n\n[1] 0.3533005\n\np$unit # display unit (e.g. \"L\")\n\n[1] \"l\"\n\np$dimension # \"Volume\"\n\n[1] \"Volume\"\n\n\n\nShort paths work too if you pass a sub-container as the second arg:\n\nliver &lt;- getContainer(\"Organism|Liver\", sim)\ngetParameter(\"Interstitial|Volume\", liver)\n\n&lt;Parameter&gt;\n  • Quantity Type: Parameter\n  • Path: Organism|Liver|Interstitial|Volume\n  • Value: 0.35 [l]\n  • Value Origin: Publication-Willmann S, Lippert J, Sevestre M, Solodenko J,\n  Fois F, Schmitt W. PK-Sim®: a physiologically based pharmacokinetic\n  ‘whole-body’ model. Biosilico. 2003; 1 (4): 121-124.\n  http://dx.doi.org/10.1016/S1478-5382%2803%2902342-4\n\n── Formula ──\n\n  • isExplicit: TRUE\n  • formula: f_int*V\n  • Value overrides formula: FALSE"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#find-paths-by-pattern-getallparametersmatching",
-    "href": "agendas/PAGE_2026.html#find-paths-by-pattern-getallparametersmatching",
+    "objectID": "agendas/R_Workshop.html#find-paths-by-pattern-getallparametersmatching",
+    "href": "agendas/R_Workshop.html#find-paths-by-pattern-getallparametersmatching",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Find paths by pattern — getAllParametersMatching()",
     "text": "Find paths by pattern — getAllParametersMatching()\nWildcards: * = exactly one path element, ** = any number of elements.\n\n# all parameters named \"Volume\" anywhere in the model\nhead(getAllParametersMatching(\"**|Volume\", sim), 3)\n\n[[1]]\n&lt;Parameter&gt;\n  • Quantity Type: Parameter\n  • Path: Events|IV 250mg 10min|Application_1|Volume\n  • Value: 1.00 [l]\n\n── Formula ──\n\n  • isConstant: TRUE\n\n[[2]]\n&lt;Parameter&gt;\n  • Quantity Type: Parameter\n  • Path: Organism|VenousBlood|Volume\n  • Value: 0.91 [l]\n  • Value Origin: Publication-ICRP, 2002. Basic Anatomical and Physiological\n  Data for Use in Radiological Protection Reference Values. ICRP Publication\n  89. Ann. ICRP 32 (3-4). https://doi.org/10.1016/0146-6453(79)90123-4\n\n── Formula ──\n\n  • isDistributed: TRUE\n\n[[3]]\n&lt;Parameter&gt;\n  • Quantity Type: Parameter\n  • Path: Organism|VenousBlood|Plasma|Volume\n  • Value: 0.50 [l]\n  • Value Origin: Publication-Willmann S, Lippert J, Sevestre M, Solodenko J,\n  Fois F, Schmitt W. PK-Sim®: a physiologically based pharmacokinetic\n  ‘whole-body’ model. Biosilico. 2003; 1 (4): 121-124.\n  http://dx.doi.org/10.1016/S1478-5382%2803%2902342-4\n\n── Formula ──\n\n  • isExplicit: TRUE\n  • formula: (1-HCT)*V\n  • Value overrides formula: FALSE\n\n# all \"Volume\" parameters in compartments named \"Interstitial\"\n# with exactly one container between Organism and Interstitial\nhead(getAllContainersMatching(\"Organism|*|Interstitial\", sim), 3)\n\n[[1]]\n&lt;Container&gt;\n  • Container type: Compartment\n  • Path: Organism|Bone|Interstitial\n\n[[2]]\n&lt;Container&gt;\n  • Container type: Compartment\n  • Path: Organism|Brain|Interstitial\n\n[[3]]\n&lt;Container&gt;\n  • Container type: Compartment\n  • Path: Organism|Fat|Interstitial\n\n# all parameter paths under Liver (no wildcards needed)\ngetAllParameterPathsIn(liver)[1:5]\n\n[1] \"Organism|Liver|Fraction endosomal\"           \n[2] \"Organism|Liver|Weight (tissue)\"              \n[3] \"Organism|Liver|Fluid recirculation flow rate\"\n[4] \"Organism|Liver|Lymph flow rate\"              \n[5] \"Organism|Liver|Volume (endothelium)\"         \n\n\n\nDemo each on screen. Bridge to hands-on: attendees explore Liver + find a Volume parameter."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#hands-on-1-explore-the-model-15-min",
-    "href": "agendas/PAGE_2026.html#hands-on-1-explore-the-model-15-min",
+    "objectID": "agendas/R_Workshop.html#hands-on-1-explore-the-model-15-min",
+    "href": "agendas/R_Workshop.html#hands-on-1-explore-the-model-15-min",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🖐️ Hands-on 1 — explore the model (15 min)",
-    "text": "🖐️ Hands-on 1 — explore the model (15 min)\nOpen exercises/PAGE_2026/block1.R in RStudio. Tasks:\n\nLoad the bundled Aciclovir.pkml\nBuild the simulation tree with getSimulationTree(sim)\nTab-complete from tree$Organism$... — find the Liver volume parameter\nUse getParameter() to read its value, unit, and dimension\nUse getAllParametersMatching(\"**|Volume\", sim) to list every Volume in the model\n\n\n⏰ 15 min · Wilbert is in the room — flag him over for blockers\n\n\nSolutions in exercises/PAGE_2026/solutions/block1.R. Common gotchas: forgetting system.file, escaping | in regex (don’t — these are not regex), confusing * and ** wildcards."
+    "text": "🖐️ Hands-on 1 — explore the model (15 min)\nOpen exercises/block1.R in RStudio. Tasks:\n\nLoad the bundled Aciclovir.pkml\nBuild the simulation tree with getSimulationTree(sim)\nTab-complete from tree$Organism$... — find the Liver volume parameter\nUse getParameter() to read its value, unit, and dimension\nUse getAllParametersMatching(\"**|Volume\", sim) to list every Volume in the model\n\n\n⏰ 15 min · Wilbert is in the room — flag him over for blockers\n\n\nSolutions in exercises/solutions/block1.R. Common gotchas: forgetting system.file, escaping | in regex (don’t — these are not regex), confusing * and ** wildcards."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#break-15-min",
-    "href": "agendas/PAGE_2026.html#break-15-min",
+    "objectID": "agendas/R_Workshop.html#break-15-min",
+    "href": "agendas/R_Workshop.html#break-15-min",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "☕ Break — 15 min",
     "text": "☕ Break — 15 min\n\nSee you at 10:45 for Parameterize · Run · Plot."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#goal-of-block-2",
-    "href": "agendas/PAGE_2026.html#goal-of-block-2",
+    "objectID": "agendas/R_Workshop.html#goal-of-block-2",
+    "href": "agendas/R_Workshop.html#goal-of-block-2",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Goal of Block 2",
     "text": "Goal of Block 2\n\nModify parameters · run · compare simulation vs observed data."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#what-can-be-changed",
-    "href": "agendas/PAGE_2026.html#what-can-be-changed",
+    "objectID": "agendas/R_Workshop.html#what-can-be-changed",
+    "href": "agendas/R_Workshop.html#what-can-be-changed",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "What can be changed",
     "text": "What can be changed\nOnce a .pkml model is loaded in {ospsuite}, you can change from R:\n\nParameters (accessed by path)\nOutput paths (which quantities are recorded)\nSimulation time + output intervals\nSolver settings (tolerances, step bounds)\n\n\n\nWe’ll touch all four. Parameters first."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#set-a-parameter-value",
-    "href": "agendas/PAGE_2026.html#set-a-parameter-value",
+    "objectID": "agendas/R_Workshop.html#set-a-parameter-value",
+    "href": "agendas/R_Workshop.html#set-a-parameter-value",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Set a parameter value",
     "text": "Set a parameter value\n\nageParam &lt;- getParameter(\"Organism|Age\", sim)\nageParam\n\n&lt;Parameter&gt;\n  • Quantity Type: Parameter\n  • Path: Organism|Age\n  • Value: 25.70 [year(s)]\n\n── Formula ──\n\n  • isConstant: TRUE\n\n\n\n\nsetParameterValues(ageParam, 55, units = \"year(s)\")\nageParam\n\n&lt;Parameter&gt;\n  • Quantity Type: Parameter\n  • Path: Organism|Age\n  • Value: 55.00 [year(s)]\n\n── Formula ──\n\n  • isConstant: TRUE\n\n\n\n\n\n\n\n\nWarning\n\n\nAlways pass units. Base units (kg, L, mol) often differ from display units (g, mL, µmol)."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#set-values-by-path-shortcut",
-    "href": "agendas/PAGE_2026.html#set-values-by-path-shortcut",
+    "objectID": "agendas/R_Workshop.html#set-values-by-path-shortcut",
+    "href": "agendas/R_Workshop.html#set-values-by-path-shortcut",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Set values by path — shortcut",
     "text": "Set values by path — shortcut\nsetParameterValuesByPath() combines getParameter() + setParameterValues() in one call. Accepts a single path or a vector.\n\nsetParameterValuesByPath(\n  parameterPaths = c(\"Organism|Age\", \"Organism|Weight\"),\n  values = c(40, 75),\n  units = c(\"year(s)\", \"kg\"),\n  simulation = sim\n)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#reset-parameter-values",
-    "href": "agendas/PAGE_2026.html#reset-parameter-values",
+    "objectID": "agendas/R_Workshop.html#reset-parameter-values",
+    "href": "agendas/R_Workshop.html#reset-parameter-values",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Reset parameter values",
     "text": "Reset parameter values\nRestore the .pkml default with $reset() — no need to reload the simulation.\n\nageParam$reset()\nageParam\n\n&lt;Parameter&gt;\n  • Quantity Type: Parameter\n  • Path: Organism|Age\n  • Value: 25.70 [year(s)]\n\n── Formula ──\n\n  • isConstant: TRUE"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#change-simulation-outputs",
-    "href": "agendas/PAGE_2026.html#change-simulation-outputs",
+    "objectID": "agendas/R_Workshop.html#change-simulation-outputs",
+    "href": "agendas/R_Workshop.html#change-simulation-outputs",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Change simulation outputs",
     "text": "Change simulation outputs\nDefaults come from the imported .pkml:\n\nsim$outputSelections\n\n&lt;OutputSelections&gt;\n  • Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood):\n  Drug, Observer\n  • Organism|VenousBlood|Plasma|Aciclovir|Plasma Unbound: Drug, Observer\n\n\n\nAdd another output with addOutputs():\n\naddOutputs(\n  \"Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous Blood)\",\n  simulation = sim\n)\n\nsim$outputSelections\n\n&lt;OutputSelections&gt;\n  • Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood):\n  Drug, Observer\n  • Organism|VenousBlood|Plasma|Aciclovir|Plasma Unbound: Drug, Observer\n  • Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous\n  Blood): Drug, Observer"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#change-simulation-time",
-    "href": "agendas/PAGE_2026.html#change-simulation-time",
+    "objectID": "agendas/R_Workshop.html#change-simulation-time",
+    "href": "agendas/R_Workshop.html#change-simulation-time",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Change simulation time",
     "text": "Change simulation time\nDefault simulation time comes from the .pkml:\n\nsim$outputSchema\n\n&lt;OutputSchema&gt;\n\n── Output intervals ──\n\n&lt;Interval&gt;\n  • Name: Simulation Interval 1\n  • Start time: 0.00e+00 [min]\n  • End time: 15.00 [min]\n  • Resolution: 1.00 [pts/min]\n&lt;Interval&gt;\n  • Name: Simulation Interval 2\n  • Start time: 15.00 [min]\n  • End time: 1440.00 [min]\n  • Resolution: 0.33 [pts/min]\n&lt;Interval&gt;\n  • Name: Simulation Interval 3\n  • Start time: 120.00 [min]\n  • End time: 1440.00 [min]\n  • Resolution: 0.07 [pts/min]"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#add-an-output-interval",
-    "href": "agendas/PAGE_2026.html#add-an-output-interval",
+    "objectID": "agendas/R_Workshop.html#add-an-output-interval",
+    "href": "agendas/R_Workshop.html#add-an-output-interval",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Add an output interval",
     "text": "Add an output interval\naddOutputInterval() adds a new interval to the output schema (in minutes).\n\naddOutputInterval(\n  simulation = sim,\n  startTime = 1440,\n  endTime = 1500,\n  resolution = 2,\n  intervalName = \"highResEndSim\"\n)\nsim$outputSchema\n\n&lt;OutputSchema&gt;\n\n── Output intervals ──\n\n&lt;Interval&gt;\n  • Name: Simulation Interval 1\n  • Start time: 0.00e+00 [min]\n  • End time: 15.00 [min]\n  • Resolution: 1.00 [pts/min]\n&lt;Interval&gt;\n  • Name: Simulation Interval 2\n  • Start time: 15.00 [min]\n  • End time: 1440.00 [min]\n  • Resolution: 0.33 [pts/min]\n&lt;Interval&gt;\n  • Name: Simulation Interval 3\n  • Start time: 120.00 [min]\n  • End time: 1440.00 [min]\n  • Resolution: 0.07 [pts/min]\n&lt;Interval&gt;\n  • Name: highResEndSim\n  • Start time: 1440.00 [min]\n  • End time: 1500.00 [min]\n  • Resolution: 2.00 [pts/min]"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#clear-and-replace-intervals",
-    "href": "agendas/PAGE_2026.html#clear-and-replace-intervals",
+    "objectID": "agendas/R_Workshop.html#clear-and-replace-intervals",
+    "href": "agendas/R_Workshop.html#clear-and-replace-intervals",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Clear and replace intervals",
     "text": "Clear and replace intervals\n\nclearOutputIntervals(simulation = sim)\nsim$outputSchema\n\n&lt;OutputSchema&gt;\n\n── Output intervals ──\n\n# add a new global interval\naddOutputInterval(\n  simulation = sim,\n  startTime = 0,\n  endTime = 1440,\n  resolution = 0.5,\n  intervalName = \"globalRes\"\n)\nsim$outputSchema\n\n&lt;OutputSchema&gt;\n\n── Output intervals ──\n\n&lt;Interval&gt;\n  • Name: globalRes\n  • Start time: 0.00e+00 [min]\n  • End time: 1440.00 [min]\n  • Resolution: 0.50 [pts/min]"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#inspect-solver-settings",
-    "href": "agendas/PAGE_2026.html#inspect-solver-settings",
+    "objectID": "agendas/R_Workshop.html#inspect-solver-settings",
+    "href": "agendas/R_Workshop.html#inspect-solver-settings",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Inspect solver settings",
     "text": "Inspect solver settings\nNumerical solver tolerances + step-size limits live in sim$solver. Tighter tolerances → more accurate but slower; loosen only if runtime is prohibitive and accuracy loss is acceptable.\n\nsim$solver\n\n&lt;SolverSettings&gt;\n  • useJacobian: TRUE\n  • h0: 1e-10\n  • hMin: 0\n  • hMax: 60\n  • mxStep: 100000\n  • relTol: 1e-05\n  • absTol: 1e-10"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#change-solver-settings",
-    "href": "agendas/PAGE_2026.html#change-solver-settings",
+    "objectID": "agendas/R_Workshop.html#change-solver-settings",
+    "href": "agendas/R_Workshop.html#change-solver-settings",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Change solver settings",
     "text": "Change solver settings\nSolver fields are writable directly. Typical knobs: absTol, relTol, h0 (initial step), hMin / hMax (step bounds), mxStep (max internal steps).\n\nsim$solver$absTol &lt;- 1e-10\nsim$solver$relTol &lt;- 1e-9\nsim$solver\n\n&lt;SolverSettings&gt;\n  • useJacobian: TRUE\n  • h0: 1e-10\n  • hMin: 0\n  • hMax: 60\n  • mxStep: 100000\n  • relTol: 1e-09\n  • absTol: 1e-10"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#runsimulations",
-    "href": "agendas/PAGE_2026.html#runsimulations",
+    "objectID": "agendas/R_Workshop.html#runsimulations",
+    "href": "agendas/R_Workshop.html#runsimulations",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "runSimulations",
-    "text": "runSimulations\nRuns one or many simulations and returns a named list of SimulationResults, keyed by each simulation’s ID (sim$id).\n\nres_list &lt;- runSimulations(sim)\nnames(res_list) # the simulation IDs\n\n[1] \"ITNdoEOV4ESM7VrQhWYxHQ\"\n\nres &lt;- res_list[[1]] # or: res_list[[sim$id]]\nres\n\n&lt;SimulationResults&gt;\n  • Number of individuals: 1\nFor paths:\n  • Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)\n  • Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous\n  Blood)\n  • Organism|VenousBlood|Plasma|Aciclovir|Plasma Unbound\n\n\n\n\n\n\n\n\n\nNote\n\n\nAlways a list, even for one simulation. Don’t forget [[1]] (or look up by sim$id) to get the actual SimulationResults object."
+    "text": "runSimulations\nRuns one or many simulations and returns a named list of SimulationResults, keyed by each simulation’s ID (sim$id).\n\nres_list &lt;- runSimulations(sim)\nnames(res_list) # the simulation IDs\n\n[1] \"tqY3G7OsYUCG-wyXR44QPQ\"\n\nres &lt;- res_list[[1]] # or: res_list[[sim$id]]\nres\n\n&lt;SimulationResults&gt;\n  • Number of individuals: 1\nFor paths:\n  • Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)\n  • Organism|PeripheralVenousBlood|Aciclovir|Whole Blood (Peripheral Venous\n  Blood)\n  • Organism|VenousBlood|Plasma|Aciclovir|Plasma Unbound\n\n\n\n\n\n\n\n\n\nNote\n\n\nAlways a list, even for one simulation. Don’t forget [[1]] (or look up by sim$id) to get the actual SimulationResults object."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#running-many-simulations",
-    "href": "agendas/PAGE_2026.html#running-many-simulations",
+    "objectID": "agendas/R_Workshop.html#running-many-simulations",
+    "href": "agendas/R_Workshop.html#running-many-simulations",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Running many simulations",
     "text": "Running many simulations\nPass a list of simulations — same return shape, one entry per input.\n# CAUTION: do NOT use sim$clone() — ospsuite R6 wraps a .NET object;\n# $clone() does not produce an independent simulation. Reload the .pkml instead.\nsim_250 &lt;- loadSimulation(simFilePath)\nsim_500 &lt;- loadSimulation(simFilePath)\n\nsetParameterValuesByPath(\"Applications|...|Dose\", 250, sim_250, units = \"mg\")\nsetParameterValuesByPath(\"Applications|...|Dose\", 500, sim_500, units = \"mg\")\n\nresults &lt;- runSimulations(list(sim_250, sim_500))\nnames(results)               # IDs of sim_250 and sim_500"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#extracting-results",
-    "href": "agendas/PAGE_2026.html#extracting-results",
+    "objectID": "agendas/R_Workshop.html#extracting-results",
+    "href": "agendas/R_Workshop.html#extracting-results",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Extracting results",
     "text": "Extracting results\ngetOutputValues() pulls time + numeric values out of a SimulationResults object as a data frame.\n\noutputPath &lt;- \"Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)\"\n\nout &lt;- getOutputValues(res, quantitiesOrPaths = outputPath)\n\nhead(out$data) # → time + one column per output path"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#simulationresultstodataframe",
-    "href": "agendas/PAGE_2026.html#simulationresultstodataframe",
+    "objectID": "agendas/R_Workshop.html#simulationresultstodataframe",
+    "href": "agendas/R_Workshop.html#simulationresultstodataframe",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "simulationResultsToDataFrame()",
     "text": "simulationResultsToDataFrame()\nConvenience flattener: simulation values + metadata in a single data.frame.\n\ndf &lt;- simulationResultsToDataFrame(res)\nhead(df)\n\n\n  \n\n\n\n\n\nUse this when you want one tidy data frame instead of out$data + out$metaData separately."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#control-execution-simulationrunoptions",
-    "href": "agendas/PAGE_2026.html#control-execution-simulationrunoptions",
+    "objectID": "agendas/R_Workshop.html#control-execution-simulationrunoptions",
+    "href": "agendas/R_Workshop.html#control-execution-simulationrunoptions",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Control execution — SimulationRunOptions",
     "text": "Control execution — SimulationRunOptions\nrunSimulations() accepts a simulationRunOptions argument built with SimulationRunOptions$new(). Tune parallelism, progress bar, and value checks.\nopts &lt;- SimulationRunOptions$new(\n  numberOfCores         = 4,    # parallel across cores\n  showProgress          = TRUE, # progress bar\n  checkForNegativeValues = TRUE\n)\n\nresults &lt;- runSimulations(\n  simulations          = list(sim_250, sim_500),\n  simulationRunOptions = opts\n)\n\n\n\n\n\n\nTip\n\n\nParallel scaling is near-linear up to physical core count. Worth it when running many sims or populations; pure overhead for a single short sim."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#save-load-results-csv",
-    "href": "agendas/PAGE_2026.html#save-load-results-csv",
+    "objectID": "agendas/R_Workshop.html#save-load-results-csv",
+    "href": "agendas/R_Workshop.html#save-load-results-csv",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Save + load results — CSV",
     "text": "Save + load results — CSV\nexportResultsToCSV() saves SimulationResults to disk. importResultsFromCSV() reads it back. Useful for slow simulations, sharing with colleagues, or later processing.\n# write\nexportResultsToCSV(res, \"aciclovir_results.csv\")\n\n# read back (needs the original Simulation object)\nres_loaded &lt;- importResultsFromCSV(sim, \"aciclovir_results.csv\")\n\n\n\n\n\n\nNote\n\n\nRe-import requires the same Simulation object that produced the results — the CSV stores values but not the model structure."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#two-building-blocks",
-    "href": "agendas/PAGE_2026.html#two-building-blocks",
+    "objectID": "agendas/R_Workshop.html#two-building-blocks",
+    "href": "agendas/R_Workshop.html#two-building-blocks",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Two building blocks",
     "text": "Two building blocks\n\nDataSet — container for observed data (manual entry, .pkml, Excel)\nDataCombined — links simulated + observed data for plotting\n\n\n\n{ospsuite.plots} reads DataCombined → returns ggplot2 objects."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#dataset-create",
-    "href": "agendas/PAGE_2026.html#dataset-create",
+    "objectID": "agendas/R_Workshop.html#dataset-create",
+    "href": "agendas/R_Workshop.html#dataset-create",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "DataSet — create",
     "text": "DataSet — create\nEach DataSet must be named at construction.\n\ndataSet &lt;- DataSet$new(\"Aciclovir manual\")\ndataSet$setValues(\n  xValues = c(1, 2, 3, 4),\n  yValues = c(0, 0.1, 0.6, 10),\n  yErrorValues = c(0.001, 0.001, 0.1, 1)\n)\ndataSetToTibble(dataSet)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#dataset-load-from-.pkml",
-    "href": "agendas/PAGE_2026.html#dataset-load-from-.pkml",
+    "objectID": "agendas/R_Workshop.html#dataset-load-from-.pkml",
+    "href": "agendas/R_Workshop.html#dataset-load-from-.pkml",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "DataSet — load from .pkml",
     "text": "DataSet — load from .pkml\n\nobs &lt;- loadDataSetFromPKML(\n  system.file(\"extdata\", \"ObsDataAciclovir_1.pkml\", package = \"ospsuite\")\n)\ndataSetToTibble(obs) |&gt; head()\n\n\n  \n\n\n\n\nExcel: loadDataImporterConfiguration() + loadDataSetsFromExcel() — see A6 for the full pattern."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#datacombined-assemble",
-    "href": "agendas/PAGE_2026.html#datacombined-assemble",
+    "objectID": "agendas/R_Workshop.html#datacombined-assemble",
+    "href": "agendas/R_Workshop.html#datacombined-assemble",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "DataCombined — assemble",
     "text": "DataCombined — assemble\n\ndc &lt;- DataCombined$new()\n\ndc$addSimulationResults(\n  simulationResults = res,\n  quantitiesOrPaths = outputPath,\n  names = \"Simulated\",\n  groups = \"Aciclovir\"\n)\n\ndc$addDataSets(\n  obs,\n  names = \"Observed\",\n  groups = \"Aciclovir\"\n)\n\ndc$toDataFrame() |&gt; head()"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#five-plot-types-overview",
-    "href": "agendas/PAGE_2026.html#five-plot-types-overview",
+    "objectID": "agendas/R_Workshop.html#five-plot-types-overview",
+    "href": "agendas/R_Workshop.html#five-plot-types-overview",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Five plot types — overview",
     "text": "Five plot types — overview\n{ospsuite.plots} provides:\n\n\n\nFunction\nPurpose\n\n\n\n\nplotTimeProfile()\ntime profiles (sim + obs)\n\n\nplotPredictedVsObserved()\ngoodness of fit\n\n\nplotResidualsVsCovariate()\nresiduals vs time or predicted\n\n\nplotResidualsAsHistogram()\nresiduals distribution\n\n\nplotQuantileQuantilePlot()\nresiduals normality (Q-Q)\n\n\n\nAll return ggplot2 objects — customize with +."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#time-profile",
-    "href": "agendas/PAGE_2026.html#time-profile",
+    "objectID": "agendas/R_Workshop.html#time-profile",
+    "href": "agendas/R_Workshop.html#time-profile",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Time profile",
     "text": "Time profile\n\nplotTimeProfile(dc)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#time-profile-log-y",
-    "href": "agendas/PAGE_2026.html#time-profile-log-y",
+    "objectID": "agendas/R_Workshop.html#time-profile-log-y",
+    "href": "agendas/R_Workshop.html#time-profile-log-y",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Time profile — log y",
     "text": "Time profile — log y\nPlasma profiles read better on log scale.\n\nplotTimeProfile(dc, yScale = \"log\")"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#predicted-vs-observed",
-    "href": "agendas/PAGE_2026.html#predicted-vs-observed",
+    "objectID": "agendas/R_Workshop.html#predicted-vs-observed",
+    "href": "agendas/R_Workshop.html#predicted-vs-observed",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Predicted vs observed",
     "text": "Predicted vs observed\n\nplotPredictedVsObserved(dc)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#residuals-vs-time",
-    "href": "agendas/PAGE_2026.html#residuals-vs-time",
+    "objectID": "agendas/R_Workshop.html#residuals-vs-time",
+    "href": "agendas/R_Workshop.html#residuals-vs-time",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Residuals vs time",
     "text": "Residuals vs time\n\nplotResidualsVsCovariate(dc, xAxis = \"time\")"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#residuals-vs-predicted",
-    "href": "agendas/PAGE_2026.html#residuals-vs-predicted",
+    "objectID": "agendas/R_Workshop.html#residuals-vs-predicted",
+    "href": "agendas/R_Workshop.html#residuals-vs-predicted",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Residuals vs predicted",
     "text": "Residuals vs predicted\n\nplotResidualsVsCovariate(dc, xAxis = \"predicted\")"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#residuals-histogram",
-    "href": "agendas/PAGE_2026.html#residuals-histogram",
+    "objectID": "agendas/R_Workshop.html#residuals-histogram",
+    "href": "agendas/R_Workshop.html#residuals-histogram",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Residuals — histogram",
     "text": "Residuals — histogram\n\nplotResidualsAsHistogram(dc)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#residuals-q-q",
-    "href": "agendas/PAGE_2026.html#residuals-q-q",
+    "objectID": "agendas/R_Workshop.html#residuals-q-q",
+    "href": "agendas/R_Workshop.html#residuals-q-q",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Residuals — Q-Q",
     "text": "Residuals — Q-Q\n\nplotQuantileQuantilePlot(dc)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#customize-ggplot2-layers",
-    "href": "agendas/PAGE_2026.html#customize-ggplot2-layers",
+    "objectID": "agendas/R_Workshop.html#customize-ggplot2-layers",
+    "href": "agendas/R_Workshop.html#customize-ggplot2-layers",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Customize — ggplot2 layers",
     "text": "Customize — ggplot2 layers\nAll plots are ggplot2 objects. Add layers with +.\n\nlibrary(ggplot2)\nplotTimeProfile(dc) +\n  labs(\n    title = \"Aciclovir — single dose\",\n    subtitle = \"Sim vs obs (Vergin 1995)\",\n    caption = \"OSPS R training\"\n  ) +\n  theme_minimal()"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#multi-panel-patchwork",
-    "href": "agendas/PAGE_2026.html#multi-panel-patchwork",
+    "objectID": "agendas/R_Workshop.html#multi-panel-patchwork",
+    "href": "agendas/R_Workshop.html#multi-panel-patchwork",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Multi-panel — {patchwork}",
     "text": "Multi-panel — {patchwork}\n| side-by-side · / stacked.\n\nlibrary(patchwork)\ntp &lt;- plotTimeProfile(dc)\nrt &lt;- plotResidualsVsCovariate(dc, xAxis = \"time\")\nrp &lt;- plotResidualsVsCovariate(dc, xAxis = \"predicted\")\n\n(tp | rp) / rt + plot_annotation(title = \"Aciclovir diagnostics\")"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#save-a-plot-exportplot",
-    "href": "agendas/PAGE_2026.html#save-a-plot-exportplot",
+    "objectID": "agendas/R_Workshop.html#save-a-plot-exportplot",
+    "href": "agendas/R_Workshop.html#save-a-plot-exportplot",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Save a plot — exportPlot()",
     "text": "Save a plot — exportPlot()\np &lt;- plotTimeProfile(dc)\n\nospsuite.plots::exportPlot(\n  plotObject = p,\n  filePath   = \"aciclovir_timeprofile.png\",\n  width      = 20,   # cm\n  height     = NULL, # auto from aspect ratio\n  dpi        = 300\n)\n\n\n\n\n\n\nNote\n\n\nReturns plain ggplot2 — also works with ggplot2::ggsave(), but exportPlot() handles OSP house style + sizing in cm."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#hands-on-2-knock-out-renal-clearance-30-min",
-    "href": "agendas/PAGE_2026.html#hands-on-2-knock-out-renal-clearance-30-min",
+    "objectID": "agendas/R_Workshop.html#hands-on-2-knock-out-renal-clearance-30-min",
+    "href": "agendas/R_Workshop.html#hands-on-2-knock-out-renal-clearance-30-min",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🖐️ Hands-on 2 — knock out renal clearance (30 min)",
-    "text": "🖐️ Hands-on 2 — knock out renal clearance (30 min)\nCompare default Aciclovir vs. a “no GFR” variant. Open exercises/PAGE_2026/block2.R.\n\nLoad Aciclovir twice — sim (default) + sim_noGFR\nIn sim_noGFR, set GFR fraction to 0 at Neighborhoods|Kidney_pls_Kidney_ur|Aciclovir|Glomerular Filtration-GFR-Aciclovir|GFR fraction\nrunSimulations(list(sim, sim_noGFR)) → two SimulationResults\nBuild a DataCombined with both sims + observed data from ObsDataAciclovir_1.pkml\nplotTimeProfile(dc, yScale = \"log\") — compare profiles\nBonus: plotResidualsVsCovariate(dc, xAxis = \"time\")\n\n\n⏰ 30 min · Solutions in exercises/PAGE_2026/solutions/block2.R\n\n\nTalking point: removing renal clearance ≈ doubling AUC for Aciclovir (drug is ~80% renally cleared). Mechanistic demo of clearance-pathway knock-out — bridge to Block 5 SA story."
+    "text": "🖐️ Hands-on 2 — knock out renal clearance (30 min)\nCompare default Aciclovir vs. a “no GFR” variant. Open exercises/block2.R.\n\nLoad Aciclovir twice — sim (default) + sim_noGFR\nIn sim_noGFR, set GFR fraction to 0 at Neighborhoods|Kidney_pls_Kidney_ur|Aciclovir|Glomerular Filtration-GFR-Aciclovir|GFR fraction\nrunSimulations(list(sim, sim_noGFR)) → two SimulationResults\nBuild a DataCombined with both sims + observed data from ObsDataAciclovir_1.pkml\nplotTimeProfile(dc, yScale = \"log\") — compare profiles\nBonus: plotResidualsVsCovariate(dc, xAxis = \"time\")\n\n\n⏰ 30 min · Solutions in exercises/solutions/block2.R\n\n\nTalking point: removing renal clearance ≈ doubling AUC for Aciclovir (drug is ~80% renally cleared). Mechanistic demo of clearance-pathway knock-out — bridge to Block 5 SA story."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#lunch-60-min",
-    "href": "agendas/PAGE_2026.html#lunch-60-min",
+    "objectID": "agendas/R_Workshop.html#lunch-60-min",
+    "href": "agendas/R_Workshop.html#lunch-60-min",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🍽️ Lunch — 60 min",
     "text": "🍽️ Lunch — 60 min\n\nSee you at 13:30 for PK params + sensitivity."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#goal-of-block-3",
-    "href": "agendas/PAGE_2026.html#goal-of-block-3",
+    "objectID": "agendas/R_Workshop.html#goal-of-block-3",
+    "href": "agendas/R_Workshop.html#goal-of-block-3",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Goal of Block 3",
     "text": "Goal of Block 3\n\nCompute PK parameters · run a sensitivity analysis · run population simulations."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#calculating-pk-parameters",
-    "href": "agendas/PAGE_2026.html#calculating-pk-parameters",
+    "objectID": "agendas/R_Workshop.html#calculating-pk-parameters",
+    "href": "agendas/R_Workshop.html#calculating-pk-parameters",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Calculating PK parameters",
     "text": "Calculating PK parameters\n\npk &lt;- calculatePKAnalyses(res)\n\npkAnalysesAsDataFrame(pk) |&gt;\n  dplyr::select(QuantityPath, Parameter, Value, Unit) |&gt;\n  head(8)\n\n\n  \n\n\n# AUC_inf, C_max, t_max, t_half, ...\n\n\nCustom PK params: addUserDefinedPKParameter()."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#local-sensitivity-analysis",
-    "href": "agendas/PAGE_2026.html#local-sensitivity-analysis",
+    "objectID": "agendas/R_Workshop.html#local-sensitivity-analysis",
+    "href": "agendas/R_Workshop.html#local-sensitivity-analysis",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Local sensitivity analysis",
     "text": "Local sensitivity analysis\nBuild a SensitivityAnalysis object → vary the listed parameters → run.\n\ngfrPath &lt;- \"Neighborhoods|Kidney_pls_Kidney_ur|Aciclovir|Glomerular Filtration-GFR-Aciclovir|GFR fraction\"\n\nsa &lt;- SensitivityAnalysis$new(\n  simulation = sim,\n  parameterPaths = c(\"Aciclovir|Lipophilicity\", gfrPath)\n)\nsa$variationRange &lt;- 0.1 # ±10 %\n\nsaResult &lt;- runSensitivityAnalysis(sa)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#top-influencers-per-pk-parameter",
-    "href": "agendas/PAGE_2026.html#top-influencers-per-pk-parameter",
+    "objectID": "agendas/R_Workshop.html#top-influencers-per-pk-parameter",
+    "href": "agendas/R_Workshop.html#top-influencers-per-pk-parameter",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Top influencers — per PK parameter",
     "text": "Top influencers — per PK parameter\n\nplasmaPath &lt;- \"Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral Venous Blood)\"\n\nsaResult$allPKParameterSensitivitiesFor(\n  pkParameterName = \"AUC_inf\",\n  outputPath = plasmaPath,\n  totalSensitivityThreshold = 1 # show all (default 0.9 hides minor)\n)\n\n[[1]]\n&lt;PKParameterSensitivity&gt;\n  • Parameter name: Aciclovir-Kidney_pls_Kidney_ur-Aciclovir-Glomerular\n  Filtration-GFR-Aciclovir-GFR fraction\n  • PK-Parameter: AUC_inf\n  • Output path: Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral\n  Venous Blood)\n  • Value: -0.143010911706935\n\n[[2]]\n&lt;PKParameterSensitivity&gt;\n  • Parameter name: Aciclovir-Lipophilicity\n  • PK-Parameter: AUC_inf\n  • Output path: Organism|PeripheralVenousBlood|Aciclovir|Plasma (Peripheral\n  Venous Blood)\n  • Value: 0.00462587563792954\n\n\n\nSensitivity = \\(\\dfrac{\\Delta Y / Y}{\\Delta X / X}\\) — value 1 means proportional, -1 means inverse.\n\n\nBriefly contrast with the {esqlabsR} multi-range SA we’ll see in Block 5 — same engine, richer interface."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#hands-on-3-local-sa-15-min",
-    "href": "agendas/PAGE_2026.html#hands-on-3-local-sa-15-min",
+    "objectID": "agendas/R_Workshop.html#hands-on-3-local-sa-15-min",
+    "href": "agendas/R_Workshop.html#hands-on-3-local-sa-15-min",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🖐️ Hands-on 3 — local SA (15 min)",
     "text": "🖐️ Hands-on 3 — local SA (15 min)\nOpen exercises/block3.R. Tasks:\n\nRun a local SA on Aciclovir for Lipophilicity and GFR_filtration_fraction\nIdentify the top driver of AUC_inf\nRepeat with variationRange = 0.5 — does the ranking change?\n\n\n⏰ 15 min"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#demo-only-virtual-individuals",
-    "href": "agendas/PAGE_2026.html#demo-only-virtual-individuals",
+    "objectID": "agendas/R_Workshop.html#demo-only-virtual-individuals",
+    "href": "agendas/R_Workshop.html#demo-only-virtual-individuals",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Demo only — virtual individuals",
     "text": "Demo only — virtual individuals\nind_chars &lt;- createIndividualCharacteristics(\n  species = Species$Human, population = HumanPopulation$European_ICRP_2002,\n  age = 35, weight = 75, height = 175, gender = Gender$Male\n)\nind_params &lt;- createIndividual(individualCharacteristics = ind_chars)\nsetParameterValuesByPath(ind_params$distributedParameters$paths,\n                         ind_params$distributedParameters$values, sim)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#demo-only-populations",
-    "href": "agendas/PAGE_2026.html#demo-only-populations",
+    "objectID": "agendas/R_Workshop.html#demo-only-populations",
+    "href": "agendas/R_Workshop.html#demo-only-populations",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Demo only — populations",
     "text": "Demo only — populations\npop_chars &lt;- createPopulationCharacteristics(\n  species = Species$Human, population = HumanPopulation$European_ICRP_2002,\n  numberOfIndividuals = 50, weightMin = 60, weightMax = 90\n)\npop &lt;- createPopulation(populationCharacteristics = pop_chars)$population\n\nresults_pop &lt;- runSimulations(sim, population = pop)[[1]]\n\nFull hands-on in modules A12 + A13 of the repo."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#goal-of-block-4",
-    "href": "agendas/PAGE_2026.html#goal-of-block-4",
+    "objectID": "agendas/R_Workshop.html#goal-of-block-4",
+    "href": "agendas/R_Workshop.html#goal-of-block-4",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Goal of Block 4",
     "text": "Goal of Block 4\n\nMove from “scripts in a folder” to a regulatory-grade, Snapshot-driven project."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#switch-compound-midazolam",
-    "href": "agendas/PAGE_2026.html#switch-compound-midazolam",
+    "objectID": "agendas/R_Workshop.html#switch-compound-midazolam",
+    "href": "agendas/R_Workshop.html#switch-compound-midazolam",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Switch compound — Midazolam",
     "text": "Switch compound — Midazolam\n\nCYP3A4-mediated metabolism\nClassic DDI victim drug (with ketoconazole / itraconazole)\nPublic PK data for IV + PO routes\nReal-world target for an M&S submission package\n\n\n\nUse case for the rest of the day: assemble a reproducible Midazolam M&S project that survives a quality audit."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#why-esqlabsr",
-    "href": "agendas/PAGE_2026.html#why-esqlabsr",
+    "objectID": "agendas/R_Workshop.html#why-esqlabsr",
+    "href": "agendas/R_Workshop.html#why-esqlabsr",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Why {esqlabsR}",
     "text": "Why {esqlabsR}\n\n\n\nNeed\n{ospsuite} only\n{esqlabsR}\n\n\n\n\nRun 1 sim\n✅\n✅\n\n\n50 scenarios with traceable parameter overrides\nhard\n✅\n\n\nGUI-supported, non-coder-friendly\n❌\n✅\n\n\nOne-line “rebuild everything”\n❌\n✅"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#esqlabsrs-workflow",
-    "href": "agendas/PAGE_2026.html#esqlabsrs-workflow",
+    "objectID": "agendas/R_Workshop.html#esqlabsrs-workflow",
+    "href": "agendas/R_Workshop.html#esqlabsrs-workflow",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "{esqlabsR}’s Workflow",
     "text": "{esqlabsR}’s Workflow\n\n\n\nProject Initialization (once per project)\nScenario Design\nSpecify Figures\nSpecify Parameter Identification (optional)\n\n\n\nPerform Sensitivity Analysis (optional)\nExecute tasks\nGenerate Markdown Report"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#project-structure",
-    "href": "agendas/PAGE_2026.html#project-structure",
+    "objectID": "agendas/R_Workshop.html#project-structure",
+    "href": "agendas/R_Workshop.html#project-structure",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Project structure",
-    "text": "Project structure\nMidazolam-PAGE/\n├── ProjectConfiguration.xlsx       ← master file\n├── Models/\n│   └── Simulations/\n│       ├── Midazolam_PO_7.5mg.pkml\n│       ├── Midazolam_PO_15mg.pkml\n│       └── Midazolam_IV_2mg.pkml\n├── Configurations/\n│   ├── Scenarios.xlsx\n│   ├── ModelParameters.xlsx\n│   ├── Applications.xlsx\n│   ├── Individuals.xlsx\n│   ├── Populations.xlsx\n│   ├── PopulationsCSV/\n│   ├── ParameterIdentification.xlsx\n│   └── Plots.xlsx\n├── Data/\n│   └── Midazolam_obs.xlsx\n├── Results/\n├── Reports/\n│   └── Midazolam-report.qmd\n└── exercises/\n    └── PAGE_2026/\n        └── block*.R"
+    "text": "Project structure\nMidazolam-Workshop/\n├── ProjectConfiguration.xlsx       ← master file\n├── Models/\n│   └── Simulations/\n│       ├── Midazolam_PO_7.5mg.pkml\n│       ├── Midazolam_PO_15mg.pkml\n│       └── Midazolam_IV_2mg.pkml\n├── Configurations/\n│   ├── Scenarios.xlsx\n│   ├── ModelParameters.xlsx\n│   ├── Applications.xlsx\n│   ├── Individuals.xlsx\n│   ├── Populations.xlsx\n│   ├── PopulationsCSV/\n│   ├── ParameterIdentification.xlsx\n│   └── Plots.xlsx\n├── Data/\n│   └── Midazolam_obs.xlsx\n├── Results/\n├── Reports/\n│   └── Midazolam-report.qmd\n└── exercises/\n    └── block*.R"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#initializing-a-project",
-    "href": "agendas/PAGE_2026.html#initializing-a-project",
+    "objectID": "agendas/R_Workshop.html#initializing-a-project",
+    "href": "agendas/R_Workshop.html#initializing-a-project",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Initializing a project",
-    "text": "Initializing a project\nlibrary(esqlabsR)\n\ninitProject(path = \"~/Workshop/Midazolam-PAGE\")\n# → creates the skeleton above\n\nOr use “New Project” in ESQapp — same skeleton, GUI-driven.\n\n\nFor today: skeleton is already on the VM at ~/Desktop/projects/Midazolam-PAGE. Open it in RStudio."
+    "text": "Initializing a project\nlibrary(esqlabsR)\n\ninitProject(path = \"~/Workshop/Midazolam-Workshop\")\n# → creates the skeleton above\n\nOr use “New Project” in ESQapp — same skeleton, GUI-driven."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#scenarios.xlsx-the-heart-of-the-workflow",
-    "href": "agendas/PAGE_2026.html#scenarios.xlsx-the-heart-of-the-workflow",
+    "objectID": "agendas/R_Workshop.html#scenarios.xlsx-the-heart-of-the-workflow",
+    "href": "agendas/R_Workshop.html#scenarios.xlsx-the-heart-of-the-workflow",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Scenarios.xlsx — the heart of the workflow",
     "text": "Scenarios.xlsx — the heart of the workflow\n\nOne row per scenario\nColumns: Scenario, ModelFile, ApplicationProtocol, IndividualId, PopulationFile, OutputPathsId, SimulationTime, …\nModelParameters references modify any parameter\nHierarchy of overrides — explicit, traceable\n\n\n\nESQapp gives you a GUI to edit these — same files, friendlier UI."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#demo-open-the-project-in-esqapp",
-    "href": "agendas/PAGE_2026.html#demo-open-the-project-in-esqapp",
+    "objectID": "agendas/R_Workshop.html#demo-open-the-project-in-esqapp",
+    "href": "agendas/R_Workshop.html#demo-open-the-project-in-esqapp",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🖥️ Demo — open the project in ESQapp",
-    "text": "🖥️ Demo — open the project in ESQapp\n\nSwitch to ESQapp. Walk through the Midazolam-PAGE project definitions live.\n\n\nOpen Midazolam-PAGE/ProjectConfiguration.json in ESQapp\nTour the Scenarios sheet — model file, protocol, individual, outputs\nOpen the linked Applications, Individuals, ModelParameters sheets\nShow the Plots sheet — DataCombined + plotConfiguration + plotGrids\nEdit one cell, save, observe the JSON snapshot diff\n\n\nINSTRUCTOR: switch to ESQapp window (second monitor). Demo 5–8 min — focus on how Excel rows + JSON snapshot mirror each other. Then return to deck for “Running scenarios”."
+    "text": "🖥️ Demo — open the project in ESQapp\n\nSwitch to ESQapp. Walk through the Midazolam-Workshop project definitions live.\n\n\nOpen Midazolam-Workshop/ProjectConfiguration.json in ESQapp\nTour the Scenarios sheet — model file, protocol, individual, outputs\nOpen the linked Applications, Individuals, ModelParameters sheets\nShow the Plots sheet — DataCombined + plotConfiguration + plotGrids\nEdit one cell, save, observe the JSON snapshot diff\n\n\nINSTRUCTOR: switch to ESQapp window (second monitor). Demo 5–8 min — focus on how Excel rows + JSON snapshot mirror each other. Then return to deck for “Running scenarios”."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#running-scenarios",
-    "href": "agendas/PAGE_2026.html#running-scenarios",
+    "objectID": "agendas/R_Workshop.html#running-scenarios",
+    "href": "agendas/R_Workshop.html#running-scenarios",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Running scenarios",
     "text": "Running scenarios\nproject &lt;- createProjectConfiguration(\"ProjectConfiguration.xlsx\")\n\n# 1. Read the scenario config rows from Scenarios.xlsx\nscenarioConfig &lt;- readScenarioConfigurationFromExcel(\n  scenarioNames        = c(\"Midazolam_PO_7.5mg\", \"Midazolam_IV_2mg\"),\n  projectConfiguration = project\n)\n\n# 2. Materialize Scenario objects (loads .pkml, applies parameters + protocol)\nscenarios &lt;- createScenarios(scenarioConfig)\n\n# 3. Run them\nresults &lt;- runScenarios(scenarios = scenarios)\n\n\n\n\n\n\nNote\n\n\nTwo-step: readScenarioConfigurationFromExcel parses Excel rows, createScenarios builds the in-memory Scenario objects from them."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#scenario-structure",
-    "href": "agendas/PAGE_2026.html#scenario-structure",
+    "objectID": "agendas/R_Workshop.html#scenario-structure",
+    "href": "agendas/R_Workshop.html#scenario-structure",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Scenario Structure",
     "text": "Scenario Structure\n\n\n\n\n\nflowchart LR\n  S([\"Scenario\"])\n  S --&gt; NAME[\"scenarioName\"]\n  S --&gt; MODEL[\"modelFile&lt;br/&gt;(.pkml)\"]\n  S --&gt; APP[\"applicationProtocol&lt;br/&gt;&lt;i&gt;Applications.xlsx&lt;/i&gt;\"]\n  S --&gt; PHYS[\"Physiology\"]\n  PHYS --&gt; IND[\"individualId&lt;br/&gt;&lt;i&gt;Individuals.xlsx&lt;/i&gt;\"]\n  PHYS --&gt; POP[\"populationId&lt;br/&gt;&lt;i&gt;Populations.xlsx&lt;/i&gt;\"]\n  S --&gt; PARAM[\"paramSheets&lt;br/&gt;&lt;i&gt;ModelParameters.xlsx&lt;/i&gt;\"]\n  S --&gt; OUT[\"outputPaths\"]\n  S --&gt; TIME[\"Simulation time&lt;br/&gt;(start, end, resolution)\"]\n  S --&gt; SS[\"Steady-state&lt;br/&gt;(optional)\"]\n\n\n\n\n\n\n\nEach property maps to a row or sheet in the configuration Excel files."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#hands-on-4a-your-first-scenario-30-min",
-    "href": "agendas/PAGE_2026.html#hands-on-4a-your-first-scenario-30-min",
+    "objectID": "agendas/R_Workshop.html#hands-on-4a-your-first-scenario-30-min",
+    "href": "agendas/R_Workshop.html#hands-on-4a-your-first-scenario-30-min",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🖐️ Hands-on 4a — your first scenario (30 min)",
-    "text": "🖐️ Hands-on 4a — your first scenario (30 min)\nOpen the Midazolam-PAGE project in ESQapp. Build a new scenario from scratch:\n\nCreate a new scenario.\nModel file: select Midazolam_PO_7.5mg.pkml.\nAdministration protocol: create a new protocol — set the dose to 15 mg (everything else as in the 7.5 mg protocol).\nIndividual: create a new individual — e.g. Female, Black American (pick the matching population).\nSimulation time: two intervals — 0–2 h at 60 pts/h, then 2–24 h at 10 pts/h.\nOutputs: add Concentration of Midazolam in fat → intracellular: Organism|Fat|Intracellular|Midazolam|Concentration in container.\nSave; reload in R via readScenarioConfigurationFromExcel + createScenarios; run via runScenarios.\nAccess simulated results via $outputValues.\n\n\n⏰ 30 min · Wilbert circulates"
+    "text": "🖐️ Hands-on 4a — your first scenario (30 min)\nOpen the Midazolam-Workshop project in ESQapp. Build a new scenario from scratch:\n\nCreate a new scenario.\nModel file: select Midazolam_PO_7.5mg.pkml.\nAdministration protocol: create a new protocol — set the dose to 15 mg (everything else as in the 7.5 mg protocol).\nIndividual: create a new individual — e.g. Female, Black American (pick the matching population).\nSimulation time: two intervals — 0–2 h at 60 pts/h, then 2–24 h at 10 pts/h.\nOutputs: add Concentration of Midazolam in fat → intracellular: Organism|Fat|Intracellular|Midazolam|Concentration in container.\nSave; reload in R via readScenarioConfigurationFromExcel + createScenarios; run via runScenarios.\nAccess simulated results via $outputValues.\n\n\n⏰ 30 min · Wilbert circulates"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#parametrization-hierarchy",
-    "href": "agendas/PAGE_2026.html#parametrization-hierarchy",
+    "objectID": "agendas/R_Workshop.html#parametrization-hierarchy",
+    "href": "agendas/R_Workshop.html#parametrization-hierarchy",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Parametrization Hierarchy",
     "text": "Parametrization Hierarchy\nParameters are applied top-to-bottom — later layers override earlier ones for the same path.\n\n\n\n\n\nflowchart TB\n  P1[\"&lt;div style='text-align:center'&gt;&lt;b&gt;1. .pkml defaults&lt;/b&gt;&lt;br/&gt;&lt;i&gt;simulation file&lt;/i&gt;&lt;/div&gt;\"]\n  P2[\"&lt;div style='text-align:center'&gt;&lt;b&gt;2. Individual&lt;/b&gt;&lt;br/&gt;&lt;i&gt;Individuals.xlsx&lt;/i&gt;&lt;/div&gt;\"]\n  P2a[\"&lt;div style='text-align:center'&gt;&lt;b&gt;2.1 Physiology&lt;/b&gt;&lt;br/&gt;&lt;i&gt;IndividualBiometrics sheet&lt;/i&gt;&lt;/div&gt;\"]\n  P2b[\"&lt;div style='text-align:center'&gt;&lt;b&gt;2.2 Parameters&lt;/b&gt;&lt;br/&gt;&lt;i&gt;individual-specific sheet&lt;/i&gt;&lt;/div&gt;\"]\n  P3[\"&lt;div style='text-align:center'&gt;&lt;b&gt;3. Population&lt;/b&gt;&lt;br/&gt;&lt;i&gt;Populations.xlsx / .csv&lt;/i&gt;&lt;/div&gt;\"]\n  P4[\"&lt;div style='text-align:center'&gt;&lt;b&gt;4. Model parameter sheets&lt;/b&gt;&lt;br/&gt;&lt;i&gt;ModelParameters.xlsx&lt;/i&gt;&lt;br/&gt;all selected sheets merged;&lt;br/&gt;later sheets overwrite earlier ones&lt;/div&gt;\"]\n  P5[\"&lt;div style='text-align:center'&gt;&lt;b&gt;5. Application protocol&lt;/b&gt;&lt;br/&gt;&lt;i&gt;Applications.xlsx&lt;/i&gt;&lt;/div&gt;\"]\n  P6[\"&lt;div style='text-align:center'&gt;&lt;b&gt;6. Custom parameters&lt;/b&gt;&lt;br/&gt;&lt;i&gt;customParams&lt;/i&gt; arg of &lt;code&gt;createScenarios()&lt;/code&gt;&lt;/div&gt;\"]\n  P1 --&gt; P2\n  P2 --&gt; P2a\n  P2 --&gt; P2b\n  P2a --&gt; P3\n  P2b --&gt; P3\n  P3 --&gt; P4 --&gt; P5 --&gt; P6\n  classDef base fill:#eef,stroke:#557,text-align:center;\n  classDef top  fill:#fde,stroke:#955,text-align:center;\n  class P1 base\n  class P6 top\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nThe final set of parameters applied to the .pkml is available on each scenario via scenarios$&lt;scenarioName&gt;$finalCustomParams."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#defining-figures-plots-view",
-    "href": "agendas/PAGE_2026.html#defining-figures-plots-view",
+    "objectID": "agendas/R_Workshop.html#defining-figures-plots-view",
+    "href": "agendas/R_Workshop.html#defining-figures-plots-view",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Defining figures — Plots view",
     "text": "Defining figures — Plots view\nThe Plots view in ESQapp has 3 sub-sheets:\n\n\n\n\n\n\n\nSub-sheet\nPurpose\n\n\n\n\nDataCombined\nLink simulated results + observed data, define grouping\n\n\nplotConfiguration\nPlot type, axes, labels, units, scales\n\n\nplotGrids\nCombine plots into multi-panel figures\n\n\n\n\nplotType values: individual, observedVsSimulated, residualsVsTime, residualsVsSimulated."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#generating-the-plots-in-r",
-    "href": "agendas/PAGE_2026.html#generating-the-plots-in-r",
+    "objectID": "agendas/R_Workshop.html#generating-the-plots-in-r",
+    "href": "agendas/R_Workshop.html#generating-the-plots-in-r",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Generating the plots in R",
     "text": "Generating the plots in R\nThree-step: load observed data → (optionally) build DataCombined → render plots.\n# After saving in ESQapp:\nrestoreProjectConfiguration(file.path(projectDir, \"ProjectConfiguration.json\"))\n\n# 1. Load observed data from Data/*_TimeValuesData.xlsx\n#    using the esqlabs ImporterConfiguration. Pick the sheets you need.\nobservedData &lt;- loadObservedData(\n  projectConfiguration = project,\n  sheets               = c(\"Ahonen 1995\", \"Allonen 1981\")\n)\n\n# 2. Optional: explicit DataCombined construction\nmyDataCombined &lt;- createDataCombinedFromExcel(\n  projectConfiguration = project,\n  dataCombinedNames    = \"Midazolam_PO\",\n  simulatedScenarios   = results,\n  observedData         = observedData\n)\n\n# 3. Render plot grids\nplots &lt;- createPlotsFromExcel(\n  plotGridNames        = \"Midazolam_PO_vs_obs\",\n  simulatedScenarios   = results,\n  observedData         = observedData,\n  projectConfiguration = project\n)\n\nplots$Midazolam_PO_vs_obs\n\n\n\n\n\n\nNote\n\n\nloadObservedData() reads the Excel files in Data/ using Data/esqlabs_dataImporter_configuration.xml. One sheet → one named DataSet. Sheet names must match the dataSet cells in DataCombined."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#figures-structure",
-    "href": "agendas/PAGE_2026.html#figures-structure",
+    "objectID": "agendas/R_Workshop.html#figures-structure",
+    "href": "agendas/R_Workshop.html#figures-structure",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Figures Structure",
     "text": "Figures Structure\n\n\n\n\n\nflowchart LR\n  P([\"Plots.xlsx\"])\n  P --&gt; DC[\"DataCombined\"]\n  DC --&gt; DCN[\"DataCombinedName\"]\n  DC --&gt; DT[\"dataType\"]\n  P --&gt; PC[\"plotConfiguration\"]\n  PC --&gt; PID[\"plotID\"]\n  PC --&gt; PT[\"plotType&lt;br/&gt;(individual / population /&lt;br/&gt;observedVsSimulated /&lt;br/&gt;residualsVsSimulated /&lt;br/&gt;residualsVsTime)\"]\n  PC --&gt; AX[\"axes / scales / limits&lt;br/&gt;(optional)\"]\n  P --&gt; PG[\"plotGrids\"]\n  PG --&gt; GN[\"name\"]\n  PG --&gt; GP[\"plotIDs\"]\n  PG --&gt; GT[\"title\"]"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#hands-on-4b-define-a-figure-20-min",
-    "href": "agendas/PAGE_2026.html#hands-on-4b-define-a-figure-20-min",
+    "objectID": "agendas/R_Workshop.html#hands-on-4b-define-a-figure-20-min",
+    "href": "agendas/R_Workshop.html#hands-on-4b-define-a-figure-20-min",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🖐️ Hands-on 4b — define a figure (20 min)",
     "text": "🖐️ Hands-on 4b — define a figure (20 min)\nStay in ESQapp. Tasks:\n\nPlots → DataCombined → create Midazolam_PO_15mg_DC with 3 simulated rows:\n\nscenario = Midazolam_PO_15mg, path = Organism|PeripheralVenousBlood|Midazolam|Plasma (Peripheral Venous Blood), group = PVB, label = Sim PVB\nscenario = Midazolam_PO_15mg, path = Organism|Fat|Intracellular|Midazolam|Concentration in container, group = Fat, label = Sim Fat\n\nAdd observed rows for the PVB group — pick obs dataset from Data/Midazolam_obs.xlsx (e.g. Backman 1994 placebo). Same group = PVB so sim + obs share legend, label = Backman 1994 (or whatever the sheet name is).\nplotConfiguration → 2 rows pointing at Midazolam_PO_15mg_DC:\n\nMidazolam_PO_15mg_profile: plotType = individual, yAxisScale = log, xUnit = h\nMidazolam_PO_15mg_ResVsTime: plotType = residualsVsTime, xUnit = h\n\nplotGrids → Midazolam_PO_15mg, plotIDs = Midazolam_PO_15mg_Time, Midazolam_PO_15mg_Res\nSave. In R: restoreProjectConfiguration(...), loadObservedData(...), createPlotsFromExcel(plotGridNames = \"Midazolam_PO_15mg\", ...)\n\n\n⏰ 20 min"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#break-15-min-1",
-    "href": "agendas/PAGE_2026.html#break-15-min-1",
+    "objectID": "agendas/R_Workshop.html#break-15-min-1",
+    "href": "agendas/R_Workshop.html#break-15-min-1",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "☕ Break — 15 min",
     "text": "☕ Break — 15 min\n\nSee you at 15:15 for Advanced SA + Param ID demo."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#goal-of-block-5",
-    "href": "agendas/PAGE_2026.html#goal-of-block-5",
+    "objectID": "agendas/R_Workshop.html#goal-of-block-5",
+    "href": "agendas/R_Workshop.html#goal-of-block-5",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Goal of Block 5",
     "text": "Goal of Block 5\n\nAdvanced sensitivity analysis · Parameter identification (demo)."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#esqlabsr-sa-what-makes-it-advanced",
-    "href": "agendas/PAGE_2026.html#esqlabsr-sa-what-makes-it-advanced",
+    "objectID": "agendas/R_Workshop.html#esqlabsr-sa-what-makes-it-advanced",
+    "href": "agendas/R_Workshop.html#esqlabsr-sa-what-makes-it-advanced",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "{esqlabsR} SA — what makes it “advanced”",
     "text": "{esqlabsR} SA — what makes it “advanced”\n\nMulti-factor variationRange (e.g. 0.1, 0.5, 1, 2, 10) — reveals non-linear / saturation behaviour\nCustom output functions (any R function of x time / y output) beyond C_max / t_max / AUC_inf\nsaveSensitivityCalculation() / loadSensitivityCalculation() — persist expensive runs\nBuilt-in spider, tornado, time-profile plots\n\n\n\n\n\n\n\n\nvs {ospsuite}::sensitivityAnalysis()\n\n\n{ospsuite} does local SA — single perturbation per parameter, one index per (parameter, PK metric)."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#sa-workflow",
-    "href": "agendas/PAGE_2026.html#sa-workflow",
+    "objectID": "agendas/R_Workshop.html#sa-workflow",
+    "href": "agendas/R_Workshop.html#sa-workflow",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "SA workflow",
     "text": "SA workflow\n\n\n\n\n\nflowchart LR\n  A[\"readScenarioConfigurationFromExcel()\"] --&gt; B[\"createScenarios()\"]\n  B --&gt; C[\"scenarios$X$simulation\"]\n  C --&gt; D[\"sensitivityCalculation()\"]\n  D --&gt; E1[\"sensitivitySpiderPlot()\"]\n  D --&gt; E2[\"sensitivityTornadoPlot()\"]\n  D --&gt; E3[\"sensitivityTimeProfiles()\"]"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#sa-workflow-in-code",
-    "href": "agendas/PAGE_2026.html#sa-workflow-in-code",
+    "objectID": "agendas/R_Workshop.html#sa-workflow-in-code",
+    "href": "agendas/R_Workshop.html#sa-workflow-in-code",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "SA workflow in code",
     "text": "SA workflow in code\nscenarios &lt;- createScenarios(\n  readScenarioConfigurationFromExcel(\n    scenarioNames = \"Midazolam_PO_7.5mg\",\n    projectConfiguration = project\n  )\n)\nsimulation &lt;- scenarios$Midazolam_PO_7.5mg$simulation\n\noutputPaths &lt;- c(\n  Plasma = \"Organism|PeripheralVenousBlood|Midazolam|Plasma (Peripheral Venous Blood)\"\n)\nparameterPaths &lt;- c(\n  Lipophilicity   = \"Midazolam|Lipophilicity\",\n  CYP3A4_kcat     = \"Midazolam-CYP3A4-Optimized|kcat\",\n  GFR_fraction    = \"Neighborhoods|Kidney_pls_Kidney_ur|Midazolam|Glomerular Filtration-Optimized-Midazolam|GFR fraction\"\n)\n\nanalysis &lt;- sensitivityCalculation(\n  simulation     = simulation,\n  outputPaths    = outputPaths,\n  parameterPaths = parameterPaths,\n  variationRange = c(0.1, 0.5, 1, 2, 10),\n  pkParameters   = c(\"C_max\", \"t_max\", \"AUC_inf\")\n)\n\nsensitivitySpiderPlot(analysis)\nsensitivityTornadoPlot(analysis)\nsensitivityTimeProfiles(analysis)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#inspect-persist",
-    "href": "agendas/PAGE_2026.html#inspect-persist",
+    "objectID": "agendas/R_Workshop.html#inspect-persist",
+    "href": "agendas/R_Workshop.html#inspect-persist",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Inspect + persist",
     "text": "Inspect + persist\nhead(analysis$pkData)\n# cols: ParameterPath, ParameterFactor, ParameterValue,\n#       PKParameter, PKParameterValue, PKPercentChange,\n#       SensitivityPKParameter\n\nsaveSensitivityCalculation(analysis, outputDir = \"Results/SA_Midazolam\")\n\n# later session — rebuild scenario, then:\nanalysis &lt;- loadSensitivityCalculation(\n  outputDir  = \"Results/SA_Midazolam\",\n  simulation = simulation\n)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#hands-on-5-midazolam-sa-20-min",
-    "href": "agendas/PAGE_2026.html#hands-on-5-midazolam-sa-20-min",
+    "objectID": "agendas/R_Workshop.html#hands-on-5-midazolam-sa-20-min",
+    "href": "agendas/R_Workshop.html#hands-on-5-midazolam-sa-20-min",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🖐️ Hands-on 5 — Midazolam SA (20 min)",
     "text": "🖐️ Hands-on 5 — Midazolam SA (20 min)\nTasks:\n\nBuild the scenario Midazolam_PO_7.5mg, pull simulation &lt;- scenarios$Midazolam_PO_7.5mg$simulation\nDefine outputPaths (plasma) + parameterPaths (Lipophilicity, CYP3A4_kcat, GFR_fraction)\nRun sensitivityCalculation() with variationRange = c(0.1, 0.5, 1, 2, 10) and pkParameters = c(\"C_max\", \"AUC_inf\")\nRender sensitivitySpiderPlot() + sensitivityTornadoPlot()\nsaveSensitivityCalculation(analysis, outputDir = \"Results/SA_Midazolam\") — Block 6 report reads it back\n\n\n⏰ 20 min"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#demo-only-parameter-identification",
-    "href": "agendas/PAGE_2026.html#demo-only-parameter-identification",
+    "objectID": "agendas/R_Workshop.html#demo-only-parameter-identification",
+    "href": "agendas/R_Workshop.html#demo-only-parameter-identification",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Demo only — Parameter Identification",
     "text": "Demo only — Parameter Identification\nlibrary(ospsuite.parameteridentification)\n\npi_task &lt;- ParameterIdentification$new(\n  simulations = list(sim_250, sim_500),\n  parameters = list(\n    PIParameter$new(parameterPaths = \"Aciclovir|Lipophilicity\",\n                    simulations = list(sim_250, sim_500)),\n    PIParameter$new(parameterPaths = \"Aciclovir|...|GFR_filtration_fraction\",\n                    simulations = list(sim_250, sim_500))\n  ),\n  outputMappings = list(/* sim ↔ obs mappings */),\n  configuration = PIConfigurationLeastSquares$new(algorithm = \"BOBYQA\")\n)\n\nresult &lt;- pi_task$run()\nplot(result)\n\nFull hands-on in C1 of the repo."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#param-id-what-to-know",
-    "href": "agendas/PAGE_2026.html#param-id-what-to-know",
+    "objectID": "agendas/R_Workshop.html#param-id-what-to-know",
+    "href": "agendas/R_Workshop.html#param-id-what-to-know",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Param ID — what to know",
     "text": "Param ID — what to know\n\nAlgorithms: BOBYQA (smooth), HJKB (robust), DEoptim (global)\nObjective functions: least-squares (homoscedastic) or M3 (BLOQ-aware)\nCIs: Hessian (cheap), profile likelihood (rigorous), bootstrap (gold standard)\nIdentifiability is the hard problem — check OFV profiles before you trust your fit"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#goal-of-block-6",
-    "href": "agendas/PAGE_2026.html#goal-of-block-6",
+    "objectID": "agendas/R_Workshop.html#goal-of-block-6",
+    "href": "agendas/R_Workshop.html#goal-of-block-6",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Goal of Block 6",
     "text": "Goal of Block 6\n\nOne-button regulatory report from your project."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#quarto-in-90-seconds",
-    "href": "agendas/PAGE_2026.html#quarto-in-90-seconds",
+    "objectID": "agendas/R_Workshop.html#quarto-in-90-seconds",
+    "href": "agendas/R_Workshop.html#quarto-in-90-seconds",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "Quarto in 90 seconds",
     "text": "Quarto in 90 seconds\n\nMarkdown + R/Python code chunks\nRenders to HTML / PDF / Word / reveal.js / docx\nParameters: params: in YAML → re-render with new inputs\nCaching, citations, cross-refs, equations — all built in"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#a-reproducible-ms-report",
-    "href": "agendas/PAGE_2026.html#a-reproducible-ms-report",
+    "objectID": "agendas/R_Workshop.html#a-reproducible-ms-report",
+    "href": "agendas/R_Workshop.html#a-reproducible-ms-report",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "A reproducible M&S report",
     "text": "A reproducible M&S report\n---\ntitle: \"Midazolam PBPK — Single Dose\"\nparams:\n  dose_mg: 7.5\n  route: \"PO\"\nformat:\n  html: default\n  pdf:\n    documentclass: scrreprt\n---\n# in a chunk — runs scenarios + builds figures + tables\nproject        &lt;- createProjectConfiguration(\"ProjectConfiguration.xlsx\")\nscenarioConfig &lt;- readScenarioConfigurationFromExcel(/* picks scenario from params$dose_mg */)\nscenarios      &lt;- createScenarios(scenarioConfig)\nresults        &lt;- runScenarios(scenarios)"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#what-goes-in-the-report",
-    "href": "agendas/PAGE_2026.html#what-goes-in-the-report",
+    "objectID": "agendas/R_Workshop.html#what-goes-in-the-report",
+    "href": "agendas/R_Workshop.html#what-goes-in-the-report",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "What goes in the report",
     "text": "What goes in the report\n\nBackground + objectives (markdown)\nModel description (auto-tabulated from Models/)\nScenario specs (auto-table from Scenarios.xlsx)\nSimulation results (figure grid via createPlotsFromExcel)\nPK parameters (auto-table via calculatePKAnalyses)\nSensitivity summary (load from Results/SA_*.rds)\nConclusions (markdown)\n\n\n\nRe-render with quarto render -P dose_mg:15 → fresh PDF."
   },
   {
-    "objectID": "agendas/PAGE_2026.html#hands-on-6-re-render-the-report-10-min",
-    "href": "agendas/PAGE_2026.html#hands-on-6-re-render-the-report-10-min",
+    "objectID": "agendas/R_Workshop.html#hands-on-6-re-render-the-report-10-min",
+    "href": "agendas/R_Workshop.html#hands-on-6-re-render-the-report-10-min",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🖐️ Hands-on 6 — re-render the report (10 min)",
     "text": "🖐️ Hands-on 6 — re-render the report (10 min)\nTasks:\n\nOpen Reports/Midazolam-report.qmd\nRender with default params: quarto render → opens HTML\nRe-render with dose_mg = 15: quarto render Reports/Midazolam-report.qmd -P dose_mg:15\nCompare the two PDFs — observe the figure regeneration\n\n\n⏰ 10 min"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#what-you-can-do-now",
-    "href": "agendas/PAGE_2026.html#what-you-can-do-now",
+    "objectID": "agendas/R_Workshop.html#what-you-can-do-now",
+    "href": "agendas/R_Workshop.html#what-you-can-do-now",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "What you can do now",
     "text": "What you can do now\n\nLoad + manipulate any PK-Sim/MoBi model in R\nRun batches of simulations with traceable parameter overrides\nCompute PK + sensitivity, generate publication figures\nStructure a regulatory-grade M&S project\nRe-render a Quarto report end-to-end from raw inputs"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#take-home",
-    "href": "agendas/PAGE_2026.html#take-home",
-    "title": "R Workflows for advanced PB-QSP Modeling",
-    "section": "Take-home",
-    "text": "Take-home\n\n📦 Training materials — https://esqlabs.github.io/PAGE2026-R-WORKSHOP/\n\nAll slides, exercises, solutions\nThe Aciclovir + Midazolam projects\n\n📄 Cheatsheet (in your folder)\n🎓 Certificate of completion (PDF — emailed after the workshop)"
-  },
-  {
-    "objectID": "agendas/PAGE_2026.html#what-we-did-not-cover-and-where-to-find-it",
-    "href": "agendas/PAGE_2026.html#what-we-did-not-cover-and-where-to-find-it",
+    "objectID": "agendas/R_Workshop.html#what-we-did-not-cover-and-where-to-find-it",
+    "href": "agendas/R_Workshop.html#what-we-did-not-cover-and-where-to-find-it",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "What we did NOT cover (and where to find it)",
     "text": "What we did NOT cover (and where to find it)\n\n\n\n\n\n\n\nTopic\nSee\n\n\n\n\nPopulation simulations (full hands-on)\nworkshops/A12.qmd, A13.qmd\n\n\nParameter identification (full hands-on)\nworkshops/C1.qmd"
   },
   {
-    "objectID": "agendas/PAGE_2026.html#final-feedback-show-of-hands",
-    "href": "agendas/PAGE_2026.html#final-feedback-show-of-hands",
+    "objectID": "agendas/R_Workshop.html#final-feedback-show-of-hands",
+    "href": "agendas/R_Workshop.html#final-feedback-show-of-hands",
     "title": "R Workflows for advanced PB-QSP Modeling",
     "section": "🖐️ Final feedback — show of hands",
     "text": "🖐️ Final feedback — show of hands\n\n\nWould you recommend this workshop to a colleague?\n\n👍 Yes, definitely\n🤔 Maybe — with changes\n👎 No\n\n. . .\nOne thing to add / change next year? — scan the QR or email us!\n\n\n\n\n\n\n\nScan to leave us feedback\n\n\n\nINSTRUCTOR: count hands per option, then go around the room for one-word suggestions. Encourage everyone to scan the QR for written feedback. Capture flipchart photos for post-workshop notes."
-  },
-  {
-    "objectID": "agendas/PAGE_2026.html#farewell",
-    "href": "agendas/PAGE_2026.html#farewell",
-    "title": "R Workflows for advanced PB-QSP Modeling",
-    "section": "Farewell",
-    "text": "Farewell\n\n🍻 See you at the PAGE poster sessions!\npavel.balazki@esqlabs.com · wilbert.dewitte@esqlabs.com"
   },
   {
     "objectID": "agendas/index.html",
@@ -1950,7 +1936,14 @@
     "href": "agendas/index.html#all-agendas",
     "title": "🗓️ Agendas",
     "section": "All agendas",
-    "text": "All agendas\n\n\n    \n      \n      \n    \n\n\n\n\n\n\nID\n\n\n\nmodule\n\n\n\nTitle\n\n\n\nModified\n\n\n\n\n\n\n\n\n2\n\n\nPAGE 2026 Agenda + Day-of Deck\n\n\nR Workflows for advanced PB-QSP Modeling\n\n\n2026-05-28\n\n\n\n\n\n\n \n\n\n \n\n\nInject params as LaTeX macros so the TikZ block can use them.\n\n\n2026-05-28\n\n\n\n\n\n\n \n\n\n \n\n\nPAGE 2026 — {ospsuite} + {esqlabsR} Cheatsheet\n\n\n2026-05-28\n\n\n\n\n\n\nNo matching items"
+    "text": "All agendas\n\n\n    \n      \n      \n    \n\n\n\n\n\n\nID\n\n\n\nmodule\n\n\n\nTitle\n\n\n\nModified\n\n\n\n\n\n\n\n\n2\n\n\nAgenda + Day-of Deck\n\n\nR Workflows for advanced PB-QSP Modeling\n\n\n2026-06-29\n\n\n\n\n\n\n \n\n\n \n\n\nInject params as LaTeX macros so the TikZ block can use them.\n\n\n2026-06-29\n\n\n\n\n\n\n \n\n\n \n\n\nPAGE 2026 — {ospsuite} + {esqlabsR} Cheatsheet\n\n\n2026-06-29\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "mobi2026/index.html",
+    "href": "mobi2026/index.html",
+    "title": "ESQlabs R Trainings",
+    "section": "",
+    "text": "ESQlabs R Trainings\n\n\n\n\n\n\nTipMoBi Summer School 2026\n\n\n\nR Workflows for advanced PB-QSP Modeling with {ospsuite} and {esqlabsR}\nFull-day instructor-led workshop. See the agenda + day-of deck and the cheatsheet.\n\n\n\n\n📊 Workshops\n\n\n    \n      \n      \n    \n\n\n\n\n\n\nID\n\n\n\nmodule\n\n\n\nTitle\n\n\n\nModified\n\n\n\n\n\n\n\n\nA01\n\n\nIntroduction to {ospsuite}\n\n\nOpen System Pharmacology R packages Ecosystem\n\n\n2026-06-29\n\n\n\n\n\n\nA02\n\n\nIntroduction to {ospsuite}\n\n\n{ospsuite} Workflow\n\n\n2026-06-29\n\n\n\n\n\n\nA03\n\n\nIntroduction to {ospsuite}\n\n\nLoad Models\n\n\n2026-06-29\n\n\n\n\n\n\nA04\n\n\nIntroduction to {ospsuite}\n\n\nParameterize Simulations\n\n\n2026-06-29\n\n\n\n\n\n\nA05\n\n\nIntroduction to {ospsuite}\n\n\nRun Simulations\n\n\n2026-06-29\n\n\n\n\n\n\nA06\n\n\nIntroduction to {ospsuite}\n\n\nPlot Simulation Results\n\n\n2026-06-29\n\n\n\n\n\n\nA09\n\n\nIntroduction to {ospsuite}\n\n\nPK Analysis\n\n\n2026-06-29\n\n\n\n\n\n\nA10\n\n\nIntroduction to {ospsuite}\n\n\nLocal Sensitivity Analysis\n\n\n2026-06-29\n\n\n\n\n\n\nA12\n\n\nIntroduction to {ospsuite}\n\n\nCreating Individuals\n\n\n2026-06-29\n\n\n\n\n\n\nA13\n\n\nIntroduction to {ospsuite}\n\n\nPopulation Simulations\n\n\n2026-06-29\n\n\n\n\n\n\nB1\n\n\nIntroduction to {esqlabsR}\n\n\n{esqlabsR} Workflow\n\n\n2026-06-29\n\n\n\n\n\n\nB2\n\n\nIntroduction to {esqlabsR}\n\n\nProject Initialization\n\n\n2026-06-29\n\n\n\n\n\n\nB3\n\n\nIntroduction to {esqlabsR}\n\n\nScenario Design\n\n\n2026-06-29\n\n\n\n\n\n\nB4\n\n\nIntroduction to {esqlabsR}\n\n\nPlot Generation\n\n\n2026-06-29\n\n\n\n\n\n\nB5\n\n\nIntroduction to {esqlabsR}\n\n\nSensitivity Analysis\n\n\n2026-06-29\n\n\n\n\n\n\nC1\n\n\nIntroduction to {ospsuite.parameteridentification}\n\n\nParameter Identification\n\n\n2026-06-29\n\n\n\n\n\n\nNo matching items\n\n\n\n📦 Environment\nSlides on this site were rendered with the following versions:\n\n\n\n\n\n\n\n\n\n\n\nComponent\nVersion\n\n\n\n\n\nR (Happy Hop)\n4.6.1\n\n\nospsuite\n{ospsuite}\n12.4.2.9024\n\n\nospsuite.parameteridentification\n{ospsuite.parameteridentification}\n2.1.1.9013\n\n\nesqlabsR\n{esqlabsR}\n5.6.0.9008"
   },
   {
     "objectID": "workshops/A1-introduction.html#goal-familiarize-with-the-packages-of-the-osp-ecosystem-and-discern-their-respective-functions-and-applications.",
